@@ -41,16 +41,8 @@
 
     <!-- GOOGLE MAPS - VAI CHAMAR A FUNÇÃO STUB -->
     <script id="google-maps-script"></script>
-    <script>
-      // Carrega Google Maps com chave protegida
-      const GOOGLE_MAPS_KEY = process.env.GOOGLE_MAPS_API_KEY; 
-  
-      const script = document.getElementById('google-maps-script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_KEY}&libraries=places&language=pt-BR&region=US&callback=initPlacesAutocomplete`;
-      script.async = true;
-      script.defer = true;
-    </script>
-  
+    <script src="https://maps.googleapis.com/maps/api/js?key=PLACEHOLDER_GOOGLE_MAPS_API_KEY&libraries=places&language=pt-BR&region=US&callback=initPlacesAutocomplete"
+ async defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="script.js" defer></script>
 
