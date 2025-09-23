@@ -41,7 +41,16 @@
 
     <!-- GOOGLE MAPS - VAI CHAMAR A FUNÇÃO STUB -->
     <script id="google-maps-script"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=${import.meta.env.GOOGLE_MAPS_API_KEY}&libraries=places&language=pt-BR&region=US&callback=initPlacesAutocomplete" async defer></script>
+    <script>
+      const googleMapsKey = import.meta.env.GOOGLE_MAPS_API_KEY;
+      if (googleMapsKey) {
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&libraries=places&language=pt-BR&region=US&callback=initPlacesAutocomplete`;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      }
+    </script>    
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="script.js" defer></script>
 
