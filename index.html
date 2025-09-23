@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALLYCAR - Premium Car Rental in Orlando</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    <script type="module" src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
-    <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js"></script>
+    <script type="module" src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js"></script>
 
     <!-- FUNÇÃO STUB - Só para o Google Maps não dar erro -->
-    <script>
+    <script type="module">
         // Esta função será chamada pelo Google Maps, mas só vai executar quando tudo estiver pronto
         window.initPlacesAutocomplete = function() {
 
@@ -40,8 +40,8 @@
     </script>
 
     <!-- GOOGLE MAPS - VAI CHAMAR A FUNÇÃO STUB -->
-    <script id="google-maps-script"></script>
-    <script>
+    <script type="module" id="google-maps-script"></script>
+    <script type="module">
       const googleMapsKey = import.meta.env.GOOGLE_MAPS_API_KEY;
       if (googleMapsKey) {
         const script = document.createElement('script');
@@ -51,8 +51,8 @@
         document.head.appendChild(script);
       }
     </script>    
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="script.js" defer></script>
+    <script type="module" src="https://accounts.google.com/gsi/client" async defer></script>
+    <script type="module" src="script.js" defer></script>
 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
