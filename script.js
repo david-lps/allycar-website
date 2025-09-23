@@ -1235,8 +1235,8 @@ function collectBookingFromUI(){
 
 // Configurações do Google Sheets
 const SHEETS_CONFIG = {
-  SHEET_ID: process.env.SHEETS_ID || 'fallback_value',
-  API_KEY: process.env.SHEETS_API_KEY || 'fallback_value',
+  SHEET_ID: 'PLACEHOLDER_SHEETS_ID',
+  API_KEY: 'PLACEHOLDER_SHEETS_API_KEY',
   RANGE: 'Reservas!A:T'
 };
 
@@ -1266,7 +1266,7 @@ const COLUMNS = {
 
 // Função principal para salvar reserva no Google Sheets
 async function saveBookingToSheets(booking) {
-  const WEB_APP_URL = process.env.WEB_APP_URL;
+  const WEB_APP_URL = 'PLACEHOLDER_WEB_APP_URL';
   
   try {
     console.log('📋 Dados que vão ser enviados:', booking);
@@ -2731,10 +2731,10 @@ function renderChips() {
 
 // Configuração do EmailJS (recomendado - gratuito até 200 emails/mês)
 const EMAIL_CONFIG = {
-  EMAILJS_PUBLIC_KEY: process.env.EMAILJS_KEY,
-  SERVICE_ID: process.env.SERVICE_ID,
-  ADMIN_TEMPLATE_ID: '0001',
-  CLIENT_TEMPLATE_ID: 'template_odf1st4'
+  EMAILJS_PUBLIC_KEY: 'PLACEHOLDER_EMAILJS_KEY',
+  SERVICE_ID: 'PLACEHOLDER_SERVICE_ID',
+  ADMIN_TEMPLATE_ID: 'PLACEHOLDER_ADMIN_TEMPLATE_ID',
+  CLIENT_TEMPLATE_ID: 'PLACEHOLDER_CLIENT_TEMPLATE_ID'
 };
 
 // Templates de email por idioma
