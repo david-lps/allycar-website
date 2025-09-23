@@ -37,7 +37,7 @@
         };
         
         // Carregar Google Maps dinamicamente
-        const googleMapsKey = window.ENV_GOOGLE_MAPS_API_KEY;
+        const googleMapsKey = window.GOOGLE_MAPS_API_KEY;
         if (googleMapsKey) {
             const script = document.createElement('script');
             script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&libraries=places&language=pt-BR&region=US&callback=initPlacesAutocomplete`;
