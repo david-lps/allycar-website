@@ -2,7 +2,7 @@
 let CONFIG = {};
 let configLoaded = false;
 
-// Função para carregar configurações do backend
+/* Função para carregar configurações do backend (NAO ESTA FUNCIONANDO !)
 async function loadConfig() {
   try {
     console.log('🔄 Carregando configurações...');
@@ -23,15 +23,29 @@ async function loadConfig() {
     console.error('❌ Erro ao carregar configurações:', error);
     alert('Erro ao carregar configurações do site. Recarregue a página.');
   }
+}*/
+
+async function loadConfig() {
+  CONFIG = {
+    SHEETS_ID: "1W1R2RXF7AgSrt6mYFgPiiFf0ZcuJVD7SIPze_ElMFOg",
+    SHEETS_API_KEY: "AIzaSyABXr-VuUugRLw-SvIV0518LlDOcJNdgoA",
+    EMAILJS_KEY: "nOAbxsrTxf7XxDJjo",
+    SERVICE_ID: "service_zu5ldwk",
+    ADMIN_TEMPLATE_ID: "0001",
+    CLIENT_TEMPLATE_ID: "template_odf1st4",
+    WEB_APP_URL: "https://script.google.com/macros/s/AKfycbxuGKCTw3zEDcoSx7J170vtPsjxUn1iQgp6VwPKjN3WWW1vxsbLnn9tt8cnv6ZPFDwm/exec",
+    GOOGLE_MAPS_API_KEY: "AIzaSyAiiaZvpFfHnXr7NNGb3Sa8YXzkaPnd4-Q"
+  };
+  
+  configLoaded = true;
+  console.log('Configurações carregadas');
+  initializeApp();
 }
 
 // Função para inicializar a aplicação após carregar config
 function initializeApp() {
-  console.log('🚀 Inicializando aplicação...');
-  
-  // Carregar Google Maps dinamicamente
+    // Carregar Google Maps dinamicamente
   loadGoogleMaps();
-  
 }
 
 // Função para carregar Google Maps
