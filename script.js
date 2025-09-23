@@ -1,7 +1,7 @@
 
 let CONFIG = {};
 let configLoaded = false;
-
+/*
 async function loadConfig() {
   try {
     console.log('🔄 Carregando configurações...');
@@ -22,8 +22,9 @@ async function loadConfig() {
     console.error('❌ Erro ao carregar configurações:', error);
     alert('Erro ao carregar configurações do site. Recarregue a página.');
   }
-}
-/* 
+} 
+*/
+ 
 async function loadConfig() {
   CONFIG = {
     SHEETS_ID: "1W1R2RXF7AgSrt6mYFgPiiFf0ZcuJVD7SIPze_ElMFOg",
@@ -40,7 +41,6 @@ async function loadConfig() {
   console.log('Configurações carregadas');
   initializeApp();
 }
-*/
 
 // Função para inicializar a aplicação após carregar config
 function initializeApp() {
