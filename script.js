@@ -1,28 +1,63 @@
 
+/ ===== CONFIGURAÇÃO SEGURA COM NETLIFY FUNCTIONS =====
 let CONFIG = {};
+let configLoaded = false;
 
+// Função para carregar configurações do backend
 async function loadConfig() {
   try {
+    console.log('🔄 Carregando configurações...');
     const response = await fetch('/.netlify/functions/config');
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
     CONFIG = await response.json();
-    console.log('✅ Configurações carregadas!');
+    configLoaded = true;
+    console.log('✅ Configurações carregadas com sucesso!');
     
     // Inicializar tudo após carregar config
     initializeApp();
+    
   } catch (error) {
     console.error('❌ Erro ao carregar configurações:', error);
+    alert('Erro ao carregar configurações do site. Recarregue a página.');
   }
 }
 
-function initializeApp() {  
-  // Carregar Google Maps
+// Função para inicializar a aplicação após carregar config
+function initializeApp() {
+  console.log('🚀 Inicializando aplicação...');
+  
+  // Carregar Google Maps dinamicamente
+  loadGoogleMaps();
+  
+}
+
+// Função para carregar Google Maps
+function loadGoogleMaps() {
+  if (!CONFIG.GOOGLE_MAPS_API_KEY) {
+    console.error('❌ Google Maps API key não encontrada');
+    return;
+  }
+  
   const script = document.createElement('script');
   script.src = `https://maps.googleapis.com/maps/api/js?key=${CONFIG.GOOGLE_MAPS_API_KEY}&libraries=places&language=pt-BR&region=US&callback=initPlacesAutocomplete`;
   script.async = true;
   script.defer = true;
+  script.onerror = () => console.error('❌ Erro ao carregar Google Maps');
   document.head.appendChild(script);
+  
+  console.log('🗺️ Google Maps carregando...');
 }
 
+// Carregar config quando DOM estiver pronto
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', loadConfig);
+} else {
+  loadConfig();
+}
 
 // Show payment modal
 function showPaymentModal(e) {
@@ -1260,8 +1295,8 @@ function collectBookingFromUI(){
 
 // Configurações do Google Sheets
 const SHEETS_CONFIG = {
-  SHEET_ID: window.SHEETS_ID,
-  API_KEY: window.SHEETS_API_KEY,
+  get SHEET_ID() { return CONFIG.SHEETS_ID; },
+  get API_KEY() { return CONFIG.SHEETS_API_KEY; },
   RANGE: 'Reservas!A:T'
 };
 
@@ -1291,7 +1326,7 @@ const COLUMNS = {
 
 // Função principal para salvar reserva no Google Sheets
 async function saveBookingToSheets(booking) {
-  const WEB_APP_URL = window.WEB_APP_URL;
+  const WEB_APP_URL = CONFIG.WEB_APP_URL;
   
   try {
     console.log('📋 Dados que vão ser enviados:', booking);
@@ -2756,10 +2791,10 @@ function renderChips() {
 
 // Configuração do EmailJS (recomendado - gratuito até 200 emails/mês)
 const EMAIL_CONFIG = {
-  EMAILJS_PUBLIC_KEY: window.EMAILJS_KEY,
-  SERVICE_ID: window.SERVICE_ID,
-  ADMIN_TEMPLATE_ID: window.ADMIN_TEMPLATE_ID,
-  CLIENT_TEMPLATE_ID: window.CLIENT_TEMPLATE_ID
+  get EMAILJS_PUBLIC_KEY() { return CONFIG.EMAILJS_KEY; },
+  get SERVICE_ID() { return CONFIG.SERVICE_ID; },
+  get ADMIN_TEMPLATE_ID() { return CONFIG.ADMIN_TEMPLATE_ID; },
+  get CLIENT_TEMPLATE_ID() { return CONFIG.CLIENT_TEMPLATE_ID; }
 };
 
 // Templates de email por idioma
