@@ -1,5 +1,5 @@
 
-/ ===== CONFIGURAÇÃO SEGURA COM NETLIFY FUNCTIONS =====
+// ===== CONFIGURAÇÃO SEGURA COM NETLIFY FUNCTIONS =====
 let CONFIG = {};
 let configLoaded = false;
 
