@@ -15,7 +15,7 @@ function showPaymentModal(e) {
     pay.classList.remove('hidden');
     pay.style.display = 'flex';
     pay.style.zIndex = 60;  // sobrepõe o availability
-    pay.scrollTo(0, 0);
+    pay.scrollTo(0, 0); 
   }
 
   document.body.style.overflow = 'hidden';
