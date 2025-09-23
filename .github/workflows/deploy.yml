@@ -1,0 +1,50 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Replace API keys with secrets
+      run: |
+        # Substituir chaves no script.js
+        sed -i "s/PLACEHOLDER_SHEETS_ID/${{ secrets.SHEETS_ID }}/g" script.js
+        sed -i "s/PLACEHOLDER_SHEETS_API_KEY/${{ secrets.SHEETS_API_KEY }}/g" script.js
+        sed -i "s/PLACEHOLDER_EMAILJS_KEY/${{ secrets.EMAILJS_KEY }}/g" script.js
+        sed -i "s/PLACEHOLDER_SERVICE_ID/${{ secrets.SERVICE_ID }}/g" script.js
+        sed -i "s/PLACEHOLDER_ADMIN_TEMPLATE_ID/${{ secrets.ADMIN_TEMPLATE_ID }}/g" script.js
+        sed -i "s/PLACEHOLDER_CLIENT_TEMPLATE_ID/${{ secrets.CLIENT_TEMPLATE_ID }}/g" script.js
+        sed -i "s|PLACEHOLDER_WEB_APP_URL|${{ secrets.WEB_APP_URL }}|g" script.js
+        
+        # Substituir chave no index.html
+        sed -i "s/PLACEHOLDER_GOOGLE_MAPS_API_KEY/${{ secrets.GOOGLE_MAPS_API_KEY }}/g" index.html
+        
+        echo "✅ API keys substituídas com sucesso!"
+    
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+    
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '.'
+    
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
