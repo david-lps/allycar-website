@@ -524,3 +524,7 @@ place-autocomplete-element {
     min-width: 261px;
   }
 }
+
+img {
+  object-position: center 30% !important;
+}
