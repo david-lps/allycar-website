@@ -1,0 +1,301 @@
+{
+  "__meta": { "lang": "pt" },
+  "nav": {
+    "lookup": "Consultar Reserva",
+    "fleet": "Frota",
+    "fleetPlural": "Frotas",
+    "locations": "Áreas Atendidas",
+    "why": "Porque Nós",
+    "contact": "Contato"
+  },
+  "hero": {
+    "title": "Aluguel de carros premium em Orlando",
+    "subtitle": "Melhores <strong class=\"gold-text\">carros</strong>, melhor <strong class=\"gold-text\">serviço</strong>",
+    "cta": "Selecione seu Carro"
+  },
+  "fleet": {
+    "title": "Nossa frota",
+    "seats": "lugares",
+    "luggage": "malas",
+    "perDay": "diária",
+    "reserve": "Reservar"
+  },
+  "testimonials": {
+    "title": "O que nossos clientes dizem"
+  },
+  "footer": {
+    "desc": "Aluguel de carros premium em Orlando. Entregamos onde e quando quiser.",
+    "quickLinks": "Links Rápidos",
+    "upgrades": "Upgrades",
+    "contact": "Contato",
+    "orlando": "Orlando, Florida",
+    "follow": "Siga-nos",
+    "rights": "© 2025 MYLUXCARS. Todos os direitos reservados."
+  },
+  "locations": {
+    "title": "Áreas de Entrega",
+    "body": "Levamos o carro até você em um raio de 30 milhas de Orlando, com opção de entrega também nos aeroportos de Tampa e Miami <span class=\"text-white/70\">(sujeito a taxa adicional)</span>."
+  },
+  "modal": {
+    "reserve": "Reservar",
+    "selectDates": "Selecione as datas",
+    "pickupDate": "Data de Retirada",
+    "dropoffDate": "Data de Devolução",
+    "reserveNow": "Reservar agora"
+  },
+  "common": {
+    "copy": "Copiar",
+    "close": "Fechar",
+    "ok": "Entendido"
+  },
+  "fb": {
+    "header": { "title": "Finalize sua Reserva" },
+    "dates": {
+      "title": "Datas da locação",
+      "pickupDate": "Data de Retirada",
+      "pickupTime": "Horário",
+      "timePlaceholder": "09:00",
+      "dropoffDate": "Data de Devolução",
+      "dropoffTime": "Horário"
+    },
+    "address": {
+      "pickupLabel": "Endereço de retirada (FL)",
+      "pickupPh": "Ex: Orlando International Airport (MCO), Orlando, FL",
+      "dropoffLabel": "Endereço de devolução (FL)",
+      "dropoffPh": "Ex: Disney Springs, Lake Buena Vista, FL",
+      "onlyFL": "Atendemos apenas endereços na Flórida (FL)."
+    },
+    "contact": {
+      "emailLabel": "E-mail",
+      "emailPh": "voce@email.com",
+      "phoneLabel": "Celular",
+      "phonePh": "+55 11 99999-9999",
+      "nameLabel": "Nome Completo",
+      "driver": "Condutor",
+      "birthdate": "Data de Nascimento",
+      "driverlicense": "Número da CNH"
+    },
+    "payment": {
+      "title": "Pagamento",
+      "methodLabel": "Forma de Pagamento",
+      "credit": "Cartão de Crédito (até 10x sem juros)",
+      "pix": "PIX (5% desconto)",
+      "transfer": "Transferência Bancária",
+      "installmentsLabel": "Parcelas",
+      "installments1": "1x à vista",
+      "installments2": "2x sem juros",
+      "installments3": "3x sem juros",
+      "installments6": "6x sem juros",
+      "installments10": "10x sem juros",
+      "installmentValueLabel": "Valor da Parcela",
+      "installmentValuePh": "$0.00"
+    },
+    "submit": "Solicitar Reserva",
+    "error": "Ocorreu um erro. Tente novamente.",
+    "summary": {
+      "title": "Resumo de Preço",
+      "days": "diária(s)",
+      "noIof": "Sem IOF",
+      "noDeposit": "Sem caução",
+      "totalLabel": "Total",
+      "locationFee": "Taxa adicional de localização"
+    },
+    "included": {
+      "title": "Incluso na diária:",
+      "fuel": "⛽ Tanque cheio; devolução igual ou taxa de US$ 50",
+      "childSeat": "👶 Cadeirinha de bebê",
+      "insurance": "🛡️ Seguro completo (incluindo terceiros)",
+      "additionalDrivers": "👥 Condutores adicionais sem custo",
+      "sunpass": "🚗 Sunpass",
+      "payLocal": "💳 Pagamento até 10x em moeda local",
+      "readyAtPickup": "🛬 Carro estará pronto no local de retirada",
+      "supportPt": "☎️ Atendimento 24h em português"
+    },
+    "errors": {
+      "selectDates": "Selecione as datas de retirada e devolução.",
+      "onlyFL": "Atendemos apenas endereços na Flórida (FL).",
+      "invalidEmail": "Informe um e-mail válido.",
+      "invalidPhone": "Informe um número válido (com DDI)."
+    }
+  },
+  "bp": {
+    "processing": {
+      "title": "Processando sua reserva…",
+      "body": "Em instantes vamos gerar o seu código e preparar a confirmação."
+    },
+    "done": {
+      "title": "Reserva recebida!",
+      "subtitle": "Tudo certo — geramos o seu código de acompanhamento.",
+      "msg": "Você receberá <strong>a confirmação da reserva</strong> e entraremos em contato para a <strong>etapa final de pagamento</strong>."
+    },
+    "code": {
+      "label": "Seu código:",
+      "hint": "Guarde este código para acompanhar sua reserva pelo site."
+    },
+    "steps": {
+      "title": "Próximos passos",
+      "step1": "Recebemos sua solicitação <span class=\"text-white/60\">(agora)</span>",
+      "step2": "Validação de disponibilidade <span class=\"text-white/60\">(até 1h)</span>",
+      "step3": "Confirmação + link de pagamento"
+    },
+    "cta": {
+      "track": "Acompanhar minha reserva",
+      "addToCalendar": "Adicionar ao calendário",
+      "backHome": "Voltar ao início"
+    },
+    "summary": {
+      "title": "Resumo da reserva",
+      "vehicle": "Veículo",
+      "pickup": "Retirada",
+      "dropoff": "Devolução",
+      "extras": "Extras",
+      "days": "Diária(s)",
+      "total": "Total $",
+      "confirmationTo": "Confirmação enviada para",
+      "replyHint": "Você pode responder ao e-mail para qualquer ajuste."
+    }
+  },
+  "lookup": {
+    "title": "Consultar reserva",
+    "subtitle": "Use o seu código (ex.: MLC-ORL-2025-09-08-AB27)",
+    "inputPlaceholder": "Digite seu código de reserva",
+    "submit": "Consultar",
+    "resultTitle": "Resultado",
+    "code": "Código",
+    "vehicle": "Veículo",
+    "pickup": "Retirada",
+    "dropoff": "Devolução",
+    "extras": "Extras",
+    "days": "Dias",
+    "total": "Total",
+    "email": "E-mail",
+    "empty": "Digite o código acima e clique em “Consultar”.",
+    "error": "Não encontramos nenhuma reserva com esse código. Verifique e tente novamente."
+  },
+  "benefits": {
+    "badge": "ÚNICA locadora com todos estes benefícios",
+    "header": {
+      "title": "Pacotes completos. Transparência total. Zero surpresas.",
+      "subtitle": "Nosso intuito é <strong class=\"gold-text\">simplificar</strong> a sua viagem: você escolhe o <strong class=\"gold-text\">carro exato</strong> que quer, recebe tudo <strong class=\"gold-text\">incluso</strong>, sem taxas escondidas — para gastar seu tempo com o que importa: <strong>momentos incríveis em família</strong>."
+    },
+    "tags": {
+      "premium": "Premium",
+      "allIncluded": "Tudo incluso",
+      "noBureaucracy": "Sem burocracia",
+      "familyFirst": "Família em 1º lugar"
+    },
+    "cards": {
+      "premiumFleet": {
+        "title": "Veículos novos e Premium",
+        "body": "Frota atualizada, confortável e revisada para sua segurança."
+      },
+      "exactCar": {
+        "title": "Escolha o carro exato",
+        "body": "Aqui você não “aluga a categoria” — escolhe o modelo que vai usar."
+      },
+      "noMinPeriod": {
+        "title": "Sem período mínimo",
+        "body": "Alugue pelo tempo que precisar — sem exigir 7 dias."
+      },
+      "fullTank": {
+        "title": "Tanque cheio",
+        "body": "Retire com tanque cheio para sair dirigindo sem paradas."
+      },
+      "fullInsurance": {
+        "title": "Seguro completo + terceiros",
+        "body": "Cobertura ampla para você dirigir sem preocupação."
+      },
+      "extraDriver": {
+        "title": "Condutor adicional grátis",
+        "body": "Revezem a direção sem pagar a mais por isso."
+      },
+      "unlimitedTolls": {
+        "title": "Pedágios ilimitados",
+        "body": "Passe livre nos pedágios: praticidade e previsibilidade."
+      },
+      "childSeat": {
+        "title": "Cadeirinha inclusa",
+        "body": "Segurança para os pequenos, sem custo extra."
+      },
+      "webCheckin": {
+        "title": "Web Check-in",
+        "body": "Faça tudo online e receba o carro pronto."
+      },
+      "noLines": {
+        "title": "Sem filas na retirada",
+        "body": "Chegou, pegou e partiu — simples assim."
+      },
+      "freeDelivery": {
+        "title": "Entrega gratuita em Orlando",
+        "body": "Levamos e buscamos o carro onde você estiver."
+      },
+      "noDeposit": {
+        "title": "Sem depósito caução",
+        "body": "Seu dinheiro livre: sem bloqueios no cartão."
+      },
+      "noIOF": {
+        "title": "Sem IOF",
+        "body": "Economia real na locação internacional."
+      },
+      "installments": {
+        "title": "Parcelamento sem juros",
+        "body": "Planeje sua viagem e pague do seu jeito."
+      },
+      "support247": {
+        "title": "Atendimento 24×7 PT / EN / ES",
+        "body": "Suporte humano, quando e como você precisar."
+      }
+    },
+    "footer": {
+      "note": "Transparente, completo e sem letras miúdas. Viaje leve — a gente cuida do resto.",
+      "close": "Fechar",
+      "cta": "Escolher meu carro"
+    }
+  },
+  "search": {
+    "pickupDate": "Data de Retirada",
+    "pickupDatePH": "YYYY-MM-DD",
+    "pickupTime": "Hora",
+    "pickupTimePH": "09:00",
+    "dropoffDate": "Data de Devolução",
+    "dropoffDatePH": "YYYY-MM-DD",
+    "dropoffTime": "Hora",
+    "dropoffTimePH": "18:00",
+    "pickupLocation": "Local de Retirada",
+    "pickupLocationPH": "Ex: Orlando International Airport (MCO)",
+    "altDropoff": "Local de Devolução",
+    "dropoffLocationPH": "Ex: Disney Springs",
+    "otherDropoffBtn": "Devolver em outro lugar",
+    "searchBtn": "Pesquisar"
+  },
+  "results": {
+    "title": "Resultados da Busca",
+    "heading": "Carros disponíveis",
+    "back": "Nova busca",
+    "reserveBtn": "Concluir Reserva",
+    "vehicles": "Veículos"
+  },
+  "filters": {
+    "title": "Filtros",
+    "clear": "Limpar",
+    "price": "Preço",
+    "any": "Qualquer",
+    "lowToHigh": "Menor para maior",
+    "highToLow": "Maior para menor",
+    "model": "Modelo",
+    "modelPH": "SUV, Sedan...",
+    "seats": "Assentos",
+    "luggage": "Malas",
+    "apply": "Aplicar"
+  },
+  "removeOtherDropoff": "Remover endereço de devolução",
+  "alerts": {
+    "pickupAddressRequired": "Informe o endereço de retirada",
+    "dropoffAddressRequired": "Informe o endereço de devolução",
+    "onlyFloridaAddress": "Por favor, selecione um endereço na Florida"
+  },
+  "login": {
+    "title": "Preencha automaticamente seus dados",
+    "manual": "ou preencha manualmente"
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "__meta": { "lang": "en" },
+  "nav": {
+    "lookup": "Reservation Lookup",
+    "fleet": "Fleet",
+    "fleetPlural": "Fleet",
+    "locations": "Service Areas",
+    "why": "Why Us",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Premium car rental in Orlando",
+    "subtitle": "Better <strong class=\"gold-text\">cars</strong>, better <strong class=\"gold-text\">service</strong>",
+    "cta": "Choose Your Car"
+  },
+  "fleet": {
+    "title": "Our Fleet",
+    "seats": "seats",
+    "luggage": "luggage",
+    "perDay": "day",
+    "reserve": "Reserve"
+  },
+  "testimonials": {
+    "title": "What our customers say"
+  },
+  "footer": {
+    "desc": "Premium car rental in Orlando. We deliver where and when you want.",
+    "quickLinks": "Quick Links",
+    "upgrades": "Upgrades",
+    "contact": "Contact",
+    "orlando": "Orlando, Florida",
+    "follow": "Follow Us",
+    "rights": "© 2025 MYLUXCARS. All rights reserved."
+  },
+  "locations": {
+    "title": "Delivery Areas",
+    "body": "We deliver the car within a 30-mile radius of Orlando, with optional delivery to Tampa and Miami airports <span class=\"text-white/70\">(additional fee may apply)</span>."
+  },
+  "modal": {
+    "reserve": "Reserve",
+    "selectDates": "Select dates",
+    "pickupDate": "Pick-up Date",
+    "dropoffDate": "Drop-off Date",
+    "reserveNow": "Reserve now"
+  },
+  "common": {
+    "copy": "Copy",
+    "close": "Close",
+    "ok": "Got it"
+  },
+  "fb": {
+    "header": { "title": "Finalize Your Reservation" },
+    "dates": {
+      "title": "Rental dates",
+      "pickupDate": "Pick-up Date",
+      "pickupTime": "Time",
+      "timePlaceholder": "09:00",
+      "dropoffDate": "Drop-off Date",
+      "dropoffTime": "Time"
+    },
+    "address": {
+      "pickupLabel": "Pick-up address (FL)",
+      "pickupPh": "e.g., Orlando International Airport (MCO), Orlando, FL",
+      "dropoffLabel": "Drop-off address (FL)",
+      "dropoffPh": "e.g., Disney Springs, Lake Buena Vista, FL",
+      "onlyFL": "We serve addresses within Florida (FL) only."
+    },
+    "contact": {
+      "emailLabel": "Email",
+      "emailPh": "you@email.com",
+      "phoneLabel": "Mobile",
+      "phonePh": "+1 407 555-1212",
+      "nameLabel": "Full Name",
+      "driver": "Driver",
+      "birthdate": "Date of Birth",
+      "driverlicense": "Driver License Number"
+    },
+    "payment": {
+      "title": "Payment",
+      "methodLabel": "Payment Method",
+      "credit": "Credit Card (up to 10x interest-free)",
+      "pix": "PIX (5% discount)",
+      "transfer": "Bank Transfer",
+      "installmentsLabel": "Installments",
+      "installments1": "1x full payment",
+      "installments2": "2x interest-free",
+      "installments3": "3x interest-free",
+      "installments6": "6x interest-free",
+      "installments10": "10x interest-free",
+      "installmentValueLabel": "Installment Amount",
+      "installmentValuePh": "$0.00"
+    },
+    "submit": "Request Reservation",
+    "error": "Something went wrong. Please try again.",
+    "summary": {
+      "title": "Price Summary",
+      "days": "day(s)",
+      "noIof": "No IOF",
+      "noDeposit": "No security deposit",
+      "totalLabel": "Total",
+      "locationFee": "Additional location fee"
+    },
+    "included": {
+      "title": "Included in the daily rate:",
+      "fuel": "⛽ Full tank; return full or US$ 50 fee",
+      "childSeat": "👶 Child safety seat",
+      "insurance": "🛡️ Full insurance (including third-party)",
+      "additionalDrivers": "👥 Additional drivers at no cost",
+      "sunpass": "🚗 SunPass",
+      "payLocal": "💳 Pay up to 10x in local currency",
+      "readyAtPickup": "🛬 Car ready at the pick-up location",
+      "supportPt": "☎️ 24/7 support in Portuguese"
+    },
+    "errors": {
+      "selectDates": "Please select pick-up and drop-off dates.",
+      "onlyFL": "We only serve addresses within Florida (FL).",
+      "invalidEmail": "Please enter a valid email address.",
+      "invalidPhone": "Please enter a valid phone number (with country code)."
+    }
+  },
+  "bp": {
+    "processing": {
+      "title": "Processing your reservation…",
+      "body": "In a moment we will generate your code and prepare the confirmation."
+    },
+    "done": {
+      "title": "Reservation received!",
+      "subtitle": "All set — we’ve generated your tracking code.",
+      "msg": "You will receive the <strong>reservation confirmation</strong> and we will contact you for the <strong>final payment step</strong>."
+    },
+    "code": {
+      "label": "Your code:",
+      "hint": "Keep this code to track your reservation on our website."
+    },
+    "steps": {
+      "title": "Next steps",
+      "step1": "We received your request <span class=\"text-white/60\">(now)</span>",
+      "step2": "Availability validation <span class=\"text-white/60\">(within 1h)</span>",
+      "step3": "Confirmation + payment link"
+    },
+    "cta": {
+      "track": "Track my reservation",
+      "addToCalendar": "Add to calendar",
+      "backHome": "Back to home"
+    },
+    "summary": {
+      "title": "Reservation summary",
+      "vehicle": "Vehicle",
+      "pickup": "Pick-up",
+      "dropoff": "Drop-off",
+      "extras": "Extras",
+      "days": "Day(s)",
+      "total": "Total $",
+      "confirmationTo": "Confirmation sent to",
+      "replyHint": "You can reply to the email for any adjustments."
+    }
+  },
+  "lookup": {
+    "title": "Reservation Lookup",
+    "subtitle": "Use your code (e.g., MLC-ORL-2025-09-08-AB27)",
+    "inputPlaceholder": "Enter your reservation code",
+    "submit": "Search",
+    "resultTitle": "Result",
+    "code": "Code",
+    "vehicle": "Vehicle",
+    "pickup": "Pick-up",
+    "dropoff": "Drop-off",
+    "extras": "Extras",
+    "days": "Days",
+    "total": "Total",
+    "email": "Email",
+    "empty": "Type your code above and click “Search”.",
+    "error": "We couldn’t find a reservation with that code. Please check and try again."
+  },
+  "benefits": {
+    "badge": "The ONLY rental with all these benefits",
+    "header": {
+      "title": "All-inclusive packages. Total transparency. Zero surprises.",
+      "subtitle": "Our goal is to <strong class=\"gold-text\">simplify</strong> your trip: pick the <strong class=\"gold-text\">exact car</strong> you want, get everything <strong class=\"gold-text\">included</strong>, no hidden fees — so you can spend time on what matters: <strong>amazing moments with your family</strong>."
+    },
+    "tags": {
+      "premium": "Premium",
+      "allIncluded": "All included",
+      "noBureaucracy": "No bureaucracy",
+      "familyFirst": "Family first"
+    },
+    "cards": {
+      "premiumFleet": {
+        "title": "New & Premium vehicles",
+        "body": "Updated, comfortable fleet inspected for your safety."
+      },
+      "exactCar": {
+        "title": "Pick the exact car",
+        "body": "You don’t rent a “category” — you choose the model you’ll drive."
+      },
+      "noMinPeriod": {
+        "title": "No minimum period",
+        "body": "Rent for as long as you need — no 7-day requirement."
+      },
+      "fullTank": {
+        "title": "Full tank",
+        "body": "Pick up with a full tank and hit the road right away."
+      },
+      "fullInsurance": {
+        "title": "Full insurance + liability",
+        "body": "Broad coverage so you can drive worry-free."
+      },
+      "extraDriver": {
+        "title": "Free additional driver",
+        "body": "Share the driving without paying extra."
+      },
+      "unlimitedTolls": {
+        "title": "Unlimited tolls",
+        "body": "Seamless tolls: convenience and predictable costs."
+      },
+      "childSeat": {
+        "title": "Child seat included",
+        "body": "Safety for little ones at no extra cost."
+      },
+      "webCheckin": {
+        "title": "Web Check-in",
+        "body": "Do everything online and get the car ready to go."
+      },
+      "noLines": {
+        "title": "No lines at pickup",
+        "body": "Arrive, pick up and go — that simple."
+      },
+      "freeDelivery": {
+        "title": "Free delivery in Orlando",
+        "body": "We deliver and collect the car wherever you are."
+      },
+      "noDeposit": {
+        "title": "No security deposit",
+        "body": "Keep your money free — no credit card holds."
+      },
+      "noIOF": {
+        "title": "No IOF tax",
+        "body": "Real savings on international rentals."
+      },
+      "installments": {
+        "title": "Interest-free installments",
+        "body": "Plan your trip and pay your way."
+      },
+      "support247": {
+        "title": "24×7 support PT / EN / ES",
+        "body": "Human support, whenever and however you need."
+      }
+    },
+    "footer": {
+      "note": "Transparent, all-inclusive, no fine print. Travel light — we handle the rest.",
+      "close": "Close",
+      "cta": "Choose my car"
+    }
+  },
+  "search": {
+    "pickupDate": "Pick-up Date",
+    "pickupDatePH": "YYYY-MM-DD",
+    "pickupTime": "Time",
+    "pickupTimePH": "09:00",
+    "dropoffDate": "Drop-off Date",
+    "dropoffDatePH": "YYYY-MM-DD",
+    "dropoffTime": "Time",
+    "dropoffTimePH": "18:00",
+    "pickupLocation": "Pick-up Location",
+    "pickupLocationPH": "e.g., Orlando International Airport (MCO)",
+    "altDropoff": "Drop-off Location",
+    "dropoffLocationPH": "e.g., Disney Springs",
+    "otherDropoffBtn": "Other drop-off address",
+    "searchBtn": "Search"
+  },
+  "results": {
+    "title": "Search Results",
+    "heading": "Available Cars",
+    "back": "New search",
+    "reserveBtn": "Complete Reservation",
+    "vehicles": "Vehicles"
+  },
+  "filters": {
+    "title": "Search",
+    "clear": "Clear",
+    "price": "Price",
+    "any": "Any",
+    "lowToHigh": "Low to high",
+    "highToLow": "High to low",
+    "model": "Model",
+    "modelPH": "SUV, Sedan...",
+    "seats": "Seats",
+    "luggage": "Luggage",
+    "apply": "Apply"
+  },
+  "removeOtherDropoff": "Remove drop-off address",
+  "alerts": {
+    "pickupAddressRequired": "Please enter the pick-up address",
+    "dropoffAddressRequired": "Please enter the drop-off address",
+    "onlyFloridaAddress": "Please select an address in Florida"
+  },
+  "login": {
+    "title": "Automatically fill in your details",
+    "manual": "or fill in manually"
+  }
+}
