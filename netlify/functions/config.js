@@ -1,5 +1,4 @@
 exports.handler = async (event, context) => {
-  // Verificar se é uma requisição GET
   if (event.httpMethod !== 'GET') {
     return {
       statusCode: 405,
@@ -8,7 +7,6 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    // Retornar todas as variáveis de ambiente necessárias
     const config = {
       SHEETS_ID: process.env.SHEETS_ID,
       SHEETS_API_KEY: process.env.SHEETS_API_KEY,
@@ -24,24 +22,14 @@ exports.handler = async (event, context) => {
       statusCode: 200,
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(config)
     };
   } catch (error) {
-    console.error('Erro na function config:', error);
     return {
       statusCode: 500,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ 
-        error: 'Erro interno do servidor',
-        message: error.message 
-      })
+      body: JSON.stringify({ error: error.message })
     };
   }
 };
