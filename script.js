@@ -1,4 +1,29 @@
 
+let CONFIG = {};
+
+async function loadConfig() {
+  try {
+    const response = await fetch('/.netlify/functions/config');
+    CONFIG = await response.json();
+    console.log('✅ Configurações carregadas!');
+    
+    // Inicializar tudo após carregar config
+    initializeApp();
+  } catch (error) {
+    console.error('❌ Erro ao carregar configurações:', error);
+  }
+}
+
+function initializeApp() {  
+  // Carregar Google Maps
+  const script = document.createElement('script');
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${CONFIG.GOOGLE_MAPS_API_KEY}&libraries=places&language=pt-BR&region=US&callback=initPlacesAutocomplete`;
+  script.async = true;
+  script.defer = true;
+  document.head.appendChild(script);
+}
+
+
 // Show payment modal
 function showPaymentModal(e) {
   if (e) { e.preventDefault(); e.stopPropagation(); }
