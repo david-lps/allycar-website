@@ -1235,9 +1235,9 @@ function collectBookingFromUI(){
 
 // Configurações do Google Sheets
 const SHEETS_CONFIG = {
-  SHEET_ID: '1W1R2RXF7AgSrt6mYFgPiiFf0ZcuJVD7SIPze_ElMFOg', // Substitua pela ID da sua planilha
-  API_KEY: 'AIzaSyABXr-VuUugRLw-SvIV0518LlDOcJNdgoA',   // Substitua pela sua API Key
-  RANGE: 'Reservas!A:T'          // Nome da aba e range das colunas
+  SHEET_ID: process.env.SHEETS_ID || 'fallback_value',
+  API_KEY: process.env.SHEETS_API_KEY || 'fallback_value',
+  RANGE: 'Reservas!A:T'
 };
 
 // Estrutura das colunas na planilha
