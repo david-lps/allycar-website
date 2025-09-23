@@ -12,7 +12,7 @@
     "currency": "USD",
     "fuel": "Gasoline",
     "transmission": "AT",
-    "image": "assets/cars/toyota-camry.avif",
+    "image": "assets/cars/toyota-camry.jpeg",
     "featured": false,
     "available": true
   },
@@ -46,24 +46,7 @@
     "currency": "USD",
     "fuel": "Gasoline",
     "transmission": "AT",
-    "image": "assets/cars/GMC-yukon.avif",
-    "featured": true,
-    "available": true
-  },
-  {
-    "id": "mercedes-eqs-680-maybach",
-    "brand": "Mercedes-Benz",
-    "model": "EQS 680 Maybach",
-    "years": "2024",
-    "class": "SUV Premium",
-    "type": "SUV",
-    "seats": 5,
-    "luggage": 3,
-    "pricePerDay": 1000,
-    "currency": "USD",
-    "fuel": "EV",
-    "transmission": "AT",
-    "image": "assets/cars/eqs-680-suv.jpg",
+    "image": "assets/cars/GMC-yukon.jpeg",
     "featured": true,
     "available": true
   },
@@ -80,7 +63,7 @@
     "currency": "USD",
     "fuel": "Hybrid",
     "transmission": "AT",
-    "image": "assets/cars/sienna-hybrid-xle.avif",
+    "image": "assets/cars/sienna-hybrid-xle.jpeg",
     "featured": false,
     "available": true
   },
@@ -101,23 +84,6 @@
     "featured": false,
     "available": true
   },
-  {
-    "id": "ford-mustang-convertible",
-    "brand": "Ford",
-    "model": "Mustang Convertible",
-    "years": "2025",
-    "class": "Convertible",
-    "type": "Convertible",
-    "seats": 4,
-    "luggage": 2,
-    "pricePerDay": 220,
-    "currency": "USD",
-    "fuel": "Gasoline",
-    "transmission": "AT",
-    "image": "assets/cars/ford-mustang-convertible.jpg",
-    "featured": false,
-    "available": true
-  },
     {
       "id": "toyota-rav4",
       "brand": "Toyota",
@@ -131,7 +97,7 @@
       "currency": "USD",
       "fuel": "Gasoline",
       "transmission": "AT",
-      "image": "assets/cars/toyota-rav4.jpg",
+      "image": "assets/cars/toyota-rav4.jpeg",
       "featured": false,
       "available": true
     },
@@ -148,7 +114,7 @@
       "currency": "USD",
       "fuel": "Gasoline",
       "transmission": "AT",
-      "image": "assets/cars/toyota-grand-highlander.jpg",
+      "image": "assets/cars/toyota-grand-highlander.jpeg",
       "featured": false,
       "available": true
     }  
