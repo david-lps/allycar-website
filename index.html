@@ -19,37 +19,7 @@
     <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js"></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    
-    <!-- GOOGLE MAPS - CARREGAMENTO DINÂMICO -->
-    <script type="module">
-        // Função que será chamada pelo Google Maps
-        window.initPlacesAutocomplete = function() {
-            // Aguardar o script.js carregar
-            const waitForScript = () => {
-                if (typeof window.realInitPlacesAutocomplete === 'function') {
-                    window.realInitPlacesAutocomplete();
-                } else {
-                    setTimeout(waitForScript, 100);
-                }
-            };
-            waitForScript();
-        };
-        
-        // Carregar Google Maps dinamicamente
-        const googleMapsKey = window.GOOGLE_MAPS_API_KEY;
-        if (googleMapsKey) {
-            const script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&libraries=places&language=pt-BR&region=US&callback=initPlacesAutocomplete`;
-            script.async = true;
-            script.defer = true;
-            document.head.appendChild(script);
-        } else {
-            console.error('Google Maps API Key não encontrada!');
-        }
-    </script>
-    
-    <!-- SEU SCRIPT PRINCIPAL -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>    
     <script src="script.js" defer></script>
 </head>
 <body class="min-h-screen flex flex-col bg-gray-50">
