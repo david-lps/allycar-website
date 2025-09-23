@@ -1266,7 +1266,7 @@ const COLUMNS = {
 
 // Função principal para salvar reserva no Google Sheets
 async function saveBookingToSheets(booking) {
-  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxuGKCTw3zEDcoSx7J170vtPsjxUn1iQgp6VwPKjN3WWW1vxsbLnn9tt8cnv6ZPFDwm/exec';
+  const WEB_APP_URL = process.env.WEB_APP_URL;
   
   try {
     console.log('📋 Dados que vão ser enviados:', booking);
@@ -2731,8 +2731,8 @@ function renderChips() {
 
 // Configuração do EmailJS (recomendado - gratuito até 200 emails/mês)
 const EMAIL_CONFIG = {
-  EMAILJS_PUBLIC_KEY: 'nOAbxsrTxf7XxDJjo', 
-  SERVICE_ID: 'service_zu5ldwk',
+  EMAILJS_PUBLIC_KEY: process.env.EMAILJS_KEY,
+  SERVICE_ID: process.env.SERVICE_ID,
   ADMIN_TEMPLATE_ID: '0001',
   CLIENT_TEMPLATE_ID: 'template_odf1st4'
 };
