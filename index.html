@@ -37,7 +37,7 @@
         };
         
         // Carregar Google Maps dinamicamente
-        const googleMapsKey = import.meta.env.GOOGLE_MAPS_API_KEY;
+        const googleMapsKey = 'AIzaSyAiiaZvpFfHnXr7NNGb3Sa8YXzkaPnd4-Q';
         if (googleMapsKey) {
             const script = document.createElement('script');
             script.src = `https://maps.googleapis.com/maps/api/js?key=${googleMapsKey}&libraries=places&language=pt-BR&region=US&callback=initPlacesAutocomplete`;
@@ -50,7 +50,7 @@
     </script>
     
     <!-- SEU SCRIPT PRINCIPAL -->
-    <script type="module" src="script.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body class="min-h-screen flex flex-col bg-gray-50">
     <!-- Navigation -->
