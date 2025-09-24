@@ -529,3 +529,34 @@ place-autocomplete-element {
   object-fit: cover;
   object-position: center 25%;
 }
+
+
+/* Autocomplete customizado */
+.autocomplete-item:hover {
+    background-color: #eff6ff !important;
+}
+
+.autocomplete-item.bg-blue-100 {
+    background-color: #dbeafe !important;
+}
+
+/* Scrollbar nos resultados */
+[id$="Results"] {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+[id$="Results"]::-webkit-scrollbar {
+    width: 6px;
+}
+
+[id$="Results"]::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 3px;
+}
+
+[id$="Results"]::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
