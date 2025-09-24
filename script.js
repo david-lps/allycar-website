@@ -2311,7 +2311,7 @@ function buildFleetSlide(car){
         <img
           src="${escapeHtml(c.image)}"
           alt="${escapeHtml(c.model)}"
-          class="object-cover card-image"
+          class="w-full h-full object-cover card-image"
           loading="lazy"
           onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"
         />
