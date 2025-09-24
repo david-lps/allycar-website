@@ -525,6 +525,7 @@ place-autocomplete-element {
   }
 }
 
-.card-image {
-  object-position: center 25% !important;
+.car-card .card-image {
+  object-fit: cover;
+  object-position: center 25%;
 }
