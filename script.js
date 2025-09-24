@@ -3169,24 +3169,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Função para inicializar Google Sign-In
 function initializeGoogleSignIn() {
-  // Verificar se o script do Google foi carregado
-  if (typeof google === 'undefined') {
-    console.warn('Google Sign-In script não carregado');
-    return;
-  }
+  // Função para tentar inicializar
+  const tryInitialize = () => {
+    if (typeof google !== 'undefined' && google.accounts) {
+      try {
+        google.accounts.id.initialize({
+          client_id: GOOGLE_CONFIG.CLIENT_ID,
+          callback: handleGoogleLogin,
+          auto_select: false,
+          cancel_on_tap_outside: true
+        });
+        console.log('Google Sign-In inicializado com sucesso');
+        return true;
+      } catch (error) {
+        console.error('Erro ao inicializar Google Sign-In:', error);
+        return false;
+      }
+    }
+    return false;
+  };
 
-  try {
-    google.accounts.id.initialize({
-      client_id: GOOGLE_CONFIG.CLIENT_ID,
-      callback: handleGoogleLogin,
-      auto_select: false,
-      cancel_on_tap_outside: true
-    });
+  // Tentar imediatamente
+  if (tryInitialize()) return;
 
-    console.log('Google Sign-In inicializado com sucesso');
-  } catch (error) {
-    console.error('Erro ao inicializar Google Sign-In:', error);
-  }
+  // Se não conseguiu, aguardar até 5 segundos
+  let attempts = 0;
+  const maxAttempts = 50; // 5 segundos (50 x 100ms)
+  
+  const interval = setInterval(() => {
+    attempts++;
+    
+    if (tryInitialize()) {
+      clearInterval(interval);
+    } else if (attempts >= maxAttempts) {
+      clearInterval(interval);
+      console.warn('Google Sign-In não carregou após 5 segundos - continuando sem login');
+    }
+  }, 100);
 }
 
 // Callback quando usuário faz login com Google
