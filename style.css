@@ -525,6 +525,6 @@ place-autocomplete-element {
   }
 }
 
-img {
-  object-position: center 30% !important;
+.card-image {
+  object-position: center 25% !important;
 }
