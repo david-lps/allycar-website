@@ -416,8 +416,6 @@ function openFullBooking(btn) {
 
   resetModalState();
   
-  if (window.initPlacesAutocomplete) initPlacesAutocomplete();
-
   // Detectar origem do clique
   const isFromResults = btn.closest('#resultsList') !== null;
   const isFromFleet = btn.closest('#fleetSwiper') !== null;
@@ -2401,280 +2399,6 @@ function extractPlaceData(place) {
   };
 }
 
-// ===== SOLUÇÃO SUPER SIMPLES GOOGLE PLACES =====
-// Substitua toda a função realInitPlacesAutocomplete no seu script.js
-
-window.realInitPlacesAutocomplete = async function() {
-
-// ===== SISTEMA DE AUTOCOMPLETE CUSTOMIZADO - ALLYCARS =====
-
-// Base de dados dos destinos da Flórida
-const FLORIDA_DESTINATIONS = [
-    // Aeroportos
-    { name: "Orlando International Airport", code: "MCO", address: "Orlando International Airport (MCO), Orlando, FL", category: "Aeroporto", icon: "fa-plane", keywords: ["mco", "orlando airport"] },
-    { name: "Tampa International Airport", code: "TPA", address: "Tampa International Airport (TPA), Tampa, FL", category: "Aeroporto", icon: "fa-plane", keywords: ["tpa", "tampa airport"] },
-    { name: "Miami International Airport", code: "MIA", address: "Miami International Airport (MIA), Miami, FL", category: "Aeroporto", icon: "fa-plane", keywords: ["mia", "miami airport"] },
-    { name: "Fort Lauderdale Airport", code: "FLL", address: "Fort Lauderdale-Hollywood International Airport (FLL), Fort Lauderdale, FL", category: "Aeroporto", icon: "fa-plane", keywords: ["fll", "fort lauderdale airport"] },
-    
-    // Parques Temáticos Disney
-    { name: "Walt Disney World", address: "Walt Disney World, Bay Lake, FL", category: "Disney", icon: "fa-magic", keywords: ["disney", "magic kingdom", "epcot", "hollywood studios", "animal kingdom", "disney world"] },
-    { name: "Magic Kingdom", address: "Magic Kingdom Park, Bay Lake, FL", category: "Disney", icon: "fa-magic", keywords: ["magic kingdom", "disney"] },
-    { name: "EPCOT", address: "EPCOT, Bay Lake, FL", category: "Disney", icon: "fa-magic", keywords: ["epcot", "disney"] },
-    { name: "Disney's Hollywood Studios", address: "Disney's Hollywood Studios, Bay Lake, FL", category: "Disney", icon: "fa-magic", keywords: ["hollywood studios", "disney"] },
-    { name: "Disney's Animal Kingdom", address: "Disney's Animal Kingdom, Bay Lake, FL", category: "Disney", icon: "fa-magic", keywords: ["animal kingdom", "disney"] },
-    
-    // Parques Universal
-    { name: "Universal Studios Florida", address: "Universal Studios Florida, Orlando, FL", category: "Universal", icon: "fa-film", keywords: ["universal", "harry potter", "universal studios"] },
-    { name: "Islands of Adventure", address: "Universal's Islands of Adventure, Orlando, FL", category: "Universal", icon: "fa-film", keywords: ["islands of adventure", "universal", "harry potter"] },
-    { name: "Universal CityWalk", address: "Universal CityWalk, Orlando, FL", category: "Universal", icon: "fa-shopping-bag", keywords: ["citywalk", "universal"] },
-    
-    // Outros Parques
-    { name: "SeaWorld Orlando", address: "SeaWorld Orlando, Orlando, FL", category: "Parque Temático", icon: "fa-fish", keywords: ["seaworld"] },
-    { name: "Busch Gardens Tampa", address: "Busch Gardens Tampa Bay, Tampa, FL", category: "Parque Temático", icon: "fa-leaf", keywords: ["busch gardens"] },
-    
-    // Hotéis Disney
-    { name: "Disney's Grand Floridian Resort", address: "Disney's Grand Floridian Resort & Spa, Bay Lake, FL", category: "Hotel Disney", icon: "fa-bed", keywords: ["grand floridian", "disney hotel"] },
-    { name: "Disney's Contemporary Resort", address: "Disney's Contemporary Resort, Bay Lake, FL", category: "Hotel Disney", icon: "fa-bed", keywords: ["contemporary", "disney hotel"] },
-    { name: "Disney's Polynesian Village Resort", address: "Disney's Polynesian Village Resort, Bay Lake, FL", category: "Hotel Disney", icon: "fa-bed", keywords: ["polynesian", "disney hotel"] },
-    { name: "Disney's Animal Kingdom Lodge", address: "Disney's Animal Kingdom Lodge, Bay Lake, FL", category: "Hotel Disney", icon: "fa-bed", keywords: ["animal kingdom lodge", "disney hotel"] },
-    
-    // Hotéis Universal
-    { name: "Universal's Royal Pacific Resort", address: "Loews Royal Pacific Resort at Universal Orlando, Orlando, FL", category: "Hotel Universal", icon: "fa-bed", keywords: ["royal pacific", "universal hotel"] },
-    { name: "Loews Portofino Bay Hotel", address: "Loews Portofino Bay Hotel at Universal Orlando, Orlando, FL", category: "Hotel Universal", icon: "fa-bed", keywords: ["portofino bay", "universal hotel"] },
-    { name: "Hard Rock Hotel at Universal", address: "Hard Rock Hotel at Universal Orlando, Orlando, FL", category: "Hotel Universal", icon: "fa-bed", keywords: ["hard rock", "universal hotel"] },
-    
-    // Shopping Centers
-    { name: "Disney Springs", address: "Disney Springs, Lake Buena Vista, FL", category: "Shopping", icon: "fa-shopping-bag", keywords: ["disney springs", "disney shopping"] },
-    { name: "International Drive (I-Drive)", address: "International Drive, Orlando, FL", category: "Shopping", icon: "fa-shopping-bag", keywords: ["i-drive", "international drive", "idrive"] },
-    { name: "The Mall at Millenia", address: "The Mall at Millenia, Orlando, FL", category: "Shopping", icon: "fa-shopping-bag", keywords: ["millenia", "mall"] },
-    { name: "Premium Outlets Orlando", address: "Orlando Premium Outlets, Orlando, FL", category: "Shopping", icon: "fa-shopping-bag", keywords: ["premium outlets", "outlet"] },
-    
-    // Praias
-    { name: "Miami Beach", address: "Miami Beach, FL", category: "Praia", icon: "fa-umbrella-beach", keywords: ["miami beach", "south beach"] },
-    { name: "South Beach", address: "South Beach, Miami Beach, FL", category: "Praia", icon: "fa-umbrella-beach", keywords: ["south beach", "sobe"] },
-    { name: "Clearwater Beach", address: "Clearwater Beach, FL", category: "Praia", icon: "fa-umbrella-beach", keywords: ["clearwater"] },
-    { name: "Daytona Beach", address: "Daytona Beach, FL", category: "Praia", icon: "fa-umbrella-beach", keywords: ["daytona"] },
-    
-    // Cidades
-    { name: "Orlando Downtown", address: "Downtown Orlando, FL", category: "Cidade", icon: "fa-city", keywords: ["orlando", "downtown orlando"] },
-    { name: "Miami Downtown", address: "Downtown Miami, FL", category: "Cidade", icon: "fa-city", keywords: ["miami", "downtown miami"] },
-    { name: "Tampa Downtown", address: "Downtown Tampa, FL", category: "Cidade", icon: "fa-city", keywords: ["tampa", "downtown tampa"] },
-    { name: "Key West", address: "Key West, FL", category: "Cidade", icon: "fa-city", keywords: ["key west", "keys"] },
-    
-    // Pontos Turísticos
-    { name: "Kennedy Space Center", address: "Kennedy Space Center Visitor Complex, Merritt Island, FL", category: "Atração", icon: "fa-rocket", keywords: ["nasa", "space center", "kennedy"] },
-    { name: "Everglades National Park", address: "Everglades National Park, Homestead, FL", category: "Atração", icon: "fa-tree", keywords: ["everglades"] },
-    
-    // Bairros e Regiões
-    { name: "Kissimmee", address: "Kissimmee, FL", category: "Região", icon: "fa-map-marker-alt", keywords: ["kissimmee"] },
-    { name: "Lake Buena Vista", address: "Lake Buena Vista, FL", category: "Região", icon: "fa-map-marker-alt", keywords: ["lake buena vista", "lbv"] },
-    { name: "Celebration", address: "Celebration, FL", category: "Região", icon: "fa-map-marker-alt", keywords: ["celebration"] },
-    { name: "Windermere", address: "Windermere, FL", category: "Região", icon: "fa-map-marker-alt", keywords: ["windermere"] }
-];
-
-// Função para normalizar texto para busca
-function normalizeSearchText(text) {
-    return text.toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '') // Remove acentos
-        .replace(/[^a-z0-9\s]/g, ' ') // Remove pontuação
-        .replace(/\s+/g, ' ')
-        .trim();
-}
-
-// Função para buscar destinos
-function searchFloridaDestinations(query) {
-    if (!query || query.length < 2) return [];
-    
-    const normalizedQuery = normalizeSearchText(query);
-    const words = normalizedQuery.split(' ').filter(w => w.length > 1);
-    
-    return FLORIDA_DESTINATIONS.filter(destination => {
-        const searchableText = [
-            destination.name,
-            destination.category,
-            destination.address,
-            destination.code || '',
-            ...(destination.keywords || [])
-        ].join(' ');
-        
-        const normalizedSearchable = normalizeSearchText(searchableText);
-        
-        return words.every(word => normalizedSearchable.includes(word));
-    }).slice(0, 8); // Limita a 8 resultados
-}
-
-// Função para criar o HTML dos resultados
-function createAutocompleteHTML(destinations, containerId) {
-    if (destinations.length === 0) {
-        return `
-            <div class="p-4 text-gray-500 text-center">
-                <i class="fas fa-search text-xl mb-2"></i>
-                <p class="text-sm">Nenhum destino encontrado</p>
-                <p class="text-xs text-gray-400">Tente: aeroporto, hotel, Disney, Universal...</p>
-            </div>
-        `;
-    }
-
-    // Agrupar por categoria
-    const grouped = {};
-    destinations.forEach(dest => {
-        if (!grouped[dest.category]) grouped[dest.category] = [];
-        grouped[dest.category].push(dest);
-    });
-
-    let html = '';
-    Object.keys(grouped).forEach(category => {
-        html += `
-            <div class="border-b border-gray-100 last:border-b-0">
-                <div class="px-3 py-2 bg-gray-50 text-xs font-semibold text-gray-600 uppercase tracking-wide">
-                    ${category}
-                </div>
-        `;
-        
-        grouped[category].forEach(destination => {
-            const displayName = destination.code ? 
-                `${destination.name} (${destination.code})` : 
-                destination.name;
-            
-            html += `
-                <div class="autocomplete-item px-4 py-3 hover:bg-blue-50 cursor-pointer border-b border-gray-100 last:border-b-0" 
-                     data-address="${destination.address}" data-container="${containerId}">
-                    <div class="flex items-center">
-                        <i class="fas ${destination.icon} text-blue-600 w-4 mr-3 text-sm"></i>
-                        <div class="flex-1 min-w-0">
-                            <div class="font-medium text-gray-900 truncate text-sm">${displayName}</div>
-                            <div class="text-xs text-gray-500 truncate">${destination.address}</div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-        
-        html += '</div>';
-    });
-
-    return html;
-}
-
-// Função principal para inicializar o autocomplete customizado
-function initCustomAutocomplete() {
-    console.log('🎯 Inicializando Autocomplete Customizado AllyCars');
-    
-    // Lista de inputs para aplicar o autocomplete
-    const inputConfigs = [
-        { id: 'searchPickupLoc', containerId: 'searchPickupResults' },
-        { id: 'searchDropoffLoc', containerId: 'searchDropoffResults' },
-        { id: 'fbPickupAddr', containerId: 'fbPickupResults' },
-        { id: 'fbDropoffAddr', containerId: 'fbDropoffResults' }
-    ];
-
-    inputConfigs.forEach(config => {
-        const input = document.getElementById(config.id);
-        if (!input) return;
-
-        // Criar container de resultados se não existir
-        let resultsContainer = document.getElementById(config.containerId);
-        if (!resultsContainer) {
-            resultsContainer = document.createElement('div');
-            resultsContainer.id = config.containerId;
-            resultsContainer.className = 'absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg mt-1 max-h-80 overflow-y-auto hidden z-50';
-            
-            // Inserir após o input
-            input.parentNode.style.position = 'relative';
-            input.parentNode.appendChild(resultsContainer);
-        }
-
-        // Event listener para input
-        input.addEventListener('input', function(e) {
-            const query = e.target.value.trim();
-            
-            if (query.length < 2) {
-                resultsContainer.classList.add('hidden');
-                return;
-            }
-
-            const results = searchFloridaDestinations(query);
-            resultsContainer.innerHTML = createAutocompleteHTML(results, config.containerId);
-            resultsContainer.classList.remove('hidden');
-        });
-
-        // Navegação por teclado
-        input.addEventListener('keydown', function(e) {
-            const items = resultsContainer.querySelectorAll('.autocomplete-item');
-            let selectedIndex = Array.from(items).findIndex(item => item.classList.contains('bg-blue-100'));
-
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                if (selectedIndex < items.length - 1) {
-                    if (selectedIndex >= 0) items[selectedIndex].classList.remove('bg-blue-100');
-                    items[selectedIndex + 1].classList.add('bg-blue-100');
-                }
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                if (selectedIndex > 0) {
-                    items[selectedIndex].classList.remove('bg-blue-100');
-                    items[selectedIndex - 1].classList.add('bg-blue-100');
-                }
-            } else if (e.key === 'Enter') {
-                e.preventDefault();
-                if (selectedIndex >= 0) {
-                    const address = items[selectedIndex].dataset.address;
-                    input.value = address;
-                    resultsContainer.classList.add('hidden');
-                }
-            } else if (e.key === 'Escape') {
-                resultsContainer.classList.add('hidden');
-            }
-        });
-    });
-
-    // Event listener global para cliques nos resultados
-    document.addEventListener('click', function(e) {
-        const item = e.target.closest('.autocomplete-item');
-        if (item) {
-            const address = item.dataset.address;
-            const containerId = item.dataset.container;
-            const resultsContainer = document.getElementById(containerId);
-            
-            // Encontrar o input correspondente
-            const inputId = containerId.replace('Results', '').replace('search', 'search').replace('fb', 'fb');
-            const input = document.getElementById(inputId) || 
-                         document.getElementById(containerId.replace('Results', ''));
-            
-            if (input) {
-                input.value = address;
-                resultsContainer.classList.add('hidden');
-            }
-        }
-        
-        // Fechar todos os dropdowns se clicar fora
-        const isInputClick = e.target.closest('input[id$="Loc"], input[id$="Addr"]');
-        const isResultsClick = e.target.closest('[id$="Results"]');
-        
-        if (!isInputClick && !isResultsClick) {
-            document.querySelectorAll('[id$="Results"]').forEach(container => {
-                container.classList.add('hidden');
-            });
-        }
-    });
-}
-
-// Substituir a função original do Google Places
-window.initPlacesAutocomplete = function() {
-    console.log('🎯 Carregando sistema de autocomplete customizado...');
-    
-    // Aguardar um pouco para garantir que os elementos estejam no DOM
-    setTimeout(() => {
-        initCustomAutocomplete();
-    }, 500);
-};
-
-// Também criar um alias para compatibilidade
-window.realInitPlacesAutocomplete = window.initPlacesAutocomplete;
-  
-};
-
 // Função manual para esconder
 window.hideDropdowns = function() {
   document.querySelectorAll('.pac-container').forEach(c => {
@@ -2682,8 +2406,7 @@ window.hideDropdowns = function() {
   });
 };
 
-
-// 2. FUNÇÃO PARA CALCULAR DISTÂNCIA DE ORLANDO (aproximada)
+// FUNÇÃO PARA CALCULAR DISTÂNCIA DE ORLANDO (aproximada)
 function isWithin30MilesOfOrlando(address) {
   if (!address || typeof address !== 'string') return true; // default: sem taxa
 
@@ -2702,7 +2425,7 @@ function isWithin30MilesOfOrlando(address) {
   return orlandoArea.some(city => addr.includes(city));
 }
 
-// 3. FUNÇÃO PARA CALCULAR SE PRECISA COBRAR TAXA
+// FUNÇÃO PARA CALCULAR SE PRECISA COBRAR TAXA
 function calculateLocationFee(pickupAddr, dropoffAddr) {
     const orlandoKeywords = ['orlando', 'kissimmee', 'lake buena vista', 'bay lake', 'celebration', 'windermere'];
     
@@ -2724,7 +2447,7 @@ function calculateLocationFee(pickupAddr, dropoffAddr) {
 
 // ===== IMPLEMENTAÇÃO DO FILTRO POR CATEGORIAS =====
 
-// 1. FUNÇÃO PARA EXTRAIR CATEGORIAS ÚNICAS DOS CARROS
+// FUNÇÃO PARA EXTRAIR CATEGORIAS ÚNICAS DOS CARROS
 function getUniqueCategories(fleet) {
   const categories = new Set();
   fleet.forEach(car => {
@@ -2735,7 +2458,7 @@ function getUniqueCategories(fleet) {
   return Array.from(categories).sort(); // Retorna em ordem alfabética
 }
 
-// 2. FUNÇÃO PARA CRIAR O HTML DAS CATEGORIAS COM CHECKBOXES
+// FUNÇÃO PARA CRIAR O HTML DAS CATEGORIAS COM CHECKBOXES
 function renderCategoryFilter(categories) {
   //const container = document.getElementById('fModel').parentElement;
 
@@ -2767,7 +2490,7 @@ function renderCategoryFilter(categories) {
   });
 }
 
-// 3. FUNÇÃO PARA ATUALIZAR O ESTADO COM CATEGORIAS SELECIONADAS
+// FUNÇÃO PARA ATUALIZAR O ESTADO COM CATEGORIAS SELECIONADAS
 function updateCategoryFilter() {
   const selectedCategories = [];
   document.querySelectorAll('.category-checkbox:checked').forEach(checkbox => {
@@ -2782,8 +2505,7 @@ function updateCategoryFilter() {
 }
 
 
-// 8. CHAMADA DE INICIALIZAÇÃO
-// Adicione isso quando a view de resultados for mostrada:
+// CHAMADA DE INICIALIZAÇÃO
 function showView(name) {
   const home = document.getElementById('view-home');
   const results = document.getElementById('view-results');
@@ -2801,7 +2523,7 @@ function showView(name) {
   }
 }
 
-// 9. ATUALIZAR renderChips PARA MOSTRAR CATEGORIAS SELECIONADAS
+// ATUALIZAR renderChips PARA MOSTRAR CATEGORIAS SELECIONADAS
 function renderChips() {
   let wrap = document.getElementById('activeChips');
 
@@ -3150,6 +2872,317 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+// ===== NOVO SISTEMA DE AUTOCOMPLETE =====
+console.log('TESTE: Script carregado, sistema de autocomplete ativo');
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM carregado, iniciando autocomplete customizado');
+    
+    setTimeout(function() {
+        initCustomAutocomplete();
+        console.log('Autocomplete customizado ativado');
+    }, 1000);
+});
+
+
+// ADICIONAR ANTES da função initCustomAutocomplete
+function normalizeSearchText(text) {
+    return text.toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+        .replace(/[^a-z0-9\s]/g, ' ') // Remove pontuação
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
+const FLORIDA_DESTINATIONS = [
+    // Aeroportos
+    { name: "Orlando International Airport", code: "MCO", address: "Orlando International Airport (MCO), Orlando, FL", category: "Aeroporto", icon: "fa-plane", keywords: ["mco", "orlando airport"] },
+    { name: "Tampa International Airport", code: "TPA", address: "Tampa International Airport (TPA), Tampa, FL", category: "Aeroporto", icon: "fa-plane", keywords: ["tpa", "tampa airport"] },
+    { name: "Miami International Airport", code: "MIA", address: "Miami International Airport (MIA), Miami, FL", category: "Aeroporto", icon: "fa-plane", keywords: ["mia", "miami airport"] },
+    { name: "Fort Lauderdale Airport", code: "FLL", address: "Fort Lauderdale-Hollywood International Airport (FLL), Fort Lauderdale, FL", category: "Aeroporto", icon: "fa-plane", keywords: ["fll", "fort lauderdale airport"] },
+    
+    // Parques Temáticos Disney
+    { name: "Walt Disney World", address: "Walt Disney World, Bay Lake, FL", category: "Disney", icon: "fa-magic", keywords: ["disney", "magic kingdom", "epcot", "hollywood studios", "animal kingdom", "disney world"] },
+    { name: "Magic Kingdom", address: "Magic Kingdom Park, Bay Lake, FL", category: "Disney", icon: "fa-magic", keywords: ["magic kingdom", "disney"] },
+    { name: "EPCOT", address: "EPCOT, Bay Lake, FL", category: "Disney", icon: "fa-magic", keywords: ["epcot", "disney"] },
+    { name: "Disney's Hollywood Studios", address: "Disney's Hollywood Studios, Bay Lake, FL", category: "Disney", icon: "fa-magic", keywords: ["hollywood studios", "disney"] },
+    { name: "Disney's Animal Kingdom", address: "Disney's Animal Kingdom, Bay Lake, FL", category: "Disney", icon: "fa-magic", keywords: ["animal kingdom", "disney"] },
+    
+    // Parques Universal
+    { name: "Universal Studios Florida", address: "Universal Studios Florida, Orlando, FL", category: "Universal", icon: "fa-film", keywords: ["universal", "harry potter", "universal studios"] },
+    { name: "Islands of Adventure", address: "Universal's Islands of Adventure, Orlando, FL", category: "Universal", icon: "fa-film", keywords: ["islands of adventure", "universal", "harry potter"] },
+    { name: "Universal CityWalk", address: "Universal CityWalk, Orlando, FL", category: "Universal", icon: "fa-shopping-bag", keywords: ["citywalk", "universal"] },
+    
+    // Outros Parques
+    { name: "SeaWorld Orlando", address: "SeaWorld Orlando, Orlando, FL", category: "Parque Temático", icon: "fa-fish", keywords: ["seaworld"] },
+    { name: "Busch Gardens Tampa", address: "Busch Gardens Tampa Bay, Tampa, FL", category: "Parque Temático", icon: "fa-leaf", keywords: ["busch gardens"] },
+    
+    // Hotéis Disney
+    { name: "Disney's Grand Floridian Resort", address: "Disney's Grand Floridian Resort & Spa, Bay Lake, FL", category: "Hotel Disney", icon: "fa-bed", keywords: ["grand floridian", "disney hotel"] },
+    { name: "Disney's Contemporary Resort", address: "Disney's Contemporary Resort, Bay Lake, FL", category: "Hotel Disney", icon: "fa-bed", keywords: ["contemporary", "disney hotel"] },
+    { name: "Disney's Polynesian Village Resort", address: "Disney's Polynesian Village Resort, Bay Lake, FL", category: "Hotel Disney", icon: "fa-bed", keywords: ["polynesian", "disney hotel"] },
+    { name: "Disney's Animal Kingdom Lodge", address: "Disney's Animal Kingdom Lodge, Bay Lake, FL", category: "Hotel Disney", icon: "fa-bed", keywords: ["animal kingdom lodge", "disney hotel"] },
+    
+    // Hotéis Universal
+    { name: "Universal's Royal Pacific Resort", address: "Loews Royal Pacific Resort at Universal Orlando, Orlando, FL", category: "Hotel Universal", icon: "fa-bed", keywords: ["royal pacific", "universal hotel"] },
+    { name: "Loews Portofino Bay Hotel", address: "Loews Portofino Bay Hotel at Universal Orlando, Orlando, FL", category: "Hotel Universal", icon: "fa-bed", keywords: ["portofino bay", "universal hotel"] },
+    { name: "Hard Rock Hotel at Universal", address: "Hard Rock Hotel at Universal Orlando, Orlando, FL", category: "Hotel Universal", icon: "fa-bed", keywords: ["hard rock", "universal hotel"] },
+    
+    // Shopping Centers
+    { name: "Disney Springs", address: "Disney Springs, Lake Buena Vista, FL", category: "Shopping", icon: "fa-shopping-bag", keywords: ["disney springs", "disney shopping"] },
+    { name: "International Drive (I-Drive)", address: "International Drive, Orlando, FL", category: "Shopping", icon: "fa-shopping-bag", keywords: ["i-drive", "international drive", "idrive"] },
+    { name: "The Mall at Millenia", address: "The Mall at Millenia, Orlando, FL", category: "Shopping", icon: "fa-shopping-bag", keywords: ["millenia", "mall"] },
+    { name: "Premium Outlets Orlando", address: "Orlando Premium Outlets, Orlando, FL", category: "Shopping", icon: "fa-shopping-bag", keywords: ["premium outlets", "outlet"] },
+    
+    // Praias
+    { name: "Miami Beach", address: "Miami Beach, FL", category: "Praia", icon: "fa-umbrella-beach", keywords: ["miami beach", "south beach"] },
+    { name: "South Beach", address: "South Beach, Miami Beach, FL", category: "Praia", icon: "fa-umbrella-beach", keywords: ["south beach", "sobe"] },
+    { name: "Clearwater Beach", address: "Clearwater Beach, FL", category: "Praia", icon: "fa-umbrella-beach", keywords: ["clearwater"] },
+    { name: "Daytona Beach", address: "Daytona Beach, FL", category: "Praia", icon: "fa-umbrella-beach", keywords: ["daytona"] },
+    
+    // Cidades
+    { name: "Orlando Downtown", address: "Downtown Orlando, FL", category: "Cidade", icon: "fa-city", keywords: ["orlando", "downtown orlando"] },
+    { name: "Miami Downtown", address: "Downtown Miami, FL", category: "Cidade", icon: "fa-city", keywords: ["miami", "downtown miami"] },
+    { name: "Tampa Downtown", address: "Downtown Tampa, FL", category: "Cidade", icon: "fa-city", keywords: ["tampa", "downtown tampa"] },
+    { name: "Key West", address: "Key West, FL", category: "Cidade", icon: "fa-city", keywords: ["key west", "keys"] },
+    
+    // Pontos Turísticos
+    { name: "Kennedy Space Center", address: "Kennedy Space Center Visitor Complex, Merritt Island, FL", category: "Atração", icon: "fa-rocket", keywords: ["nasa", "space center", "kennedy"] },
+    { name: "Everglades National Park", address: "Everglades National Park, Homestead, FL", category: "Atração", icon: "fa-tree", keywords: ["everglades"] },
+    
+    // Bairros e Regiões
+    { name: "Kissimmee", address: "Kissimmee, FL", category: "Região", icon: "fa-map-marker-alt", keywords: ["kissimmee"] },
+    { name: "Lake Buena Vista", address: "Lake Buena Vista, FL", category: "Região", icon: "fa-map-marker-alt", keywords: ["lake buena vista", "lbv"] },
+    { name: "Celebration", address: "Celebration, FL", category: "Região", icon: "fa-map-marker-alt", keywords: ["celebration"] },
+    { name: "Windermere", address: "Windermere, FL", category: "Região", icon: "fa-map-marker-alt", keywords: ["windermere"] }
+];  
+
+function searchFloridaDestinations(query) {
+    if (!query || query.length < 2) return [];
+    
+    const normalizedQuery = normalizeSearchText(query);
+    const words = normalizedQuery.split(' ').filter(w => w.length > 1);
+    
+    return FLORIDA_DESTINATIONS.filter(destination => {
+        const searchableText = [
+            destination.name,
+            destination.category,
+            destination.address,
+            destination.code || '',
+            ...(destination.keywords || [])
+        ].join(' ');
+        
+        const normalizedSearchable = normalizeSearchText(searchableText);
+        
+        return words.every(word => normalizedSearchable.includes(word));
+    }).slice(0, 8); // Limita a 8 resultados
+}
+
+function createAutocompleteHTML(destinations) {
+    if (destinations.length === 0) {
+        return `
+            <div class="p-4 text-gray-500 text-center">
+                <i class="fas fa-search text-xl mb-2 block"></i>
+                <p class="text-sm font-medium">Nenhum destino encontrado</p>
+                <p class="text-xs text-gray-400 mt-1">Tente: aeroporto, Disney, Universal, hotel...</p>
+            </div>
+        `;
+    }
+
+    // Agrupar por categoria
+    const grouped = {};
+    destinations.forEach(dest => {
+        if (!grouped[dest.category]) grouped[dest.category] = [];
+        grouped[dest.category].push(dest);
+    });
+
+    let html = '';
+    Object.keys(grouped).forEach((category, categoryIndex) => {
+        // Header da categoria
+        html += `
+            <div class="px-3 py-2 bg-gray-50 text-xs font-semibold text-gray-600 uppercase tracking-wide border-b border-gray-100">
+                ${category}
+            </div>
+        `;
+        
+        // Items da categoria
+        grouped[category].forEach((destination, itemIndex) => {
+            const displayName = destination.code ? 
+                `${destination.name} (${destination.code})` : 
+                destination.name;
+            
+            html += `
+                <div class="autocomplete-item px-4 py-3 hover:bg-blue-50 cursor-pointer border-b border-gray-100 transition-colors" 
+                     data-address="${destination.address}">
+                    <div class="flex items-center">
+                        <i class="fas ${destination.icon} text-blue-600 w-5 mr-3 text-sm flex-shrink-0"></i>
+                        <div class="flex-1 min-w-0">
+                            <div class="font-medium text-gray-900 truncate text-sm">${displayName}</div>
+                            <div class="text-xs text-gray-500 truncate mt-0.5">${destination.address}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    });
+
+    return html;
+}
+
+function initCustomAutocomplete() {
+    console.log('Inicializando Autocomplete Customizado AllyCars');
+    
+    const inputs = ['searchPickupLoc', 'searchDropoffLoc', 'fbPickupAddr', 'fbDropoffAddr'];
+    let activeDropdown = null; // Controlar qual dropdown está ativo
+    
+    inputs.forEach(inputId => {
+        const input = document.getElementById(inputId);
+        if (!input) return;
+        
+        console.log('Configurando:', inputId);
+        
+        // Criar container de resultados único para cada input
+        let resultsContainer = document.querySelector(`[data-input="${inputId}"]`);
+        if (!resultsContainer) {
+            resultsContainer = document.createElement('div');
+            resultsContainer.className = 'autocomplete-results bg-white border rounded-lg shadow-lg max-h-80 overflow-y-auto hidden';
+            resultsContainer.setAttribute('data-input', inputId);
+            resultsContainer.style.position = 'fixed';
+            resultsContainer.style.zIndex = '9999';
+            resultsContainer.style.minWidth = '300px';
+            
+            // Adicionar ao body
+            document.body.appendChild(resultsContainer);
+        }
+        
+        // Event listener para input
+        input.addEventListener('input', function(e) {
+            const query = e.target.value.trim();
+            
+            // Esconder outros dropdowns
+            document.querySelectorAll('.autocomplete-results').forEach(container => {
+                if (container !== resultsContainer) {
+                    container.classList.add('hidden');
+                }
+            });
+            
+            if (query.length < 2) {
+                resultsContainer.classList.add('hidden');
+                activeDropdown = null;
+                return;
+            }
+            
+            // Posicionar o dropdown
+            const inputRect = input.getBoundingClientRect();
+            resultsContainer.style.top = (inputRect.bottom + 4) + 'px';
+            resultsContainer.style.left = inputRect.left + 'px';
+            resultsContainer.style.width = Math.max(inputRect.width, 300) + 'px';
+            
+            // Buscar e mostrar resultados
+            const results = searchFloridaDestinations(query);
+            resultsContainer.innerHTML = createAutocompleteHTML(results);
+            resultsContainer.classList.remove('hidden');
+            activeDropdown = { container: resultsContainer, input: input };
+        });
+        
+        // Navegação por teclado
+        input.addEventListener('keydown', function(e) {
+            if (resultsContainer.classList.contains('hidden')) return;
+            
+            const items = resultsContainer.querySelectorAll('.autocomplete-item');
+            if (items.length === 0) return;
+            
+            let selectedIndex = Array.from(items).findIndex(item => 
+                item.classList.contains('bg-blue-100'));
+            
+            switch(e.key) {
+                case 'ArrowDown':
+                    e.preventDefault();
+                    if (selectedIndex < items.length - 1) {
+                        if (selectedIndex >= 0) items[selectedIndex].classList.remove('bg-blue-100');
+                        items[selectedIndex + 1].classList.add('bg-blue-100');
+                    } else if (selectedIndex === -1) {
+                        items[0].classList.add('bg-blue-100');
+                    }
+                    break;
+                    
+                case 'ArrowUp':
+                    e.preventDefault();
+                    if (selectedIndex > 0) {
+                        items[selectedIndex].classList.remove('bg-blue-100');
+                        items[selectedIndex - 1].classList.add('bg-blue-100');
+                    } else if (selectedIndex === 0) {
+                        items[0].classList.remove('bg-blue-100');
+                    }
+                    break;
+                    
+                case 'Enter':
+                    e.preventDefault();
+                    if (selectedIndex >= 0) {
+                        const address = items[selectedIndex].dataset.address;
+                        input.value = address;
+                        resultsContainer.classList.add('hidden');
+                        activeDropdown = null;
+                        console.log('Selecionado via teclado:', address);
+                    }
+                    break;
+                    
+                case 'Escape':
+                    resultsContainer.classList.add('hidden');
+                    activeDropdown = null;
+                    input.blur();
+                    break;
+            }
+        });
+        
+        // Reposicionar ao fazer scroll
+        const repositionDropdown = () => {
+            if (!resultsContainer.classList.contains('hidden')) {
+                const inputRect = input.getBoundingClientRect();
+                resultsContainer.style.top = (inputRect.bottom + 4) + 'px';
+                resultsContainer.style.left = inputRect.left + 'px';
+            }
+        };
+        
+        window.addEventListener('scroll', repositionDropdown);
+        window.addEventListener('resize', repositionDropdown);
+    });
+    
+    // Event listener GLOBAL para cliques (só uma vez)
+    document.addEventListener('click', function(e) {
+        const clickedItem = e.target.closest('.autocomplete-item');
+        
+        if (clickedItem) {
+            // Clicou em um item do autocomplete
+            const address = clickedItem.dataset.address;
+            
+            if (activeDropdown) {
+                activeDropdown.input.value = address;
+                activeDropdown.container.classList.add('hidden');
+                activeDropdown = null;
+                console.log('Selecionado via clique:', address);
+            }
+            
+        } else {
+            // Clicou fora - verificar se foi em um input
+            const clickedInput = e.target.closest('input');
+            const isAutocompleteInput = clickedInput && 
+                (clickedInput.id.includes('Loc') || clickedInput.id.includes('Addr'));
+            
+            if (!isAutocompleteInput) {
+                // Clicou fora de qualquer input - fechar todos os dropdowns
+                document.querySelectorAll('.autocomplete-results').forEach(container => {
+                    container.classList.add('hidden');
+                });
+                activeDropdown = null;
+            }
+        }
+    });
+    
+    console.log('Autocomplete customizado configurado para', inputs.length, 'campos');
+}
 
 // ====== SISTEMA GOOGLE LOGIN - MYLUXCARS ======
 

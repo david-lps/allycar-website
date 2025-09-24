@@ -560,3 +560,17 @@ place-autocomplete-element {
     border-radius: 3px;
 }
 
+
+/* Autocomplete - garantir que apareça por cima */
+.autocomplete-results {
+    position: fixed !important;
+    z-index: 9999 !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid #e5e7eb !important;
+}
+
+/* Container pai deve permitir overflow visível */
+.autocomplete-container {
+    position: relative;
+    overflow: visible !important;
+}
