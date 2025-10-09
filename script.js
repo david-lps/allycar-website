@@ -3537,3 +3537,63 @@ document.addEventListener('DOMContentLoaded', function() {
   // Integrar com sistema de reservas
   integrateGoogleLoginWithBooking();
 });
+
+
+// ===== CONTROLE DE NAVEGAÇÃO SPA - HQ RENTALCARS =====
+
+let currentView = 'search';
+
+function showVehicles() {
+    console.log('Mostrando veículos disponíveis');
+    
+    const heroSection = document.getElementById('home');
+    const vehiclesSection = document.getElementById('vehicles-section');
+    const testimonialsSection = document.getElementById('testimonials-section');
+    
+    if (heroSection) heroSection.classList.add('hidden');
+    if (vehiclesSection) {
+        vehiclesSection.classList.remove('hidden');
+        setTimeout(() => {
+            vehiclesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }
+    if (testimonialsSection) testimonialsSection.classList.add('hidden');
+    
+    currentView = 'vehicles';
+}
+
+function backToSearch() {
+    console.log('Voltando para busca');
+    
+    const heroSection = document.getElementById('home');
+    const vehiclesSection = document.getElementById('vehicles-section');
+    const testimonialsSection = document.getElementById('testimonials-section');
+    
+    if (heroSection) {
+        heroSection.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    if (vehiclesSection) vehiclesSection.classList.add('hidden');
+    if (testimonialsSection) testimonialsSection.classList.remove('hidden');
+    
+    localStorage.removeItem('search-params');
+    currentView = 'search';
+}
+
+function checkHQSearchParams() {
+    const searchParams = localStorage.getItem('search-params');
+    if (searchParams && currentView === 'search') {
+        console.log('Busca detectada, mostrando veículos');
+        showVehicles();
+    }
+}
+
+setInterval(checkHQSearchParams, 500);
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (localStorage.getItem('search-params')) {
+        showVehicles();
+    }
+});
+
+console.log('SPA AllyCars + HQ inicializado');
