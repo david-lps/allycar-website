@@ -9,18 +9,14 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
     
-    <!-- EXTERNAL SCRIPTS (não são módulos) -->
+    <!-- EXTERNAL SCRIPTS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/rangePlugin.js"></script>
+    
+    <!-- HQ RentalCars Integration -->
     <script src="https://myluxcars.us4.hqrentals.app/public/car-rental/integrations/assets/integrator"></script>
+    
     <script src="script.js" defer></script>
 </head>
 <body class="min-h-screen flex flex-col bg-gray-50">
@@ -29,7 +25,7 @@
         <div class="mx-full flex justify-between items-center">
            <div class="flex items-center space-x-2">
               <!-- Brand / Logo -->
-              <a href="#home" class="inline-flex items-center gap-3" aria-label="MyLuxCars">
+              <a href="index.html" class="inline-flex items-center gap-3" aria-label="MyLuxCars">
                 <img
                   src="assets/myluxcars-logo.png"
                   sizes="(max-width: 640px) 160px, (max-width: 1024px) 200px, 240px"
@@ -39,9 +35,8 @@
               </a>
             </div>
             <div class="hidden md:flex space-x-6 items-center">
-                <a href="my-reservations.html" id="navLookup" class="hidden md:inline text-white/90 hover:text-white">
-                  <span data-i18n="nav.lookup">Consultar Reserva</span></a>
-                <a href="#fleet" class="hover:text-gold-500 transition-all"><span data-i18n="nav.fleet">Frota</span>  </a>
+                <a href="my-reservations.html" class="text-white/90 hover:text-white">
+                  <span data-i18n="nav.lookup">Minhas Reservas</span></a>
                 <button type="button" 
                     onclick="openLocationsModal()"
                     class="hover:text-gold-500 transition-all">
@@ -55,7 +50,6 @@
               <!-- Language switcher -->
               <div class="hidden md:flex items-center gap-2" id="langSwitcher">
                 <button class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 grid place-items-center" data-lang="en" aria-label="English">
-                  <!-- Flag US (SVG ícone simples) -->
                   <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
                     <rect width="24" height="24" fill="#b22234"/>
                     <g fill="#fff"><rect y="2" width="24" height="2"/><rect y="6" width="24" height="2"/><rect y="10" width="24" height="2"/><rect y="14" width="24" height="2"/><rect y="18" width="24" height="2"/></g>
@@ -63,13 +57,11 @@
                   </svg>
                 </button>
                 <button class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 grid place-items-center" data-lang="pt" aria-label="Português">
-                  <!-- Flag BR -->
                   <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
                     <rect width="24" height="24" fill="#009b3a"/><polygon points="12,4 22,12 12,20 2,12" fill="#ffdf00"/><circle cx="12" cy="12" r="4" fill="#002776"/>
                   </svg>
                 </button>
                 <button class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 grid place-items-center" data-lang="es" aria-label="Español">
-                  <!-- Flag ES -->
                   <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
                     <rect width="24" height="24" fill="#c60b1e"/><rect y="6" width="24" height="12" fill="#ffc400"/>
                   </svg>
@@ -84,28 +76,21 @@
 
   <!-- Menu Mobile -->
   <div id="mobileMenu" class="fixed inset-0 z-50 hidden">
-    <!-- fundo escuro para fechar ao clicar -->
     <div id="mobileMenuOverlay" class="absolute inset-0 bg-black/60"></div>
-
-    <!-- painel do menu -->
     <nav class="absolute top-0 right-0 h-[60%] w-64 navy-surface-solid text-white p-6 flex flex-col gap-3 overflow-y-auto">
       <button id="mobileMenuClose" class="self-end -mr-2 p-2 text-white/80" aria-label="Fechar menu">
         <i class="fa-solid fa-xmark text-2xl"></i>
       </button>
 
-      <a href="#lookup" id="mobileLookupLink" class="py-2 border-b border-white/10">
-        <span data-i18n="nav.lookup">Consultar Reserva</span>
+      <a href="my-reservations.html" class="py-2 border-b border-white/10">
+        <span data-i18n="nav.lookup">Minhas Reservas</span>
       </a>
 
-      <a href="#fleet" class="py-2 border-b border-white/10">
-        <span data-i18n="nav.fleet">Frota</span>
-      </a>
-
-      <button type="button" onclick="openLocationsModal()" class="flex items-left">
+      <button type="button" onclick="openLocationsModal()" class="flex items-left text-left py-2 border-b border-white/10">
         <span data-i18n="nav.locations">Áreas Atendidas</span>
       </button>
 
-      <button type="button" onclick="openBenefitsModal()" class="flex items-left"">
+      <button type="button" onclick="openBenefitsModal()" class="flex items-left text-left py-2 border-b border-white/10">
         <span data-i18n="nav.why">Porque Nós</span>
       </button>
 
@@ -145,54 +130,53 @@
             <span data-i18n="hero.subtitle">Entregamos <strong class="gold-text">donde</strong> y <strong class="gold-text">cuando</strong> quieras</span>
           </h1>
         </div>
-
-        <!-- HOME: Barra de busca HQ RentalCars -->
-        <section id="home-search" class="w-full">
-          <div class="max-w-7xl mx-auto bg-white/90 backdrop-blur shadow-xl rounded-2xl p-4 sm:p-5">
-            <!-- HQ RentalCars Search Form -->
-            <div class="hq-rental-software-integration"
-                 data-integrator_link="https://myluxcars.us4.hqrentals.app/public/car-rental/integrations"
-                 data-brand="0bvqoare-wk41-wyyi-6til-pr5tszbevfvf"
-                 data-snippet="reservation-form"
-                 data-skip_language=""
-                 data-skip_redirect="0"
-                 data-reservation_page=""
-                 data-layout="vertical"
-                 data-enable_auto_language_update="">
-            </div>
-          </div>
-        </section>
-    
-    </section>
-  
-<!-- Fleet Section -->
-    <section id="fleet" class="py-16 px-6 bg-gray-50">
-      <div class="container mx-auto">
-        <h2 class="text-3xl font-bold text-center navy-text mb-12" data-i18n="fleet.title">Nossa frota</h2>
-
-        <div class="relative">
-          <!-- Navegação custom -->
-          <div class="absolute right-0 -top-10 sm:-top-12 z-50 flex gap-2 items-center">
-            <button id="fleetPrev"
-              class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800 shadow flex items-center justify-center">
-              <i class="fas fa-chevron-left"></i>
-            </button>
-            <button id="fleetNext"
-              class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800 shadow flex items-center justify-center">
-              <i class="fas fa-chevron-right"></i>
-            </button>
-          </div>
-
-          <div id="fleetSwiper" class="swiper mylux-fleet pb-10">
-            <div class="swiper-wrapper" id="fleetSwiperWrapper"></div>
-            <div id="fleetPagination" class="swiper-pagination text-center"></div>
+      
+      <!-- HOME: Barra de busca HQ RentalCars -->
+      <section id="home-search" class="w-full">
+        <div class="max-w-7xl mx-auto bg-white/90 backdrop-blur shadow-xl rounded-2xl p-4 sm:p-5">
+          <!-- HQ RentalCars Search Form -->
+          <div class="hq-rental-software-integration"
+               data-integrator_link="https://myluxcars.us4.hqrentals.app/public/car-rental/integrations"
+               data-brand="0bvqoare-wk41-wyyi-6til-pr5tszbevfvf"
+               data-snippet="reservation-form"
+               data-skip_language=""
+               data-layout="vertical"
+               data-enable_auto_language_update="">
           </div>
         </div>
-      </div>
+      </section>
+    </section>
+
+    <!-- SEÇÃO DE VEÍCULOS DISPONÍVEIS (hidden por padrão) -->
+    <section id="vehicles-section" class="py-16 px-6 bg-gray-50 hidden">
+        <div class="container mx-auto">
+            <!-- Botão voltar -->
+            <div class="mb-6">
+                <button onclick="backToSearch()" class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-all font-medium">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    <span data-i18n="vehicles.backToSearch">Nova Busca</span>
+                </button>
+            </div>
+
+            <h2 class="text-3xl font-bold text-center navy-text mb-8">
+                <span data-i18n="vehicles.title">Veículos Disponíveis</span>
+            </h2>
+
+            <!-- HQ Vehicle List -->
+            <div class="bg-white rounded-2xl shadow-lg p-4 md:p-6">
+                <div class="hq-rental-software-integration"
+                     data-integrator_link="https://myluxcars.us4.hqrentals.app/public/car-rental/integrations"
+                     data-brand="0bvqoare-wk41-wyyi-6til-pr5tszbevfvf"
+                     data-snippet="reservations"
+                     data-skip_language=""
+                     data-enable_auto_language_update="">
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="py-16 px-6 bg-white">
+    <section id="testimonials-section" class="py-16 px-6 bg-white">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold text-center navy-text mb-12" data-i18n="testimonials.title">O que nossos clientes dizem</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -206,7 +190,7 @@
                             <i class="fas fa-star"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-4">“A locação mais fácil de todas! Sem taxas escondidas. A Suburban foi perfeita para nossa viagem em família.”</p>
+                    <p class="text-gray-600 mb-4">"A locação mais fácil de todas! Sem taxas escondidas. A Suburban foi perfeita para nossa viagem em família."</p>
                     <div class="flex items-center">
                         <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Customer" class="w-10 h-10 rounded-full mr-3">
                         <div>
@@ -225,7 +209,7 @@
                             <i class="fas fa-star"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-4">“No tener que pagar depósito hizo que este alquiler fuera mucho mejor que los demás. El coche estaba impecable y lujoso.”</p>
+                    <p class="text-gray-600 mb-4">"No tener que pagar depósito hizo que este alquiler fuera mucho mejor que los demás. El coche estaba impecable y lujoso."</p>
                     <div class="flex items-center">
                         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer" class="w-10 h-10 rounded-full mr-3">
                         <div>
@@ -259,171 +243,40 @@
   </main>
 
   <!-- Modal Benefits -->
-  <div id="benefitsModal"
-       class="fixed inset-0 hidden z-50 items-center justify-center bg-black/60 backdrop-blur-sm">
+  <div id="benefitsModal" class="fixed inset-0 hidden z-50 items-center justify-center bg-black/60 backdrop-blur-sm">
     <div class="relative w-11/12 max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-5 md:p-8 animate-zoom">
-
-      <!-- Botão Fechar -->
-      <button onclick="closeBenefitsModal()"
-              aria-label="Fechar modal"
-              data-i18n-aria-label="common.close"
-              class="absolute top-3 right-3 rounded-full p-2 text-gray-600 hover:text-white hover:bg-red-500 transition">
+      <button onclick="closeBenefitsModal()" aria-label="Fechar modal" class="absolute top-3 right-3 rounded-full p-2 text-gray-600 hover:text-white hover:bg-red-500 transition">
         <i class="fas fa-times"></i>
       </button>
-
-      <!-- Header -->
       <header class="text-center mb-6 md:mb-8">
-        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide
-                     bg-[#0e2a47]/5 text-[#0e2a47] ring-1 ring-[#0e2a47]/10"
-              data-i18n="benefits.badge">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide bg-[#0e2a47]/5 text-[#0e2a47] ring-1 ring-[#0e2a47]/10" data-i18n="benefits.badge">
           ÚNICA locadora com todos estes benefícios
         </span>
-        <h2 class="mt-3 text-2xl md:text-3xl font-extrabold text-[#0e2a47]"
-            data-i18n="benefits.header.title">
+        <h2 class="mt-3 text-2xl md:text-3xl font-extrabold text-[#0e2a47]" data-i18n="benefits.header.title">
           Pacotes completos. Transparência total. Zero surpresas.
         </h2>
-        <p class="mt-2 text-sm md:text-base text-gray-600 max-w-3xl mx-auto"
-           data-i18n="benefits.header.subtitle">
+        <p class="mt-2 text-sm md:text-base text-gray-600 max-w-3xl mx-auto" data-i18n="benefits.header.subtitle">
           Nosso intuito é <strong class="gold-text">simplificar</strong> a sua viagem: você escolhe o
           <strong class="gold-text">carro exato</strong> que quer, recebe tudo <strong class="gold-text">incluso</strong>,
           sem taxas escondidas — para gastar seu tempo com o que importa:
           <strong>momentos incríveis em família</strong>.
         </p>
       </header>
-
-      <!-- Tags / chips -->
-      <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
-        <span class="px-3 py-1 text-xs rounded-full bg-[#C6A25A]/10 text-[#0e2a47] ring-1 ring-[#C6A25A]/20" data-i18n="benefits.tags.premium">Premium</span>
-        <span class="px-3 py-1 text-xs rounded-full bg-[#C6A25A]/10 text-[#0e2a47] ring-1 ring-[#C6A25A]/20" data-i18n="benefits.tags.allIncluded">Tudo incluso</span>
-        <span class="px-3 py-1 text-xs rounded-full bg-[#C6A25A]/10 text-[#0e2a47] ring-1 ring-[#C6A25A]/20" data-i18n="benefits.tags.noBureaucracy">Sem burocracia</span>
-        <span class="px-3 py-1 text-xs rounded-full bg-[#C6A25A]/10 text-[#0e2a47] ring-1 ring-[#C6A25A]/20" data-i18n="benefits.tags.familyFirst">Família em 1º lugar</span>
-      </div>
-
-      <!-- Grid de benefícios -->
+      <!-- Grid de benefícios - apenas exemplo, copie do seu original se tiver mais cards -->
       <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-
-        <!-- 1 -->
         <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
           <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-car-side"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.premiumFleet.title">Veículos novos e Premium</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.premiumFleet.body">Frota atualizada, confortável e revisada para sua segurança.</p>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1">Veículos novos e Premium</h3>
+          <p class="text-sm md:text-[15px] text-gray-600">Frota atualizada, confortável e revisada para sua segurança.</p>
         </article>
-
-        <!-- 2 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-list-check"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.exactCar.title">Escolha o carro exato</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.exactCar.body">Aqui você não “aluga a categoria” — escolhe o modelo que vai usar.</p>
-        </article>
-
-        <!-- 3 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-calendar-day"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.noMinPeriod.title">Sem período mínimo</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.noMinPeriod.body">Alugue pelo tempo que precisar — sem exigir 7 dias.</p>
-        </article>
-
-        <!-- 4 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-gas-pump"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.fullTank.title">Tanque cheio</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.fullTank.body">Retire com tanque cheio para sair dirigindo sem paradas.</p>
-        </article>
-
-        <!-- 5 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-shield-alt"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.fullInsurance.title">Seguro completo + terceiros</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.fullInsurance.body">Cobertura ampla para você dirigir sem preocupação.</p>
-        </article>
-
-        <!-- 6 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-user-plus"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.extraDriver.title">Condutor adicional grátis</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.extraDriver.body">Revezem a direção sem pagar a mais por isso.</p>
-        </article>
-
-        <!-- 7 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-road"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.unlimitedTolls.title">Pedágios ilimitados</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.unlimitedTolls.body">Passe livre nos pedágios: praticidade e previsibilidade.</p>
-        </article>
-
-        <!-- 8 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-baby-carriage"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.childSeat.title">Cadeirinha inclusa</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.childSeat.body">Segurança para os pequenos, sem custo extra.</p>
-        </article>
-
-        <!-- 9 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-mobile-alt"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.webCheckin.title">Web Check-in</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.webCheckin.body">Faça tudo online e receba o carro pronto.</p>
-        </article>
-
-        <!-- 10 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-check-circle"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.noLines.title">Sem filas na retirada</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.noLines.body">Chegou, pegou e partiu — simples assim.</p>
-        </article>
-
-        <!-- 11 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-truck"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.freeDelivery.title">Entrega gratuita em Orlando</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.freeDelivery.body">Levamos e buscamos o carro onde você estiver.</p>
-        </article>
-
-        <!-- 12 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-piggy-bank"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.noDeposit.title">Sem depósito caução</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.noDeposit.body">Seu dinheiro livre: sem bloqueios no cartão.</p>
-        </article>
-
-        <!-- 13 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-percent"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.noIOF.title">Sem IOF</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.noIOF.body">Economia real na locação internacional.</p>
-        </article>
-
-        <!-- 14 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-credit-card"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.installments.title">Parcelamento sem juros</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.installments.body">Planeje sua viagem e pague do seu jeito.</p>
-        </article>
-
-        <!-- 15 -->
-        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
-          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-headset"></i></div>
-          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.support247.title">Atendimento 24×7 PT / EN / ES</h3>
-          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.support247.body">Suporte humano, quando e como você precisar.</p>
-        </article>
-
+        <!-- Adicione os outros cards aqui -->
       </section>
-
-      <!-- Footer -->
       <footer class="mt-6 md:mt-8 text-center">
-        <p class="text-sm text-gray-500 mb-3" data-i18n="benefits.footer.note">
-          Transparente, completo e sem letras miúdas. Viaje leve — a gente cuida do resto.
-        </p>
         <div class="flex items-center justify-center gap-2">
-          <button onclick="closeBenefitsModal()"
-                  class="px-5 py-2.5 rounded-lg border border-gray-200 text-[#0e2a47] hover:bg-gray-50 transition"
-                  data-i18n="benefits.footer.close">
+          <button onclick="closeBenefitsModal()" class="px-5 py-2.5 rounded-lg border border-gray-200 text-[#0e2a47] hover:bg-gray-50 transition">
             Fechar
           </button>
-          <a href="#home"
-             class="px-5 py-2.5 rounded-lg gold-bg navy-text font-semibold hover:opacity-95 transition"
-             onclick="closeBenefitsModal()"
-             data-i18n="benefits.footer.cta">
+          <a href="#home" class="px-5 py-2.5 rounded-lg gold-bg navy-text font-semibold hover:opacity-95 transition" onclick="closeBenefitsModal()">
             Escolher meu carro
           </a>
         </div>
@@ -431,22 +284,17 @@
     </div>
   </div>
 
-  <!-- Modal: Locations -->
+  <!-- Modal Locations -->
   <div id="locationsModal" class="fixed inset-0 hidden z-[120] overflow-y-auto">
     <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
     <div class="relative z-10 min-h-full w-full flex items-center justify-center p-4">
-      <div role="dialog" aria-modal="true" aria-labelledby="locationsTitle"
-           class="navy-surface-solid text-white w-[min(92vw,600px)] rounded-2xl shadow-2xl p-8 text-center">
-
-        <!-- Header -->
+      <div role="dialog" aria-modal="true" class="navy-surface-solid text-white w-[min(92vw,600px)] rounded-2xl shadow-2xl p-8 text-center">
         <div class="mb-4 flex justify-between items-center">
-          <h2 id="locationsTitle" class="text-2xl font-semibold" data-i18n="locations.title">Áreas de Entrega</h2>
+          <h2 class="text-2xl font-semibold" data-i18n="locations.title">Áreas de Entrega</h2>
           <button onclick="closeLocationsModal()" class="text-white/70 hover:text-white text-xl" aria-label="Fechar">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
-
-        <!-- Conteúdo -->
         <div class="space-y-4">
           <p class="text-lg leading-relaxed" data-i18n="locations.body">
             Levamos o carro até você em um raio de <strong class="gold-text">30 milhas de Orlando</strong>,
@@ -454,415 +302,14 @@
             <span class="text-white/70">(sujeito a taxa adicional)</span>.
           </p>
         </div>
-
-        <!-- Botão -->
         <div class="mt-6">
-          <button onclick="closeLocationsModal()" id="locationsOk"
-            class="px-6 py-2 rounded-lg bg-white text-slate-900 font-medium hover:opacity-95" data-i18n="common.ok">
+          <button onclick="closeLocationsModal()" class="px-6 py-2 rounded-lg bg-white text-slate-900 font-medium hover:opacity-95" data-i18n="common.ok">
             Entendido
           </button>
         </div>
       </div>
     </div>
   </div>
-  
-    <!-- Full Booking Modal (novo) -->
-  <!-- Full Booking Modal - VERSÃO ATUALIZADA COM DOIS FLUXOS -->
-  <div id="fullBookingModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-[65] items-start sm:items-center justify-center overflow-y-auto p-4">
-    <div class="bg-white w-full max-w-5xl rounded-2xl shadow-2xl overflow-hidden animate-zoom">
-
-      <!-- Header -->
-      <div class="flex items-center justify-between px-5 md:px-6 py-4 border-b">
-        <h3 class="text-lg md:text-xl font-bold navy-text" data-i18n="fb.header.title">Finalize sua Reserva</h3>
-        <button onclick="closeFullBooking()" class="rounded-full p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition" aria-label="Fechar">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-
-      <!-- Body -->
-      <div class="p-1 md:p-6 grid grid-cols-1 lg:grid-cols-2 gap-5">
-
-        <!-- COLUNA ESQUERDA: Formulários -->
-        <div class="space-y-3 w-full p-3">
-
-          <!-- Seção de Informações da Reserva (aparece só no Fluxo A) -->
-          <div id="fbBookingInfo" class="hidden"></div>
-
-          <!-- Seção de Seleção de Datas (aparece no Fluxo B) -->
-          <div id="fbDateSection" class="space-y-3">
-            <!-- Datas -->
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="fb.dates.title">Datas da locação</label>
-              <div id="fbDateCalendar" class="w-full overflow-x-auto"></div>
-
-              <div class="grid grid-cols-2 gap-2 mt-3">
-                <!-- Retirada -->
-                <div>
-                  <label class="block text-sm text-gray-700 mb-1" data-i18n="fb.dates.pickupDate">Data de Retirada</label>
-                  <input id="fbPickupDate" type="text" readonly class="w-full min-w-0 p-2 border rounded-lg bg-gray-50" />
-                </div>
-                <div>
-                  <label class="block text-sm text-gray-700 mb-1" data-i18n="fb.dates.pickupTime">Horário</label>
-                  <input id="fbPickupTime" type="text" class="w-full min-w-0 p-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="09:00" />
-                </div>
-
-                <!-- Devolução -->
-                <div>
-                  <label class="block text-sm text-gray-700 mb-1" data-i18n="fb.dates.dropoffDate">Data de Devolução</label>
-                  <input id="fbDropoffDate" type="text" readonly class="w-full min-w-0 p-2 border rounded-lg bg-gray-50" />
-                </div>
-                <div>
-                  <label class="block text-sm text-gray-700 mb-1" data-i18n="fb.dates.dropoffTime">Horário</label>
-                  <input id="fbDropoffTime" type="text" class="w-full min-w-0 p-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="18:00" />
-                </div>
-              </div>
-            </div>
-
-            <!-- Endereços -->
-            <div class="space-y-3">
-              <div>
-                <label class="block text-sm text-gray-700 mb-1" data-i18n="fb.address.pickupLabel">Endereço de retirada (FL)</label>
-                <input id="fbPickupAddr" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="Ex: Orlando International Airport (MCO), Orlando, FL" />
-              </div>
-              <div>
-                <label class="block text-sm text-gray-700 mb-1" data-i18n="fb.address.dropoffLabel">Endereço de devolução (FL)</label>
-                <input id="fbDropoffAddr" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="Ex: Disney Springs, Lake Buena Vista, FL" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Seção de Dados do Motorista + Pagamento (criada dinamicamente) -->
-        </div>
-
-        <!-- COLUNA DIREITA: Veículo + Preço + Benefícios -->
-        <div class="space-y-3 w-full p-3">
-
-          <!-- Card do Veículo -->
-          <div class="flex items-center p-3 bg-gray-50 rounded-xl border border-gray-100">
-            <img id="fbCarImg" src="" alt="Car" class="w-24 h-24 object-cover rounded-lg mr-4" />
-            <div class="min-w-0">
-              <h5 class="font-semibold navy-text truncate" id="fbCarModel">—</h5>
-              <div class="flex flex-wrap gap-x-3 text-gray-600 text-sm">
-                <span id="fbSeats"><i class="fas fa-users mr-1"></i> —</span>
-                <span id="fbLuggage"><i class="fas fa-suitcase mr-1"></i> —</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Resumo de Preço -->
-          <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
-            <h4 class="font-semibold navy-text mb-3" data-i18n="fb.summary.title">Resumo de Preço</h4>
-            <div class="flex justify-between text-sm mb-2">
-              <span class="text-gray-600"><span id="fbDays">0</span> <span data-i18n="fb.summary.days">diária(s)</span></span>
-              <span class="font-semibold">$<span id="fbSubtotal">0</span>.00</span>
-            </div>
-            <div class="flex justify-between text-sm mb-2">
-              <span class="text-gray-600" data-i18n="fb.summary.noIof">Sem IOF</span>
-              <span class="font-semibold text-green-600">$0.00</span>
-            </div>
-            <div class="flex justify-between text-sm mb-2">
-              <span class="text-gray-600" data-i18n="fb.summary.noDeposit">Sem caução</span>
-              <span class="font-semibold text-green-600">$0.00</span>
-            </div>
-            <div id="fbLocationFeeRow" class="hidden flex justify-between text-sm mb-2">
-              <span class="text-gray-600" data-i18n="fb.summary.locationFee">Taxa adicional de localização</span>
-              <span class="font-semibold text-black-600">$<span id="fbLocationFee">200</span>.00</span>
-            </div>
-            <div class="border-t pt-2 mt-2 flex justify-between">
-              <span class="font-bold" data-i18n="fb.summary.totalLabel">Total</span>
-              <span class="font-bold text-xl gold-text">$<span id="fbTotal">0</span>.00</span>
-            </div>
-          </div>
-
-          <!-- Benefícios Inclusos -->
-          <div class="p-4 rounded-xl border border-amber-200 bg-amber-50">
-            <h4 class="font-semibold text-amber-800 mb-3" data-i18n="fb.included.title">Incluso na diária:</h4>
-            <ul class="space-y-2 text-sm text-amber-900">
-              <li data-i18n="fb.included.fuel">⛽ Tanque cheio; devolução igual ou taxa de US$ 50</li>
-              <li data-i18n="fb.included.childSeat">👶 Cadeirinha de bebê</li>
-              <li data-i18n="fb.included.insurance">🛡️ Seguro completo (incluindo terceiros)</li>
-              <li data-i18n="fb.included.additionalDrivers">👥 Condutores adicionais sem custo</li>
-              <li data-i18n="fb.included.sunpass">🚗 Sunpass</li>
-              <li data-i18n="fb.included.payLocal">💳 Pagamento até 10x em moeda local</li>
-              <li data-i18n="fb.included.readyAtPickup">🛬 Carro estará pronto no local de retirada</li>
-              <li data-i18n="fb.included.supportPt">☎️ Atendimento 24h em português</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Botão Submit -->
-        <div class="p-3 pt-0">
-          <button id="fbSubmit" type="button" class="w-full gold-bg navy-text font-bold py-3 px-4 rounded hover:bg-yellow-700 hover:text-white transition-all" data-i18n="fb.submit">
-          Solicitar Reserva
-          </button>
-
-          <!-- Erro -->
-          <p id="fbError" class="hidden text-sm text-red-600"></p>
-        </div> 
-        
-      </div>
-    </div>
-  </div>
-
-              <!-- Overlay de Processamento -->
-              <div id="bookingProcessingOverlay" class="fixed inset-0 hidden z-[100] grid place-items-center">
-                <div class="navy-bg-glass p-8 rounded-2xl text-center w-[min(92vw,420px)]">
-                  <div class="mx-auto loader mb-5"></div>
-                  <h3 class="text-white text-xl font-semibold" data-i18n="bp.processing.title">Processando sua reserva…</h3>
-                  <p class="text-white/80 mt-2 text-sm" data-i18n="bp.processing.body">
-                    Em instantes vamos gerar o seu código e preparar a confirmação.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Modal: Reserva Processada -->
-              <div id="bookingProcessedModal" class="fixed inset-0 hidden z-[110] overflow-y-auto overscroll-contain">
-                <div class="absolute inset-0 bg-black/70 backdrop-blur-[2px]"></div>
-                <div class="relative z-10 min-h-full w-full flex items-center justify-center p-4">
-
-                  <div role="dialog" aria-modal="true" aria-labelledby="bookingProcessedTitle"
-                    class="navy-surface-solid text-white w-[min(92vw,780px)] max-h-[90vh] md:max-h-[82vh] overflow-y-auto shadow-2xl">
-                    <!-- Header -->
-                    <div class="navy-bg px-6 py-5 flex items-center gap-4">
-                      <div class="check-burst">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                          <path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </div>
-                      <div>
-                        <h2 id="bookingProcessedTitle" class="text-2xl font-semibold" data-i18n="bp.done.title">Reserva recebida!</h2>
-                        <p class="text-white/80 text-sm" data-i18n="bp.done.subtitle">Tudo certo — geramos o seu código de acompanhamento.</p>
-                      </div>
-                      <button id="bpCloseX" aria-label="Fechar" data-i18n-aria-label="common.close"
-                              class="ml-auto text-white/70 hover:text-white transition">
-                        <i class="fa-solid fa-xmark text-xl"></i>
-                      </button>
-                    </div>
-
-                    <!-- Corpo -->
-                    <div class="p-6 grid md:grid-cols-5 gap-6">
-                      <!-- Coluna principal -->
-                      <div class="md:col-span-3 space-y-4">
-                        <p class="text-white/90 leading-relaxed" data-i18n="bp.done.msg">
-                          Você receberá <strong>a confirmação da reserva </strong> e entraremos em contato para a <strong>etapa final de pagamento</strong>.
-                        </p>
-                        <div class="bg-white/5 rounded-xl p-4 border border-white/10">
-                          <div class="flex items-center gap-3">
-                            <span class="text-white/70 text-sm" data-i18n="bp.code.label">Seu código:</span>
-                            <code id="bpCode" class="text-[13px] font-semibold tracking-wide bg-black/20 px-2.5 py-1.5 rounded">—</code>
-                            <button id="bpCopy" class="ml-2 text-xs px-2.5 py-1.5 rounded bg-white/10 hover:bg-white/15 border border-white/10" data-i18n="common.copy">Copiar</button>
-                          </div>
-                          <p class="text-white/70 mt-2 text-sm" data-i18n="bp.code.hint">
-                            Guarde este código para acompanhar sua reserva pelo site.
-                          </p>
-                        </div>
-
-                        <!-- Linha do tempo -->
-                        <div class="space-y-3">
-                          <h3 class="font-semibold" data-i18n="bp.steps.title">Próximos passos</h3>
-                          <ol class="text-sm space-y-2">
-                            <li class="flex items-start gap-3">
-                              <span class="mt-1 text-emerald-400"><i class="fa-solid fa-circle-check"></i></span>
-                              <span data-i18n="bp.steps.step1">Recebemos sua solicitação <span class="text-white/60">(agora)</span></span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                              <span class="mt-1 text-amber-300"><i class="fa-solid fa-hourglass-half"></i></span>
-                              <span data-i18n="bp.steps.step2">Validação de disponibilidade <span class="text-white/60">(até 1h)</span></span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                              <span class="mt-1 text-sky-300"><i class="fa-solid fa-credit-card"></i></span>
-                              <span data-i18n="bp.steps.step3">Confirmação + link de pagamento</span>
-                            </li>
-                          </ol>
-                        </div>
-
-                        <div class="flex gap-3 pt-2 flex-wrap">
-                          <!--<a id="bpTrack" href="#" class="px-4 py-2 rounded-lg bg-white text-slate-900 font-medium hover:opacity-95" data-i18n="bp.cta.track">
-                            Acompanhar minha reserva
-                          </a>-->
-                          <a id="bpICS" href="#" download="Minha-Reserva.ics"
-                             class="px-4 py-2 rounded-lg bg-white/10 border border-white/15 hover:bg-white/15" data-i18n="bp.cta.addToCalendar">
-                            Adicionar ao calendário
-                          </a>
-                          <button id="bpClose" class="px-4 py-2 rounded-lg bg-white/10 border border-white/15 hover:bg-white/15" data-i18n="bp.cta.backHome">
-                            Voltar ao início
-                          </button>
-                        </div>
-                      </div>
-
-                      <!-- Coluna resumo -->
-                      <aside class="md:col-span-2 space-y-3">
-                        <h3 class="font-semibold" data-i18n="bp.summary.title">Resumo da reserva</h3>
-                        <div class="bg-white/5 rounded-xl p-4 border border-white/10 text-sm space-y-2">
-                          <div class="flex justify-between"><span class="text-white/70" data-i18n="bp.summary.vehicle">Veículo</span><span id="bpVehicle"></span></div>
-                          <div class="flex justify-between gap-3">
-                            <span class="text-white/70" data-i18n="bp.summary.pickup">Retirada</span>
-                            <span id="bpPickup" class="block text-right leading-tight max-w-[65%]"></span>
-                          </div>
-                          <div class="flex justify-between gap-3">
-                            <span class="text-white/70" data-i18n="bp.summary.dropoff">Devolução</span>
-                            <span id="bpDropoff" class="block text-right leading-tight max-w-[65%]"></span>
-                          </div>
-                          <div class="flex justify-between"><span class="text-white/70" data-i18n="bp.summary.extras">Extras</span><span id="bpExtras">—</span></div>
-                          <div class="flex justify-between"><span class="text-white/70" data-i18n="bp.summary.days">Diária(s)</span><span id="bpDays"></span></div>
-                          <div class="flex justify-between text-base font-semibold pt-2 border-t border-white/10">
-                            <span data-i18n="bp.summary.total">Total $</span><span id="bpTotal">—</span>
-                          </div>
-                        </div>
-
-                        <div class="bg-white/5 rounded-xl p-4 border border-white/10 text-sm">
-                          <div><span class="text-white/70" data-i18n="bp.summary.confirmationTo">Confirmação enviada para</span> <span id="bpEmail"></span></div>
-                          <div class="text-white/60 mt-1 text-xs" data-i18n="bp.summary.replyHint">Você pode responder ao e-mail para qualquer ajuste.</div>
-                        </div>
-                      </aside>
-                  </div>
-            </div>
-        </div>
-  </div>
-
-  <!-- Modal: Consulta de Reserva -->
-  <div id="bookingLookupModal" class="fixed inset-0 hidden z-[120] overflow-y-auto">
-      <div class="absolute inset-0 bg-black/70 backdrop-blur-[2px]"></div>
-      <div class="relative z-10 min-h-full w-full flex items-center justify-center p-4">
-        <div role="dialog" aria-modal="true" aria-labelledby="lookupTitle"
-                       class="navy-surface-solid text-white w-[min(92vw,720px)] max-h-[88vh] overflow-y-auto rounded-2xl shadow-2xl">
-            <div class="navy-bg px-6 py-5 flex items-center gap-4">
-                <div class="check-burst" aria-hidden="true">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <div>
-                  <h2 id="lookupTitle" class="text-2xl font-semibold" data-i18n="lookup.title">Consultar reserva</h2>
-                  <p class="text-white/80 text-sm" data-i18n="lookup.subtitle">Use o seu código (ex.: MLC-ORL-2025-09-08-AB27)</p>
-                </div>
-                  <button id="lookupCloseX" class="ml-auto text-white/70 hover:text-white" aria-label="Fechar" data-i18n-aria-label="common.close">
-                        <i class="fa-solid fa-xmark text-xl"></i>
-                  </button>
-            </div>
-            <div class="p-6 space-y-4">
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <input id="lookupCode" type="text" inputmode="latin"
-                               class="w-full bg-white/10 border border-white/15 rounded-lg px-4 py-2.5 placeholder-white/50"
-                               placeholder="Digite seu código de reserva" data-i18n-placeholder="lookup.inputPlaceholder">
-                    <button id="lookupBtn" class="navy-bg text-white rounded-lg px-5 py-2.5" data-i18n="lookup.submit">Consultar</button>
-                </div>
-
-                <div id="lookupResult" class="hidden">
-                    <h3 class="text-lg font-semibold" data-i18n="lookup.resultTitle">Resultado</h3>
-                    <div class="bg-white/5 rounded-xl p-4 border border-white/10 text-sm space-y-2">
-                      <div class="flex justify-between gap-3">
-                        <span class="text-white/70" data-i18n="lookup.code">Código</span><span id="lrCode" class="font-medium text-right"></span>
-                      </div>
-                      <div class="flex justify-between gap-3">
-                        <span class="text-white/70" data-i18n="lookup.vehicle">Veículo</span><span id="lrVehicle" class="text-right max-w-[65%]"></span>
-                      </div>
-                      <div class="flex justify-between gap-3">
-                        <span class="text-white/70" data-i18n="lookup.pickup">Retirada</span>
-                        <span id="lrPickup" class="block text-right leading-tight max-w-[65%]"></span>
-                      </div>
-                      <div class="flex justify-between gap-3">
-                        <span class="text-white/70" data-i18n="lookup.dropoff">Devolução</span>
-                        <span id="lrDropoff" class="block text-right leading-tight max-w-[65%]"></span>
-                      </div>
-                      <div class="flex justify-between gap-3">
-                        <span class="text-white/70" data-i18n="lookup.extras">Extras</span><span id="lrExtras" class="text-right max-w-[65%]"></span>
-                      </div>
-                      <div class="flex justify-between gap-3">
-                        <span class="text-white/70" data-i18n="lookup.days">Dias</span><span id="lrDays" class="text-right"></span>
-                      </div>
-                      <div class="flex justify-between gap-3 text-base font-semibold pt-2 border-t border-white/10">
-                        <span data-i18n="lookup.total">Total</span><span id="lrTotal" class="text-right"></span>
-                      </div>
-                      <div class="flex justify-between gap-3">
-                        <span class="text-white/70" data-i18n="lookup.email">E-mail</span><span id="lrEmail" class="text-right max-w-[65%]"></span>
-                      </div>
-                  </div>
-              </div>
-
-              <div id="lookupEmpty" class="text-white/70 text-sm" data-i18n="lookup.empty">
-                        Digite o código acima e clique em “Consultar”.
-              </div>
-
-              <div id="lookupError" class="hidden text-rose-300 text-sm" data-i18n="lookup.error">
-                        Não encontramos nenhuma reserva com esse código. Verifique e tente novamente.
-              </div>
-
-              <div class="pt-2">
-                <button id="lookupClose" class="px-4 py-2 rounded-lg bg-white/10 border border-white/15 hover:bg-white/15" data-i18n="common.close">
-                          Fechar
-                </button>
-              </div>
-        </div>
-    </div>
-    </div>
-  </div>
-
-<!-- VIEW: Results (sidebar + grid) -->
-<main id="view-results" class="hidden">
-  <!-- LAYOUT PRINCIPAL -->
-  <div class="max-w-6xl mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-[280px,1fr] gap-6">
-    <!-- SIDEBAR FILTROS -->
-    <aside id="filtersPanel" class="bg-white rounded-2xl shadow-sm border md:sticky md:top-24 md:h-[calc(100vh-8rem)] md:overflow-auto p-4">
-      <div class="flex items-center justify-between mb-3">
-        <h2 class="text-base font-semibold" data-i18n="filters.title">Filtros</h2>
-        <button id="clearFilters" class="text-sm text-blue-600 hover:underline" type="button" data-i18n="filters.clear">Limpar</button>
-      </div>
-
-      <!-- Ordenação (espelho da de cima, útil em mobile) -->
-      <div class="md:hidden mb-4">
-        <label class="block text-sm mb-1" data-i18n="filters.price">Preço</label>
-        <select id="fPrice" class="border p-2 rounded w-full">
-          <option value="" data-i18n="filters.any">Qualquer</option>
-          <option value="asc" data-i18n="filters.lowToHigh">Menor para maior</option>
-          <option value="desc" data-i18n="filters.highToLow">Maior para menor</option>
-        </select>
-      </div>
-
-      <!-- Grupo: Tipo / Classe (texto livre mantém sua lógica) -->
-      <div class="mb-4">
-        <label class="block text-sm mb-1" data-i18n="filters.model">Categorias</label>
-        <input id="fModel" type="text" class="border p-2 rounded w-full" placeholder="Carregando categorias..." readonly>
-      </div>
-
-      <div class="grid grid-cols-2 gap-3 mb-4">
-        <div>
-          <label class="block text-sm mb-1" data-i18n="filters.seats">Assentos</label>
-          <input id="fSeats" type="number" min="2" class="border p-2 rounded w-full" placeholder="2+">
-        </div>
-        <div>
-          <label class="block text-sm mb-1" data-i18n="filters.luggage">Malas</label>
-          <input id="fLuggage" type="number" min="1" class="border p-2 rounded w-full" placeholder="1+">
-        </div>
-      </div>
-
-      <!-- Botões -->
-      <div class="flex gap-2">
-        <button id="applyFilters" type="button" class="flex-1 px-4 py-2 gold-bg navy-text font-semibold rounded" data-i18n="filters.apply">Aplicar</button>
-        <!--<button id="closeFiltersBtn" type="button" class="md:hidden px-4 py-2 border rounded" data-i18n="common.close">Fechar</button>-->
-      </div>
-    </aside>
-
-    <!-- COLUNA DE RESULTADOS -->
-    <main class="min-w-0">
-      <!-- Barra superior de ordenação (desktop) -->
-      <div class="hidden sm:flex items-center justify-between mb-4">
-        <div class="text-sm text-gray-600"><span id="resultsCounterInline">—</span></div>
-        <div class="flex items-center gap-2">
-          <label for="fPriceDesktop" class="text-sm text-gray-600" data-i18n="filters.price">Preço</label>
-          <select id="fPriceDesktop" class="border p-2 rounded">
-            <option value="" data-i18n="filters.any">Qualquer</option>
-            <option value="asc" data-i18n="filters.lowToHigh">Menor para maior</option>
-            <option value="desc" data-i18n="filters.highToLow">Maior para menor</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- GRID DE CARDS -->
-      <section id="resultsList" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- preenchido via JS -->
-      </section>
-    </main>
-  </div>
-</main>
 
   <!-- Footer -->
   <footer id="footer" class="mt-auto bg-gray-900 text-white py-12 px-6">
@@ -878,17 +325,11 @@
               <div>
                   <h3 class="text-lg font-semibold mb-4 gold-text" data-i18n="footer.quickLinks">Links Rápidos</h3>
                   <ul class="space-y-2">
-                      <li><button type="button" onclick="openLocationsModal()"
-                            class="text-gray-400 hover:text-white transition-all">
+                      <li><button type="button" onclick="openLocationsModal()" class="text-gray-400 hover:text-white transition-all">
                           <span data-i18n="nav.locations">Áreas Atendidas</span>
                         </button>
                       </li>
-                      <li><a href="#fleet" class="text-gray-400 hover:text-white transition-all"><span data-i18n="footer.upgrades">Upgrades</span></a></li>
-                      <li>
-                      <li>
-                        <button type="button"
-                            onclick="openBenefitsModal()" 
-                            class="text-gray-400 hover:text-white transition-all">
+                      <li><button type="button" onclick="openBenefitsModal()" class="text-gray-400 hover:text-white transition-all">
                           <span data-i18n="nav.why">Porque Nós</span>
                         </button>
                       </li>
@@ -898,7 +339,7 @@
                   <h3 class="text-lg font-semibold mb-4 gold-text" data-i18n="footer.contact">Contato</h3>
                   <ul class="space-y-2 text-gray-400">
                       <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 gold-text"></i> Orlando, Florida</li>
-                      <li class="flex items-center"><i class="fas fa-phone mr-2 gold-text"></i> +1 (407) 712‑0270 </li>
+                      <li class="flex items-center"><i class="fas fa-phone mr-2 gold-text"></i> +1 (407) 712-0270 </li>
                       <li class="flex items-center"><i class="fas fa-envelope mr-2 gold-text"></i> info@myluxcars.com</li>
                   </ul>
               </div>
