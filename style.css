@@ -591,6 +591,50 @@ main .container > div a[href*="index.html"] {
     transition: all 0.2s;
 }
 
+/* ===== TRANSIÇÕES SPA ALLYCARS + HQ ===== */
+
+#home, #vehicles-section {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#home.hidden, #vehicles-section.hidden {
+    display: none;
+}
+
+/* Botão voltar estilizado */
+button[onclick*="backToSearch"] {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+}
+
+button[onclick*="backToSearch"]:hover {
+    background-color: #f3f4f6;
+    transform: translateX(-4px);
+}
+
+/* Container HQ com altura mínima */
+#vehicles-section .hq-rental-software-integration {
+    min-height: 60vh;
+}
+
+/* Animação de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#vehicles-section:not(.hidden) {
+    animation: fadeInUp 0.4s ease-out;
+}
+
 main .container > div a[href*="index.html"]:hover {
     transform: translateX(-4px);
 }
