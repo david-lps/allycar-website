@@ -574,3 +574,24 @@ place-autocomplete-element {
     position: relative;
     overflow: visible !important;
 }
+
+
+/* ===== PÁGINAS DE INTEGRAÇÃO HQ ===== */
+
+/* Container das páginas de booking */
+main .hq-rental-software-integration {
+    min-height: 60vh;
+}
+
+/* Breadcrumb */
+main .container > div a[href*="index.html"] {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
+
+main .container > div a[href*="index.html"]:hover {
+    transform: translateX(-4px);
+}
+
