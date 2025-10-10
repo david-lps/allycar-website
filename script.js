@@ -3538,13 +3538,12 @@ document.addEventListener('DOMContentLoaded', function() {
   integrateGoogleLoginWithBooking();
 });
 
-
 // ===== CONTROLE DE NAVEGAÇÃO SPA - HQ RENTALCARS =====
 
 let currentView = 'search';
 
 function showVehicles() {
-    console.log('Mostrando veículos disponíveis');
+    console.log('🚗 Mostrando veículos disponíveis');
     
     const heroSection = document.getElementById('home');
     const vehiclesSection = document.getElementById('vehicles-section');
@@ -3554,7 +3553,7 @@ function showVehicles() {
     if (vehiclesSection) {
         vehiclesSection.classList.remove('hidden');
         setTimeout(() => {
-            vehiclesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 100);
     }
     if (testimonialsSection) testimonialsSection.classList.add('hidden');
@@ -3563,7 +3562,7 @@ function showVehicles() {
 }
 
 function backToSearch() {
-    console.log('Voltando para busca');
+    console.log('🔙 Voltando para busca');
     
     const heroSection = document.getElementById('home');
     const vehiclesSection = document.getElementById('vehicles-section');
@@ -3576,24 +3575,37 @@ function backToSearch() {
     if (vehiclesSection) vehiclesSection.classList.add('hidden');
     if (testimonialsSection) testimonialsSection.classList.remove('hidden');
     
+    // Limpar flags
     localStorage.removeItem('search-params');
+    localStorage.removeItem('show-vehicles');
+    window.history.pushState({}, '', 'index.html');
+    
     currentView = 'search';
 }
 
-function checkHQSearchParams() {
-    const searchParams = localStorage.getItem('search-params');
-    if (searchParams && currentView === 'search') {
-        console.log('Busca detectada, mostrando veículos');
-        showVehicles();
-    }
-}
-
-setInterval(checkHQSearchParams, 500);
-
+// Verificar ao carregar a página
 document.addEventListener('DOMContentLoaded', function() {
-    if (localStorage.getItem('search-params')) {
+    console.log('📄 Página carregada, verificando estado...');
+    
+    // Verifica se deve mostrar veículos (vindo do redirect)
+    const shouldShowVehicles = localStorage.getItem('show-vehicles');
+    const hash = window.location.hash;
+    
+    if (shouldShowVehicles === 'true' || hash === '#vehicles') {
+        console.log('✅ Mostrando veículos (redirect detectado)');
         showVehicles();
+        // Limpa a flag
+        localStorage.removeItem('show-vehicles');
     }
+    
+    // Monitorar mudanças de hash
+    window.addEventListener('hashchange', function() {
+        if (window.location.hash === '#vehicles') {
+            showVehicles();
+        } else if (window.location.hash === '' || window.location.hash === '#home') {
+            backToSearch();
+        }
+    });
 });
 
-console.log('SPA AllyCars + HQ inicializado');
+console.log('✅ Sistema SPA AllyCars + HQ inicializado');
