@@ -21,11 +21,11 @@ body {
 /* Fundo verde com gradiente sofisticado */
 .navy-bg {
     /* Gradiente verde: claro → médio → escuro */
-    --g1: #2d6555;
-    --g2: #2d6555;
-    --g3: #2d6555;
-    --g4: #2c6f5c;
-    --g5: #66827a;
+    --g1: #006354;
+    --g2: #006354;
+    --g3: #006354;
+    --g4: #006354;
+    --g5: #006354;
 
     color: #fff;
     background-color: var(--g3); /* fallback */
@@ -127,7 +127,7 @@ a.gold-bg:hover,
 
 /* Footer verde escuro */
 footer#footer {
-    background: linear-gradient(180deg, #064e3b 0%, #065f46 50%, #047857 100%);
+    background: linear-gradient(180deg, #006354 0%, #006354 50%, #006354 100%);
     box-shadow: inset 0 1px 0 rgba(16, 185, 129, 0.1);
 }
 
