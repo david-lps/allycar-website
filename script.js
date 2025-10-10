@@ -96,7 +96,7 @@ function t(key) {
 }
 
   (function(){
-    const DEFAULT_LANG = 'pt';
+    const DEFAULT_LANG = 'en';
     const LS_KEY = 'mylux_lang';
 
     async function loadLocale(lang) {
