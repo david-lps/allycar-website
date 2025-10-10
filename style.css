@@ -702,3 +702,18 @@ button[onclick*="backToSearch"]:hover {
     color: #ffffff !important;
     fill: #ffffff !important;
 }
+
+
+
+/* VERSÃO SUPER AGRESSIVA - se a primeira não funcionar */
+.hq-rental-software-integration button.btn-primary,
+.hq-rental-software-integration a.btn-primary,
+.hq-rental-software-integration input.btn-primary,
+.hq-rental-software-integration .btn.btn-primary,
+button.btn-primary,
+.btn-primary {
+    background-color: #10b981 !important;
+    background: #10b981 !important;
+    border-color: #10b981 !important;
+    color: white !important;
+}
