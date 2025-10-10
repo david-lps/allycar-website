@@ -670,50 +670,167 @@ button[onclick*="backToSearch"]:hover {
 }
 
 
-/* ===== CUSTOMIZAÇÃO BOTÕES HQ RENTALCARS ===== */
+/* ===== NOVA IDENTIDADE VERDE ALLYCARS ===== */
 
-/* Botões primários - VERDE */
-.hq-rental-software-integration .btn.btn-primary,
-.hq-rental-software-integration .btn-primary {
-    background-color: #10b981 !important;  /* Verde */
-    border-color: #10b981 !important;
-    color: #ffffff !important;
-    font-weight: 600 !important;
-    transition: all 0.2s ease !important;
+/* Paleta de cores verde sofisticada */
+:root {
+    --primary-green: #059669;      /* Verde esmeralda principal */
+    --dark-green: #047857;         /* Verde escuro sofisticado */
+    --deep-green: #065f46;         /* Verde profundo */
+    --light-green: #10b981;        /* Verde claro para hover */
+    --gold: #b8860b;               /* Dourado (mantém para contraste) */
 }
 
-.hq-rental-software-integration .btn.btn-primary:hover,
-.hq-rental-software-integration .btn-primary:hover {
-    background-color: #059669 !important;  /* Verde mais escuro no hover */
+/* Fundo verde com gradiente sofisticado */
+.navy-bg {
+    /* Gradiente verde sutil e elegante */
+    --g1: #064e3b; /* verde escuro profundo */
+    --g2: #065f46; /* verde esmeralda escuro */
+    --g3: #047857; /* verde médio */
+
+    color: #fff;
+    background-color: var(--g2); /* fallback */
+    background-image:
+      radial-gradient(60% 100% at 20% 0%, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0) 60%),
+      linear-gradient(135deg, var(--g1) 0%, var(--g2) 48%, var(--g3) 100%);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Textos e elementos verde */
+.navy-text {
+    color: #065f46 !important; /* Verde escuro para textos */
+}
+
+.navy-border {
     border-color: #059669 !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
 }
 
-.hq-rental-software-integration .btn.btn-primary:active,
-.hq-rental-software-integration .btn-primary:active {
-    background-color: #047857 !important;
-    transform: translateY(0) !important;
+/* Botões e elementos interativos verde */
+.gold-bg {
+    background-color: #10b981 !important; /* Verde vibrante */
 }
 
-/* Se tiver ícones dentro do botão */
-.hq-rental-software-integration .btn-primary i,
-.hq-rental-software-integration .btn-primary svg {
-    color: #ffffff !important;
-    fill: #ffffff !important;
+.gold-text {
+    color: #10b981 !important; /* Verde vibrante para destaques */
 }
 
-
-
-/* VERSÃO SUPER AGRESSIVA - se a primeira não funcionar */
-.hq-rental-software-integration button.btn-primary,
-.hq-rental-software-integration a.btn-primary,
-.hq-rental-software-integration input.btn-primary,
-.hq-rental-software-integration .btn.btn-primary,
-button.btn-primary,
-.btn-primary {
-    background-color: #10b981 !important;
-    background: #10b981 !important;
+.gold-border {
     border-color: #10b981 !important;
-    color: white !important;
 }
+
+/* Hover states verde */
+.hover\:text-gold-500:hover {
+    color: #10b981 !important;
+}
+
+/* Hero section com overlay verde */
+.hero-image {
+    background-image: 
+        linear-gradient(rgba(6, 95, 70, 0.75), rgba(4, 120, 87, 0.75)), 
+        url('https://imageio.forbes.com/specials-images/imageserve/665f5b2c1cef7d9f00a2186a/Mercedes-Maybach-EQS-680-is-the-most-useful-ultra-luxury-electric-vehicle-in-the-U-S-/0x0.jpg?format=jpg&crop=2025,1195,x575,y315,safe&width=960');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Surface sólida para modais - verde */
+.navy-surface-solid {
+    background: linear-gradient(180deg, rgba(6, 78, 59, 0.97), rgba(4, 120, 87, 0.95));
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+    border-radius: 1rem;
+    box-shadow:
+      0 12px 36px rgba(0, 0, 0, 0.45),
+      inset 0 0 0 1px rgba(16, 185, 129, 0.08);
+}
+
+/* Botões verdes com gradiente sutil */
+button.gold-bg,
+a.gold-bg,
+.gold-bg {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+    transition: all 0.3s ease;
+}
+
+button.gold-bg:hover,
+a.gold-bg:hover,
+.gold-bg:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+    transform: translateY(-2px);
+}
+
+/* Footer verde escuro */
+footer#footer {
+    background: linear-gradient(180deg, #064e3b 0%, #065f46 50%, #047857 100%);
+    box-shadow: inset 0 1px 0 rgba(16, 185, 129, 0.1);
+}
+
+/* Destaques e badges verde */
+.bg-\[\#0e2a47\]\/5,
+.text-\[\#0e2a47\],
+.ring-\[\#0e2a47\]\/10 {
+    background-color: rgba(5, 150, 105, 0.05) !important;
+    color: #065f46 !important;
+    --tw-ring-color: rgba(5, 150, 105, 0.1) !important;
+}
+
+/* Ícones e elementos de destaque */
+.text-\[\#C6A25A\] {
+    color: #10b981 !important; /* Verde para ícones */
+}
+
+/* Cards de benefícios */
+.border-\[\#C6A25A\]\/20 {
+    border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.bg-\[\#C6A25A\]\/10 {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+/* Animação de brilho verde */
+@keyframes greenGlow {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.3),
+                    inset 0 0 20px rgba(16, 185, 129, 0.1);
+    }
+    50% { 
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.5),
+                    inset 0 0 30px rgba(16, 185, 129, 0.2);
+    }
+}
+
+/* Check burst verde (modal de confirmação) */
+.check-burst {
+    background: radial-gradient(circle at 30% 30%, #d1fae5 0, #10b981 20%, #065f46 70%);
+    box-shadow: 0 8px 28px rgba(5, 150, 105, 0.4), 
+                inset 0 0 0 2px rgba(255, 255, 255, 0.15);
+}
+
+/* Links e elementos interativos */
+a.text-gray-400:hover {
+    color: #10b981 !important;
+}
+
+/* Inputs com foco verde */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #10b981 !important;
+    ring-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Scrollbar verde */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #059669 0%, #047857 100%);
+}
+
