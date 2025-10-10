@@ -95,6 +95,16 @@ function t(key) {
   return (typeof val === 'string') ? val : key;
 }
 
+  (function(){
+    const DEFAULT_LANG = 'pt';
+    const LS_KEY = 'mylux_lang';
+
+    async function loadLocale(lang) {
+      const res = await fetch(`locales/${lang}.json?v=1`, {cache: 'no-store'});
+      if (!res.ok) throw new Error('Locale not found');
+      return res.json();
+    }
+
     function tApply(dict) {
       // texto interno
       document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -140,7 +150,7 @@ function t(key) {
         btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
       });
     })();
-
+  })();
 
   (function(){
     function closeMobileMenu(){
