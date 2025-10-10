@@ -95,7 +95,6 @@ function t(key) {
   return (typeof val === 'string') ? val : key;
 }
 
-
     function tApply(dict) {
       // texto interno
       document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -141,7 +140,7 @@ function t(key) {
         btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
       });
     })();
-  })();
+
 
   (function(){
     function closeMobileMenu(){
@@ -174,7 +173,6 @@ function getCurrentLanguage() {
 }
 
 // ===== CONTROLE DE NAVEGAÇÃO SPA - HQ RENTALCARS =====
-
 let currentView = 'search';
 
 function showVehicles() {
