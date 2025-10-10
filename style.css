@@ -20,18 +20,29 @@ body {
 
 /* Fundo verde com gradiente sofisticado */
 .navy-bg {
-    /* Gradiente verde sutil e elegante */
-    --g1: #064e3b; /* verde escuro profundo */
-    --g2: #065f46; /* verde esmeralda escuro */
-    --g3: #047857; /* verde médio */
+    /* Gradiente verde: claro → médio → escuro */
+    --g1: #10b981; /* verde claro vibrante (início) */
+    --g2: #059669; /* verde esmeralda médio */
+    --g3: #047857; /* verde médio-escuro */
+    --g4: #065f46; /* verde profundo */
+    --g5: #064e3b; /* verde escuro profundo (final) */
 
     color: #fff;
-    background-color: var(--g2); /* fallback */
+    background-color: var(--g3); /* fallback */
     background-image:
-      radial-gradient(60% 100% at 20% 0%, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0) 60%),
-      linear-gradient(135deg, var(--g1) 0%, var(--g2) 48%, var(--g3) 100%);
+      /* Brilho sutil no topo */
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+      /* Gradiente principal: claro no topo, escuro embaixo */
+      linear-gradient(180deg, 
+        var(--g1) 0%,      /* Verde claro no topo */
+        var(--g2) 25%,     /* Transição suave */
+        var(--g3) 50%,     /* Meio */
+        var(--g4) 75%,     /* Escurecendo */
+        var(--g5) 100%     /* Verde escuro no fundo */
+      );
     box-shadow:
-      inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2),
       0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
@@ -44,17 +55,14 @@ body {
     border-color: #059669 !important;
 }
 
-/* Botões e elementos interativos verde */
 .gold-bg {
-    background-color: #10b981 !important; /* Verde vibrante */
+    background-color: #b8860b !important; 
 }
-
 .gold-text {
-    color: #10b981 !important; /* Verde vibrante para destaques */
+    color: #b8860b !important; 
 }
-
 .gold-border {
-    border-color: #10b981 !important;
+    border-color: #b8860b !important;
 }
 
 /* Hover states verde */
@@ -62,17 +70,9 @@ body {
     color: #10b981 !important;
 }
 
-/* Hero section com overlay verde 
 .hero-image {
-    background-image: 
-        linear-gradient(rgba(6, 95, 70, 0.75), rgba(4, 120, 87, 0.75)), 
-        url('https://imageio.forbes.com/specials-images/imageserve/665f5b2c1cef7d9f00a2186a/Mercedes-Maybach-EQS-680-is-the-most-useful-ultra-luxury-electric-vehicle-in-the-U-S-/0x0.jpg?format=jpg&crop=2025,1195,x575,y315,safe&width=960');
-    background-size: cover;
-    background-position: center;
-}*/
-
-.hero-image {
-    background-image: linear-gradient(rgba(0, 31, 63, 0.7), rgba(0, 31, 63, 0.7)), url('https://imageio.forbes.com/specials-images/imageserve/665f5b2c1cef7d9f00a2186a/Mercedes-Maybach-EQS-680-is-the-most-useful-ultra-luxury-electric-vehicle-in-the-U-S-/0x0.jpg?format=jpg&crop=2025,1195,x575,y315,safe&width=960');
+    /*background-image: linear-gradient(rgba(0, 31, 63, 0.7), rgba(0, 31, 63, 0.7)), url('https://imageio.forbes.com/specials-images/imageserve/665f5b2c1cef7d9f00a2186a/Mercedes-Maybach-EQS-680-is-the-most-useful-ultra-luxury-electric-vehicle-in-the-U-S-/0x0.jpg?format=jpg&crop=2025,1195,x575,y315,safe&width=960');*/
+    background-image: url('https://imageio.forbes.com/specials-images/imageserve/665f5b2c1cef7d9f00a2186a/Mercedes-Maybach-EQS-680-is-the-most-useful-ultra-luxury-electric-vehicle-in-the-U-S-/0x0.jpg?format=jpg&crop=2025,1195,x575,y315,safe&width=960');
     background-size: cover;
     background-position: center;
 }
