@@ -271,18 +271,6 @@ textarea:focus {
   /* Ícone escala junto (opcional) */
   .check-burst svg { width: 55%; height: 55%; }
 
-  /* Superfície sólida/legível para modais (quase opaca) */
-  .navy-surface-solid {
-    background: linear-gradient(180deg, rgba(12,23,38,.96), rgba(8,16,28,.94));
-    backdrop-filter: blur(8px) saturate(115%);
-    -webkit-backdrop-filter: blur(8px) saturate(115%);
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 1rem;
-    box-shadow:
-      0 12px 36px rgba(0,0,0,.45),
-      inset 0 0 0 1px rgba(255,255,255,.05);
-  }
-
   .addr-row .dropoff-col {
     display: none;
   }
