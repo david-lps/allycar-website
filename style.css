@@ -668,3 +668,37 @@ button[onclick*="backToSearch"]:hover {
 #vehicles-section .hq-rental-software-integration {
     min-height: 70vh;
 }
+
+
+/* ===== CUSTOMIZAÇÃO BOTÕES HQ RENTALCARS ===== */
+
+/* Botões primários - VERDE */
+.hq-rental-software-integration .btn.btn-primary,
+.hq-rental-software-integration .btn-primary {
+    background-color: #10b981 !important;  /* Verde */
+    border-color: #10b981 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+}
+
+.hq-rental-software-integration .btn.btn-primary:hover,
+.hq-rental-software-integration .btn-primary:hover {
+    background-color: #059669 !important;  /* Verde mais escuro no hover */
+    border-color: #059669 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+.hq-rental-software-integration .btn.btn-primary:active,
+.hq-rental-software-integration .btn-primary:active {
+    background-color: #047857 !important;
+    transform: translateY(0) !important;
+}
+
+/* Se tiver ícones dentro do botão */
+.hq-rental-software-integration .btn-primary i,
+.hq-rental-software-integration .btn-primary svg {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
