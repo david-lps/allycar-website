@@ -143,8 +143,9 @@ function t(key) {
       const saved = localStorage.getItem(LS_KEY);
       const browser = (navigator.language||'en').slice(0,2).toLowerCase();
       const initial = saved || (['pt','en','es'].includes(browser) ? browser : DEFAULT_LANG);
-      setLang(initial);
-
+      // setLang(initial);
+      setLang('en');
+      
       // clique nos botões
       document.querySelectorAll('#langSwitcher [data-lang]').forEach(btn=>{
         btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
