@@ -3,672 +3,9 @@ html {
   width: 100%;
 }
 
-    body {
-        font-family: 'Inter', sans-serif;
-    }
-    .gold-text {
-        color: #b8860b;
-    }
-    .gold-bg {
-        background-color: #b8860b;
-    }
-    .gold-border {
-        border-color: #b8860b;
-    }
-
-  .navy-bg {
-    /* Azuis  */
-    --g1: #071a2f; /* navy quase preto */
-    --g2: #061F38; /* navy profundo */
-    --g3: #061F38; /* azul grafite */
-
-    color: #fff;
-    background-color: var(--g2); /* fallback */
-    background-image:
-      radial-gradient(60% 100% at 20% 0%, rgba(78,161,255,.10) 0%, rgba(78,161,255,0) 60%),
-      linear-gradient(135deg, var(--g1) 0%, var(--g2) 38%, var(--g3) 100%);
-    box-shadow:
-      inset 0 0 0 1px rgba(255,255,255,.04),
-      0 10px 30px rgba(0,0,0,.35);
-  }
-
-    .navy-text {
-        color: #001f3f;
-    }
-    .navy-border {
-        border-color: #001f3f;
-    }
-    .hero-image {
-        background-image: linear-gradient(rgba(0, 31, 63, 0.7), rgba(0, 31, 63, 0.7)), url('https://imageio.forbes.com/specials-images/imageserve/665f5b2c1cef7d9f00a2186a/Mercedes-Maybach-EQS-680-is-the-most-useful-ultra-luxury-electric-vehicle-in-the-U-S-/0x0.jpg?format=jpg&crop=2025,1195,x575,y315,safe&width=960');
-        background-size: cover;
-        background-position: center;
-    }
-    .car-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-    .transition-all {
-        transition: all 0.3s ease;
-    }
-
-    .animate-fade-in {
-        animation: fadeIn 0.3s ease-out;
-    }
-    @keyframes fadeIn {
-        from {opacity: 0; transform: scale(0.95);}
-        to {opacity: 1; transform: scale(1);}
-    }
-
-    .animate-zoom { animation: zoomIn .22s ease-out }
-    @keyframes zoomIn {
-        from { opacity: 0; transform: translateY(6px) scale(.97) }
-        to   { opacity: 1; transform: translateY(0)    scale(1) }
-    }
-
-      .card-image::after{
-        content:"";
-        position:absolute;inset:0;
-        background:linear-gradient(to top, rgba(0,0,0,.25), rgba(0,0,0,0));
-        pointer-events:none;
-      }
-      .skeleton {
-        background: linear-gradient(90deg,#eee 25%,#f5f5f5 37%,#eee 63%);
-        background-size: 400% 100%;
-        animation: shimmer 1.4s ease infinite;
-      }
-      @keyframes shimmer {
-        0% { background-position: 100% 0; }
-        100%{ background-position: 0 0; }
-      }
-
-    /* Container do swiper precisa ser referência */
-    .mylux-fleet { position: relative; }
-
-    /* Forçar visibilidade das setas */
-    .mylux-fleet .swiper-button-prev,
-    .mylux-fleet .swiper-button-next { display: none !important; }
-
-    /* Ícones internos menores */
-    .mylux-fleet .swiper-button-prev::after,
-    .mylux-fleet .swiper-button-next::after {
-      font-size: 16px !important;  /* diminui tamanho */
-      font-weight: 700;
-      color: inherit;              /* usa o color do botão */
-    }
-
-    /* Hover */
-    .mylux-fleet .swiper-button-prev:hover,
-    .mylux-fleet .swiper-button-next:hover {
-      background: #e5e7eb;         /* gray-200 */
-      color: #374151;              /* gray-700 */
-    }
-
-    /* Estado desabilitado */
-    .mylux-fleet .swiper-button-disabled {
-      opacity: .4;
-      cursor: not-allowed;
-    }
-
-    /* Juntas no canto direito */
-    .mylux-fleet .swiper-button-next { right: 0; }
-    .mylux-fleet .swiper-button-prev { right: 42px; } /* largura + gap */
-
-    /* Responsivo */
-    @media (max-width: 640px) {
-      .mylux-fleet .swiper-button-prev,
-      .mylux-fleet .swiper-button-next {
-        top: -40px;
-        width: 30px;
-        height: 30px;
-      }
-      .mylux-fleet .swiper-button-prev { right: 36px; }
-    }
-
-    /* centraliza e dá espaço */
-    .mylux-fleet ~ .swiper-pagination {
-      position: static !important; /* tira do overlay */
-      margin-top: 1.5rem;          /* espaço abaixo dos cards */
-    }
-
-    /* estilo das bolinhas */
-    .swiper-pagination-bullet {
-      background: #d1d5db; /* gray-300 */
-      opacity: 1;
-    }
-    .swiper-pagination-bullet-active {
-      background: #b8860b; /* dourado */
-    }
-
-    .ios-scroll { -webkit-overflow-scrolling: touch; }
-    .pt-safe { padding-top: max(1rem, env(safe-area-inset-top)); }
-
-    /* Flatpickr: limitar largura dentro do modal */
-    #availabilityModal .flatpickr-calendar.inline {
-      width: 100% !important;
-      max-width: 100% !important;
-      box-sizing: border-box;
-    }
-
-    #availabilityModal .flatpickr-months,
-    #availabilityModal .flatpickr-weekdays,
-    #availabilityModal .flatpickr-days,
-    #availabilityModal .dayContainer,
-    #availabilityModal .flatpickr-rContainer {
-      width: 100% !important;
-      max-width: 100% !important;
-      box-sizing: border-box;
-    }
-
-    /* Ajuste de espaçamento no mobile para não “encostar” nas bordas */
-    @media (max-width: 640px) {
-      #availabilityModal .flatpickr-calendar {
-        padding: 0.25rem; /* ~4px */
-      }
-    }
-
-    @media (max-width: 640px) {
-      #availabilityModal .flatpickr-months .flatpickr-month,
-      #availabilityModal .flatpickr-weekday,
-      #availabilityModal .flatpickr-day {
-        font-size: 0.9rem;
-      }
-    }
-
-  #fullBookingModal #fbDateCalendar:empty {
-    min-height: 0;
-    padding: 0;
-    border-width: 0;
-  }
-
-  #fullBookingModal .flatpickr-calendar.inline {
-    width: fit-content !important;   /* encolhe à largura do conteúdo */
-    max-width: 100% !important;
-    margin-inline: auto;             /* centraliza dentro da coluna */
-    box-sizing: border-box;
-  }
-
-  /* Novo modal: tamanho compacto do calendário */
-  #fullBookingModal .flatpickr-calendar { 
-    font-size: 14px;            
-  }
-
-  /* Altura dos dias (quadradinhos) */
-  #fullBookingModal .flatpickr-day {
-    height: 30px;
-    line-height: 30px;
-  }
-
-  /* Barra do mês e setas mais baixas */
-  #fullBookingModal .flatpickr-months .flatpickr-month {
-    height: 34px;
-  }
-
-  /* Área do seletor de horário mais baixinha */
-  #fullBookingModal .flatpickr-time {
-    height: 36px;
-  }
-  #fullBookingModal .flatpickr-time input {
-    height: 32px;
-    padding: 2px 6px;
-  }
-
-  #fullBookingModal .flatpickr-days { margin-left: 0 !important; }
-
-  /* Overlay de processamento */
-  #bookingProcessingOverlay {
-    background: rgba(0,0,0,.55);
-    backdrop-filter: blur(4px);
-  }
-
-  /* Spinner + check animado */
-  .loader {
-    width: 52px; height: 52px;
-    border: 3px solid rgba(255,255,255,.2);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin 0.9s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .check-burst {
-    /* Tamanho responsivo (40–64px) */
-    width: clamp(40px, 9vw, 64px);
-    height: clamp(40px, 9vw, 64px);
-
-    /* Não deixar “amassar” dentro do flex */
-    flex-shrink: 0;
-    min-width: clamp(40px, 9vw, 64px);
-    min-height: clamp(40px, 9vw, 64px);
-
-    /* Mantém círculo perfeito e visual */
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #b3d7ff 0, #4ea1ff 20%, #0e2f50 70%);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, .35), inset 0 0 0 2px rgba(255, 255, 255, .12);
-    animation: popIn .45s ease-out both;
-  }
-
-  /* Ícone escala junto (opcional) */
-  .check-burst svg { width: 55%; height: 55%; }
-
-  /* Superfície sólida/legível para modais (quase opaca) */
-  .navy-surface-solid {
-    background: linear-gradient(180deg, rgba(12,23,38,.96), rgba(8,16,28,.94));
-    backdrop-filter: blur(8px) saturate(115%);
-    -webkit-backdrop-filter: blur(8px) saturate(115%);
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 1rem;
-    box-shadow:
-      0 12px 36px rgba(0,0,0,.45),
-      inset 0 0 0 1px rgba(255,255,255,.05);
-  }
-
-  /* ---- Flatpickr: força texto escuro e bom contraste ---- */
-  .flatpickr-calendar,
-  .flatpickr-calendar * {
-    color: #0f172a !important;            /* slate-900 */
-  }
-
-  .flatpickr-day {
-    color: #0f172a !important;
-  }
-  .flatpickr-day:hover {
-    background: rgba(14,42,71,0.08);      /* navy suave */
-  }
-  .flatpickr-day.today {
-    border-color: #C6A25A !important;     /* seu gold */
-  }
-  .flatpickr-day.selected,
-  .flatpickr-day.startRange,
-  .flatpickr-day.endRange,
-  .flatpickr-day.selected:hover,
-  .flatpickr-day.startRange:hover,
-  .flatpickr-day.endRange:hover {
-    background: #0e2a47 !important;       /* seu navy */
-    color: #fff !important;
-  }
-
-  /* Cabeçalho do calendário (mês/ano e setinhas) */
-  .flatpickr-current-month,
-  .flatpickr-current-month input.cur-year,
-  .flatpickr-monthDropdown-months,
-  .flatpickr-weekday {
-    color: #0f172a !important;
-  }
-
-  /* Time picker */
-  .flatpickr-time,
-  .flatpickr-time .numInput,
-  .flatpickr-time .numInputWrapper span.arrowUp:after,
-  .flatpickr-time .numInputWrapper span.arrowDown:after {
-    color: #0f172a !important;
-  }
-
-  /* Alt input (quando altInput=true) e inputs de data/hora */
-  .flatpickr-input,
-  input.flatpickr-input,
-  #searchPickupDate,
-  #searchDropoffDate,
-  #searchPickupTime,
-  #searchDropoffTime {
-    background-color: #fff !important;
-    color: #0f172a !important;
-  }
-
-  /* Placeholders mais visíveis */
-  #searchPickupDate::placeholder,
-  #searchDropoffDate::placeholder,
-  #searchPickupTime::placeholder,
-  #searchDropoffTime::placeholder {
-    color: #6b7280 !important;            /* gray-500 */
-  }
-
-  /* Visível quando altInput: true */
-  input.flatpickr-alt-input {
-    background-color: #fff !important;
-    color: #0f172a !important;         /* texto escuro */
-  }
-
-  /* placeholder do alt input */
-  input.flatpickr-alt-input::placeholder {
-    color: #6b7280 !important;         /* gray-500 */
-  }
-
-  .addr-row .dropoff-col {
-    display: none;
-  }
-
-  /* >= md: quando ativar "has-alt", divide 55% / 45% */
-  @media (min-width: 768px) {
-    .addr-row.has-alt .pickup-col {
-      flex: 0 0 50%;
-    }
-    .addr-row.has-alt .dropoff-col {
-      display: block;
-      flex: 0 0 50%;
-    }
-  }
-
-  /* < md: quando ativar "has-alt", mostra dropoff abaixo ocupando linha toda */
-  @media (max-width: 767.98px) {
-    .addr-row.has-alt .dropoff-col {
-      display: block;
-      flex: 1 1 100%;
-    }
-  }
-
-
-/* Faz o grid do flatpickr ocupar 100% da largura disponível */
-#fullBookingModal .flatpickr-days,
-#fullBookingModal .dayContainer {
-  width: 100% !important;
-  max-width: 100% !important;
+body {
+  font-family: 'Inter', sans-serif;
 }
-
-/* Garante 7 colunas proporcionais */
-#fullBookingModal .flatpickr-day {
-  flex: 0 0 calc(100% / 7) !important;
-  max-width: calc(100% / 7) !important;
-}
-
-@media (max-width: 360px){
-  #fullBookingModal .flatpickr-calendar { font-size: 12px; }
-  #fullBookingModal .flatpickr-day {
-    height: 2rem; line-height: 2rem; margin: 0;
-  }
-}
-
-/* Flatpickr: garantir 7 colunas em telas bem estreitas (ex.: 350px) */
-@media (max-width: 380px){
-  #fullBookingModal .flatpickr-calendar{
-    width: 100% !important;
-  }
-  /* Cabeçalho dos dias (DOM/SEG/...) em 7 colunas */
-  #fullBookingModal .flatpickr-weekdays{
-    display: grid !important;
-    grid-template-columns: repeat(7, 1fr) !important;
-  }
-  /* Grade dos dias em 7 colunas */
-  #fullBookingModal .dayContainer{
-    display: grid !important;
-    grid-template-columns: repeat(7, 1fr) !important;
-    gap: 0 !important;
-  }
-  #fullBookingModal .flatpickr-day{
-    width: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    height: 2rem; line-height: 2rem;   /* compacta um pouco */
-  }
-}
-
-
-/* Alinhar cabeçalho (DOM/SEG/...) com a grade em telas ~350px */
-@media (max-width: 380px){
-  #fullBookingModal .flatpickr-calendar{ width:100% !important; }
-
-  /* Cabeçalho dos dias em 7 colunas */
-  #fullBookingModal .flatpickr-weekdays,
-  #fullBookingModal .flatpickr-weekdaycontainer{
-    display: grid !important;
-    grid-template-columns: repeat(7, 1fr) !important;
-    gap: 0 !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  #fullBookingModal .flatpickr-weekday{
-    text-align: center !important;
-    white-space: nowrap !important;
-    font-size: 10px !important;
-    line-height: 1.5rem !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-sizing: border-box;
-  }
-
-  /* Grade dos números em 7 colunas */
-  #fullBookingModal .flatpickr-days,
-  #fullBookingModal .dayContainer{
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  #fullBookingModal .dayContainer{
-    display: grid !important;
-    grid-template-columns: repeat(7, 1fr) !important;
-    gap: 0 !important;
-  }
-  /* evita deslocamento entre meses */
-  #fullBookingModal .flatpickr-days .dayContainer + .dayContainer{
-    margin-left: 0 !important;
-  }
-  #fullBookingModal .flatpickr-day{
-    width: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    height: 2rem; line-height: 2rem;
-    box-sizing: border-box;
-  }
-}
-
-
-/* Ajuste fino para telas muito estreitas (~350px) */
-@media (max-width: 380px){
-  /* Cabeçalho e grade: 7 colunas iguais */
-  #fullBookingModal .flatpickr-weekdays,
-  #fullBookingModal .dayContainer{
-    display: grid !important;
-    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
-    gap: 0 !important;
-    width: 90% !important;
-  }
-
-  /* Faz os <span> dos dias (DOM/SEG/...) virarem itens do grid */
-  #fullBookingModal .flatpickr-weekdaycontainer{
-    display: contents !important;
-  }
-
-  /* Evita “espremer” texto à esquerda e garante centralização */
-  #fullBookingModal .flatpickr-weekday{
-    min-width: 0 !important;
-    text-align: center !important;
-    white-space: nowrap !important;
-    font-size: 10px !important;     /* ajuste opcional */
-    line-height: 1.5rem !important;  /* ajuste opcional */
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  /* Dias: mesma largura do cabeçalho, sem margens que desalinhariam */
-  #fullBookingModal .flatpickr-day{
-    min-width: 0 !important;
-    width: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    height: 2rem; line-height: 2rem; /* compacta um pouco */
-    box-sizing: border-box;
-  }
-
-  /* Se houver mais de um month container, impede deslocamentos laterais */
-  #fullBookingModal .flatpickr-days .dayContainer + .dayContainer{
-    margin-left: 0 !important;
-  }
-}
-
-input.flatpickr-input[readonly]{ width:100% !important; }
-
-.pac-container { z-index: 99999 !important; }
-
-/* Garantir que dropdowns do Google Places apareçam */
-[role="listbox"] {
-  z-index: 99999 !important;
-  position: absolute !important;
-}
-
-/* Container dos inputs com position relative */
-.pickup-col, #dropoffCol {
-  position: relative;
-}
-
-/* Ajustar altura do PlaceAutocompleteElement */
-place-autocomplete-element {
-  display: block !important;
-  height: auto !important;
-}
-
-@media (max-width: 380px){
-  #home-search .dayContainer {
-    min-width: 261px;
-  }
-}
-
-.car-card .card-image {
-  object-fit: cover;
-  object-position: center 25%;
-}
-
-
-/* Autocomplete customizado */
-.autocomplete-item:hover {
-    background-color: #eff6ff !important;
-}
-
-.autocomplete-item.bg-blue-100 {
-    background-color: #dbeafe !important;
-}
-
-/* Scrollbar nos resultados */
-[id$="Results"] {
-    scrollbar-width: thin;
-    scrollbar-color: #cbd5e1 #f8fafc;
-}
-
-[id$="Results"]::-webkit-scrollbar {
-    width: 6px;
-}
-
-[id$="Results"]::-webkit-scrollbar-track {
-    background: #f8fafc;
-    border-radius: 3px;
-}
-
-[id$="Results"]::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 3px;
-}
-
-
-/* Autocomplete - garantir que apareça por cima */
-.autocomplete-results {
-    position: fixed !important;
-    z-index: 9999 !important;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
-    border: 1px solid #e5e7eb !important;
-}
-
-/* Container pai deve permitir overflow visível */
-.autocomplete-container {
-    position: relative;
-    overflow: visible !important;
-}
-
-
-/* ===== PÁGINAS DE INTEGRAÇÃO HQ ===== */
-
-/* Container das páginas de booking */
-main .hq-rental-software-integration {
-    min-height: 60vh;
-}
-
-/* Breadcrumb */
-main .container > div a[href*="index.html"] {
-    display: inline-flex;
-    align-items: center;
-    font-size: 0.875rem;
-    transition: all 0.2s;
-}
-
-/* ===== TRANSIÇÕES SPA ALLYCARS + HQ ===== */
-
-#home, #vehicles-section {
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-#home.hidden, #vehicles-section.hidden {
-    display: none;
-}
-
-/* Botão voltar estilizado */
-button[onclick*="backToSearch"] {
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    transition: all 0.2s;
-}
-
-button[onclick*="backToSearch"]:hover {
-    background-color: #f3f4f6;
-    transform: translateX(-4px);
-}
-
-/* Container HQ com altura mínima */
-#vehicles-section .hq-rental-software-integration {
-    min-height: 60vh;
-}
-
-/* Animação de entrada */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-#vehicles-section:not(.hidden) {
-    animation: fadeInUp 0.4s ease-out;
-}
-
-main .container > div a[href*="index.html"]:hover {
-    transform: translateX(-4px);
-}
-
-
-/* ===== TRANSIÇÕES SPA ALLYCARS + HQ ===== */
-
-#home, #vehicles-section, #testimonials-section {
-    transition: opacity 0.3s ease;
-}
-
-#home.hidden, #vehicles-section.hidden, #testimonials-section.hidden {
-    display: none !important;
-}
-
-/* Botão voltar */
-button[onclick*="backToSearch"] {
-    font-weight: 500;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    transition: all 0.2s;
-    background-color: #f3f4f6;
-}
-
-button[onclick*="backToSearch"]:hover {
-    background-color: #e5e7eb;
-    transform: translateX(-4px);
-}
-
-/* Container HQ */
-#vehicles-section .hq-rental-software-integration {
-    min-height: 70vh;
-}
-
 
 /* ===== NOVA IDENTIDADE VERDE ALLYCARS ===== */
 
@@ -725,11 +62,17 @@ button[onclick*="backToSearch"]:hover {
     color: #10b981 !important;
 }
 
-/* Hero section com overlay verde */
+/* Hero section com overlay verde 
 .hero-image {
     background-image: 
         linear-gradient(rgba(6, 95, 70, 0.75), rgba(4, 120, 87, 0.75)), 
         url('https://imageio.forbes.com/specials-images/imageserve/665f5b2c1cef7d9f00a2186a/Mercedes-Maybach-EQS-680-is-the-most-useful-ultra-luxury-electric-vehicle-in-the-U-S-/0x0.jpg?format=jpg&crop=2025,1195,x575,y315,safe&width=960');
+    background-size: cover;
+    background-position: center;
+}*/
+
+.hero-image {
+    background-image: linear-gradient(rgba(0, 31, 63, 0.7), rgba(0, 31, 63, 0.7)), url('https://imageio.forbes.com/specials-images/imageserve/665f5b2c1cef7d9f00a2186a/Mercedes-Maybach-EQS-680-is-the-most-useful-ultra-luxury-electric-vehicle-in-the-U-S-/0x0.jpg?format=jpg&crop=2025,1195,x575,y315,safe&width=960');
     background-size: cover;
     background-position: center;
 }
@@ -833,4 +176,239 @@ textarea:focus {
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, #059669 0%, #047857 100%);
 }
+
+    .car-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    .transition-all {
+        transition: all 0.3s ease;
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.3s ease-out;
+    }
+    @keyframes fadeIn {
+        from {opacity: 0; transform: scale(0.95);}
+        to {opacity: 1; transform: scale(1);}
+    }
+
+    .animate-zoom { animation: zoomIn .22s ease-out }
+    @keyframes zoomIn {
+        from { opacity: 0; transform: translateY(6px) scale(.97) }
+        to   { opacity: 1; transform: translateY(0)    scale(1) }
+    }
+
+      .card-image::after{
+        content:"";
+        position:absolute;inset:0;
+        background:linear-gradient(to top, rgba(0,0,0,.25), rgba(0,0,0,0));
+        pointer-events:none;
+      }
+      .skeleton {
+        background: linear-gradient(90deg,#eee 25%,#f5f5f5 37%,#eee 63%);
+        background-size: 400% 100%;
+        animation: shimmer 1.4s ease infinite;
+      }
+      @keyframes shimmer {
+        0% { background-position: 100% 0; }
+        100%{ background-position: 0 0; }
+      }
+
+    .ios-scroll { -webkit-overflow-scrolling: touch; }
+    .pt-safe { padding-top: max(1rem, env(safe-area-inset-top)); }
+
+  /* Spinner + check animado */
+  .loader {
+    width: 52px; height: 52px;
+    border: 3px solid rgba(255,255,255,.2);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .check-burst {
+    /* Tamanho responsivo (40–64px) */
+    width: clamp(40px, 9vw, 64px);
+    height: clamp(40px, 9vw, 64px);
+
+    /* Não deixar “amassar” dentro do flex */
+    flex-shrink: 0;
+    min-width: clamp(40px, 9vw, 64px);
+    min-height: clamp(40px, 9vw, 64px);
+
+    /* Mantém círculo perfeito e visual */
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #b3d7ff 0, #4ea1ff 20%, #0e2f50 70%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .35), inset 0 0 0 2px rgba(255, 255, 255, .12);
+    animation: popIn .45s ease-out both;
+  }
+
+  /* Ícone escala junto (opcional) */
+  .check-burst svg { width: 55%; height: 55%; }
+
+  /* Superfície sólida/legível para modais (quase opaca) */
+  .navy-surface-solid {
+    background: linear-gradient(180deg, rgba(12,23,38,.96), rgba(8,16,28,.94));
+    backdrop-filter: blur(8px) saturate(115%);
+    -webkit-backdrop-filter: blur(8px) saturate(115%);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 1rem;
+    box-shadow:
+      0 12px 36px rgba(0,0,0,.45),
+      inset 0 0 0 1px rgba(255,255,255,.05);
+  }
+
+  .addr-row .dropoff-col {
+    display: none;
+  }
+
+  /* >= md: quando ativar "has-alt", divide 55% / 45% */
+  @media (min-width: 768px) {
+    .addr-row.has-alt .pickup-col {
+      flex: 0 0 50%;
+    }
+    .addr-row.has-alt .dropoff-col {
+      display: block;
+      flex: 0 0 50%;
+    }
+  }
+
+  /* < md: quando ativar "has-alt", mostra dropoff abaixo ocupando linha toda */
+  @media (max-width: 767.98px) {
+    .addr-row.has-alt .dropoff-col {
+      display: block;
+      flex: 1 1 100%;
+    }
+  }
+
+.pac-container { z-index: 99999 !important; }
+
+/* Garantir que dropdowns do Google Places apareçam */
+[role="listbox"] {
+  z-index: 99999 !important;
+  position: absolute !important;
+}
+
+/* Container dos inputs com position relative */
+.pickup-col, #dropoffCol {
+  position: relative;
+}
+
+/* Ajustar altura do PlaceAutocompleteElement */
+place-autocomplete-element {
+  display: block !important;
+  height: auto !important;
+}
+
+@media (max-width: 380px){
+  #home-search .dayContainer {
+    min-width: 261px;
+  }
+}
+
+.car-card .card-image {
+  object-fit: cover;
+  object-position: center 25%;
+}
+
+/* ===== PÁGINAS DE INTEGRAÇÃO HQ ===== */
+
+/* Container das páginas de booking */
+main .hq-rental-software-integration {
+    min-height: 60vh;
+}
+
+/* Breadcrumb */
+main .container > div a[href*="index.html"] {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
+
+/* ===== TRANSIÇÕES SPA ALLYCARS + HQ ===== */
+
+#home, #vehicles-section {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#home.hidden, #vehicles-section.hidden {
+    display: none;
+}
+
+/* Botão voltar estilizado */
+button[onclick*="backToSearch"] {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+}
+
+button[onclick*="backToSearch"]:hover {
+    background-color: #f3f4f6;
+    transform: translateX(-4px);
+}
+
+/* Container HQ com altura mínima */
+#vehicles-section .hq-rental-software-integration {
+    min-height: 60vh;
+}
+
+/* Animação de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#vehicles-section:not(.hidden) {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+main .container > div a[href*="index.html"]:hover {
+    transform: translateX(-4px);
+}
+
+
+/* ===== TRANSIÇÕES SPA ALLYCARS + HQ ===== */
+
+#home, #vehicles-section, #testimonials-section {
+    transition: opacity 0.3s ease;
+}
+
+#home.hidden, #vehicles-section.hidden, #testimonials-section.hidden {
+    display: none !important;
+}
+
+/* Botão voltar */
+button[onclick*="backToSearch"] {
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    background-color: #f3f4f6;
+}
+
+button[onclick*="backToSearch"]:hover {
+    background-color: #e5e7eb;
+    transform: translateX(-4px);
+}
+
+/* Container HQ */
+#vehicles-section .hq-rental-software-integration {
+    min-height: 70vh;
+}
+
+
 
