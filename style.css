@@ -21,11 +21,11 @@ body {
 /* Fundo verde com gradiente sofisticado */
 .navy-bg {
     /* Gradiente verde: claro → médio → escuro */
-    --g1: #10b981; /* verde claro vibrante (início) */
-    --g2: #059669; /* verde esmeralda médio */
-    --g3: #047857; /* verde médio-escuro */
-    --g4: #065f46; /* verde profundo */
-    --g5: #064e3b; /* verde escuro profundo (final) */
+    --g1: #2d6555;
+    --g2: #2d6555;
+    --g3: #2d6555;
+    --g4: #2c6f5c;
+    --g5: #66827a;
 
     color: #fff;
     background-color: var(--g3); /* fallback */
@@ -71,8 +71,9 @@ body {
 }
 
 .hero-image {
-    /*background-image: linear-gradient(rgba(0, 31, 63, 0.7), rgba(0, 31, 63, 0.7)), url('https://imageio.forbes.com/specials-images/imageserve/665f5b2c1cef7d9f00a2186a/Mercedes-Maybach-EQS-680-is-the-most-useful-ultra-luxury-electric-vehicle-in-the-U-S-/0x0.jpg?format=jpg&crop=2025,1195,x575,y315,safe&width=960');*/
-    background-image: url('https://imageio.forbes.com/specials-images/imageserve/665f5b2c1cef7d9f00a2186a/Mercedes-Maybach-EQS-680-is-the-most-useful-ultra-luxury-electric-vehicle-in-the-U-S-/0x0.jpg?format=jpg&crop=2025,1195,x575,y315,safe&width=960');
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), 
+        url('https://imageio.forbes.com/specials-images/imageserve/665f5b2c1cef7d9f00a2186a/Mercedes-Maybach-EQS-680-is-the-most-useful-ultra-luxury-electric-vehicle-in-the-U-S-/0x0.jpg?format=jpg&crop=2025,1195,x575,y315,safe&width=960');
     background-size: cover;
     background-position: center;
 }
