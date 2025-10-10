@@ -639,3 +639,32 @@ main .container > div a[href*="index.html"]:hover {
     transform: translateX(-4px);
 }
 
+
+/* ===== TRANSIÇÕES SPA ALLYCARS + HQ ===== */
+
+#home, #vehicles-section, #testimonials-section {
+    transition: opacity 0.3s ease;
+}
+
+#home.hidden, #vehicles-section.hidden, #testimonials-section.hidden {
+    display: none !important;
+}
+
+/* Botão voltar */
+button[onclick*="backToSearch"] {
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    background-color: #f3f4f6;
+}
+
+button[onclick*="backToSearch"]:hover {
+    background-color: #e5e7eb;
+    transform: translateX(-4px);
+}
+
+/* Container HQ */
+#vehicles-section .hq-rental-software-integration {
+    min-height: 70vh;
+}
