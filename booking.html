@@ -348,37 +348,39 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer id="footer" class="mt-auto bg-gray-900 text-white py-12 px-6">
+  <!-- Footer -->
+  <footer id="footer" class="mt-auto bg-gray-900 text-white py-12 px-6">
       <div class="container mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div>
-                  <div class="flex items-center space-x-2 mb-4">
-                      <i class="fas fa-car text-2xl gold-text"></i>
-                      <span class="text-xl font-bold">ALLYCAR</span>
-                  </div>
-                  <p class="text-gray-400 mb-4">Aluguel de carros premium em Orlando. Entregamos onde e quando quiser.</p>
+                <div class="mb-4">
+                    <img
+                        src="assets/allycar.png"
+                        sizes="(max-width: 640px) 120px, (max-width: 1024px) 150px, 180px"
+                        alt="Allycar"
+                        class="h-8 md:h-10 w-auto select-none"
+                    />
+                </div>
+                  <p class="text-gray-400 mb-4" data-i18n="footer.desc">Aluguel de carros premium em Orlando. Entregamos onde e quando quiser.</p>
               </div>
               <div>
-                  <h3 class="text-lg font-semibold mb-4 gold-text">Links Rápidos</h3>
+                  <h3 class="text-lg font-semibold mb-4 gold-text" data-i18n="footer.quickLinks">Links Rápidos</h3>
                   <ul class="space-y-2">
-                      <li><button type="button" onclick="openLocationsModal()" class="text-gray-400 hover:text-white transition-all">
-                          Áreas Atendidas
+                      <li><button type="button" onclick="openLocationsModal()" class="hover:text-gold-500 transition-all">
+                          <span data-i18n="nav.locations">Áreas Atendidas</span>
                         </button>
                       </li>
-                      <li><a href="index.html#fleet" class="text-gray-400 hover:text-white transition-all">Upgrades</a></li>
-                      <li>
-                        <button type="button" onclick="openBenefitsModal()" class="text-gray-400 hover:text-white transition-all">
-                          Porque Nós
+                      <li><button type="button" onclick="openBenefitsModal()" class="hover:text-gold-500 transition-all">
+                          <span data-i18n="nav.why">Porque Nós</span>
                         </button>
                       </li>
                   </ul>
               </div>
               <div>
-                  <h3 class="text-lg font-semibold mb-4 gold-text">Contato</h3>
+                  <h3 class="text-lg font-semibold mb-4 gold-text" data-i18n="footer.contact">Contato</h3>
                   <ul class="space-y-2 text-gray-400">
                       <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 gold-text"></i> Orlando, Florida</li>
-                      <li class="flex items-center"><i class="fas fa-phone mr-2 gold-text"></i> +1 (407) 712-0270</li>
+                      <li class="flex items-center"><i class="fas fa-phone mr-2 gold-text"></i> +1 (407) 712-0270 </li>
                       <li class="flex items-center"><i class="fas fa-envelope mr-2 gold-text"></i> booking@allycar.com</li>
                   </ul>
               </div>
@@ -392,11 +394,11 @@
                   </div>
               </div>
           </div>
-          <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+          <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
               <p>&copy; 2025 ALLYCAR. All rights reserved.</p>
           </div>
       </div>
-    </footer>
+  </footer>
     
 </body>
 </html>
