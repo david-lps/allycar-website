@@ -1,134 +1,80 @@
 // ========================================
-// CARREGAMENTO DE COMPONENTES (Header, Footer e Modals)
+// CARREGAMENTO DE COMPONENTES
 // ========================================
 
-// Função para carregar componentes
 function loadComponent(elementId, filePath) {
-    fetch(filePath)
+    return fetch(filePath)
         .then(response => response.text())
         .then(data => {
-            document.getElementById(elementId).innerHTML = data;
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = data;
+            }
             
-            // Re-inicializa scripts do header após carregar
             if (elementId === 'header-placeholder') {
                 initHeaderScripts();
             }
             
-            // Re-aplica traduções aos modais após carregar
             if (elementId === 'modals-placeholder' && window.__i18nDict) {
                 tApply(window.__i18nDict);
             }
         })
-        .catch(error => console.error('Erro ao carregar componente:', error));
+        .catch(error => console.error('Erro:', error));
 }
 
-// Carrega header, footer e modals quando a página carrega
-document.addEventListener('DOMContentLoaded', function() {
-    loadComponent('header-placeholder', 'header.html');
-    loadComponent('footer-placeholder', 'footer.html');
-    loadComponent('modals-placeholder', 'modals.html'); // ← NOVO
+document.addEventListener('DOMContentLoaded', async function() {
+    // Carrega modals PRIMEIRO para evitar erros
+    await loadComponent('modals-placeholder', 'modals.html');
+    
+    // Depois header e footer
+    await Promise.all([
+        loadComponent('header-placeholder', 'header.html'),
+        loadComponent('footer-placeholder', 'footer.html')
+    ]);
 });
 
-// Re-inicializa funcionalidades do header (menu mobile, etc)
-function initHeaderScripts() {
-    // Menu mobile
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileMenuClose = document.getElementById('mobileMenuClose');
-    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
-        });
-    }
-
-    if (mobileMenuClose) {
-        mobileMenuClose.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-        });
-    }
-
-    if (mobileMenuOverlay) {
-        mobileMenuOverlay.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-        });
-    }
-
-    // Language switcher
-    initLanguageSwitcher();
-}
-
-const modal = document.getElementById('benefitsModal');
+// ========================================
+// FUNÇÕES DOS MODAIS (com verificação)
+// ========================================
 
 function openBenefitsModal() {
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeBenefitsModal() {
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
-  document.body.style.overflow = 'auto';
-}
-
-// Também fecha ao clicar no backdrop
-modal?.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    closeBenefitsModal();
-  }
-});
-
-// Fecha com ESC
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-    closeBenefitsModal();
-  }
-});
-
-function i18nAlert(key, fallback) {
-  try {
-    const msg = (typeof t === 'function') ? t(key) : key;
-    alert(msg && msg !== key ? msg : (fallback || key));
-  } catch {
-    alert(fallback || key);
-  }
-}
-
-// ----- Controles do modal -----
-const locationsModal = document.getElementById('locationsModal');
-
-// ----- Estado global mínimo -----
-window.__serviceMapInitialized = false;
-window.__map = null;
-
-// Util: garante que o DOM já existe
-function onReady(fn) {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', fn, { once: true });
-  } else {
-    fn();
-  }
-}
-
-// Abre modal 
-function openLocationsModal() {
-  onReady(() => {
-    const modal = document.getElementById('locationsModal');
-    if (!modal) return;
+    const modal = document.getElementById('benefitsModal');
+    if (!modal) {
+        console.warn('Aguardando modal carregar...');
+        setTimeout(openBenefitsModal, 100);
+        return;
+    }
     modal.classList.remove('hidden');
     modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
-  });
+}
+
+function closeBenefitsModal() {
+    const modal = document.getElementById('benefitsModal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+}
+
+function openLocationsModal() {
+    const modal = document.getElementById('locationsModal');
+    if (!modal) {
+        console.warn('Aguardando modal carregar...');
+        setTimeout(openLocationsModal, 100);
+        return;
+    }
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
 }
 
 function closeLocationsModal() {
-  const modal = document.getElementById('locationsModal');
-  if (!modal) return;
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
-  document.body.style.overflow = 'auto';
+    const modal = document.getElementById('locationsModal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
 }
 
 // Fecha clicando no backdrop
