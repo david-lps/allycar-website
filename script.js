@@ -53,6 +53,68 @@ function initHeaderScripts() {
     initLanguageSwitcher();
 }
 
+
+// ========================================
+// CARREGAMENTO DE COMPONENTES (Header, Footer e Modals)
+// ========================================
+
+// Função para carregar componentes
+function loadComponent(elementId, filePath) {
+    fetch(filePath)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById(elementId).innerHTML = data;
+            
+            // Re-inicializa scripts do header após carregar
+            if (elementId === 'header-placeholder') {
+                initHeaderScripts();
+            }
+            
+            // Re-aplica traduções aos modais após carregar
+            if (elementId === 'modals-placeholder' && window.__i18nDict) {
+                tApply(window.__i18nDict);
+            }
+        })
+        .catch(error => console.error('Erro ao carregar componente:', error));
+}
+
+// Carrega header, footer e modals quando a página carrega
+document.addEventListener('DOMContentLoaded', function() {
+    loadComponent('header-placeholder', 'header.html');
+    loadComponent('footer-placeholder', 'footer.html');
+    loadComponent('modals-placeholder', 'modals.html'); // ← NOVO
+});
+
+// Re-inicializa funcionalidades do header (menu mobile, etc)
+function initHeaderScripts() {
+    // Menu mobile
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+    }
+
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    }
+
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    }
+
+    // Language switcher
+    initLanguageSwitcher();
+}
+
 const modal = document.getElementById('benefitsModal');
 
 function openBenefitsModal() {
