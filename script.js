@@ -35,21 +35,29 @@ function initHeaderScripts() {
 
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
+            if (mobileMenu) {
+                mobileMenu.classList.remove('hidden');
+            }
         });
     }
 
     if (mobileMenuClose) {
         mobileMenuClose.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
+            if (mobileMenu) {
+                mobileMenu.classList.add('hidden');
+            }
         });
     }
 
     if (mobileMenuOverlay) {
         mobileMenuOverlay.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
+            if (mobileMenu) {
+                mobileMenu.classList.add('hidden');
+            }
         });
     }
+    
+    console.log('✅ Scripts do header inicializados');
 }
 
 // ========================================
