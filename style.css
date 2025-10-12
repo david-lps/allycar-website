@@ -75,12 +75,12 @@ body {
 .hero-image {
     background-image: 
         linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), 
-        url('https://imageio.forbes.com/specials-images/imageserve/665f5b2c1cef7d9f00a2186a/Mercedes-Maybach-EQS-680-is-the-most-useful-ultra-luxury-electric-vehicle-in-the-U-S-/0x0.jpg?format=jpg&crop=2025,1195,x575,y315,safe&width=960');
+        url('assets/hero-car.jpg'); /* ← Caminho relativo */
     background-size: cover;
     background-position: center;
-    min-height: 450px; /* Altura mínima */
-    height: auto !important; /* Permite crescer com o conteúdo */
-    padding-bottom: 40px !important; /* Espaço embaixo */
+    min-height: 450px;
+    height: auto !important;
+    padding-bottom: 40px !important;
 }
 
 /* Mobile - ajusta para conteúdo vertical */
