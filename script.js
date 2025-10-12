@@ -19,22 +19,41 @@ function loadComponent(elementId, filePath) {
                 tApply(window.__i18nDict);
             }
         })
-        .catch(error => console.error('Erro:', error));
+        .catch(error => console.error('Erro ao carregar:', error));
 }
 
-document.addEventListener('DOMContentLoaded', async function() {
-    // Carrega modals PRIMEIRO para evitar erros
-    await loadComponent('modals-placeholder', 'modals.html');
-    
-    // Depois header e footer
-    await Promise.all([
-        loadComponent('header-placeholder', 'header.html'),
-        loadComponent('footer-placeholder', 'footer.html')
-    ]);
-});
+// ========================================
+// INICIALIZAÇÃO DOS SCRIPTS DO HEADER
+// ========================================
+
+function initHeaderScripts() {
+    // Menu mobile
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+    }
+
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    }
+
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    }
+}
 
 // ========================================
-// FUNÇÕES DOS MODAIS (com verificação)
+// FUNÇÕES DOS MODAIS
 // ========================================
 
 function openBenefitsModal() {
@@ -77,120 +96,107 @@ function closeLocationsModal() {
     document.body.style.overflow = 'auto';
 }
 
-// Fecha clicando no backdrop
-onReady(() => {
-  const modal = document.getElementById('locationsModal');
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeLocationsModal();
-  });
-});
+// ========================================
+// i18n - INTERNACIONALIZAÇÃO
+// ========================================
 
-// Fecha com ESC
-document.addEventListener('keydown', (e) => {
-  const modal = document.getElementById('locationsModal');
-  if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
-    closeLocationsModal();
-  }
-});
-
-
-// helper para pegar tradução
+// Helper para pegar tradução
 function t(key) {
-  const dict = window.__i18nDict;
-  if (!dict) return key;
-  const val = key.split('.').reduce((o, k) => (o && o[k] != null ? o[k] : undefined), dict);
-  return (typeof val === 'string') ? val : key;
+    const dict = window.__i18nDict;
+    if (!dict) return key;
+    const val = key.split('.').reduce((o, k) => (o && o[k] != null ? o[k] : undefined), dict);
+    return (typeof val === 'string') ? val : key;
 }
 
-  (function(){
+// Sistema de internacionalização
+(function(){
     const DEFAULT_LANG = 'en';
     const LS_KEY = 'mylux_lang';
 
     async function loadLocale(lang) {
-      const res = await fetch(`locales/${lang}.json?v=1`, {cache: 'no-store'});
-      if (!res.ok) throw new Error('Locale not found');
-      return res.json();
+        const res = await fetch(`locales/${lang}.json?v=1`, {cache: 'no-store'});
+        if (!res.ok) throw new Error('Locale not found');
+        return res.json();
     }
 
-    function tApply(dict) {
-      // texto interno
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        const val = key.split('.').reduce((o,k)=> (o||{})[k], dict);
-        if (typeof val === 'string') el.innerHTML = val; // permite <strong> nos textos
-      });
-      document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
-        const key = el.getAttribute('data-i18n-placeholder');
-        const val = key.split('.').reduce((o,k)=> (o||{})[k], dict);
-        if (typeof val === 'string') el.setAttribute('placeholder', val);
-      });
-      document.documentElement.setAttribute('lang', dict.__meta?.lang || 'en');
-    }
+    // Tornar tApply global para ser acessível
+    window.tApply = function tApply(dict) {
+        // texto interno
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const val = key.split('.').reduce((o,k)=> (o||{})[k], dict);
+            if (typeof val === 'string') el.innerHTML = val;
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+            const key = el.getAttribute('data-i18n-placeholder');
+            const val = key.split('.').reduce((o,k)=> (o||{})[k], dict);
+            if (typeof val === 'string') el.setAttribute('placeholder', val);
+        });
+        document.documentElement.setAttribute('lang', dict.__meta?.lang || 'en');
+    };
 
     async function setLang(lang) {
-      try {
-        const dict = await loadLocale(lang);
-        window.__i18nDict = dict;
-        tApply(dict);
-        localStorage.setItem(LS_KEY, lang);
-        // feedback visual no switcher
-        document.querySelectorAll('#langSwitcher [data-lang]').forEach(b=>{
-          b.classList.toggle('ring-2', b.dataset.lang===lang);
-          b.classList.toggle('ring-white/70', b.dataset.lang===lang);
-        });
-      } catch(e) {
-        console.warn('i18n load failed:', e);
-      }
+        try {
+            const dict = await loadLocale(lang);
+            window.__i18nDict = dict;
+            window.tApply(dict);
+            localStorage.setItem(LS_KEY, lang);
+            
+            // Feedback visual no switcher
+            document.querySelectorAll('#langSwitcher [data-lang], #mobileLangSwitcher [data-lang]').forEach(b=>{
+                b.classList.toggle('ring-2', b.dataset.lang===lang);
+                b.classList.toggle('ring-white/70', b.dataset.lang===lang);
+            });
+        } catch(e) {
+            console.warn('i18n load failed:', e);
+        }
     }
 
-    window.setLang = setLang; 
+    window.setLang = setLang;
 
-    // init
+    // Inicialização do i18n
     (function initI18n(){
-      const saved = localStorage.getItem(LS_KEY);
-      const browser = (navigator.language||'en').slice(0,2).toLowerCase();
-      const initial = saved || (['pt','en','es'].includes(browser) ? browser : DEFAULT_LANG);
-      // setLang(initial);
-      setLang('en');
-      
-      // clique nos botões
-      document.querySelectorAll('#langSwitcher [data-lang]').forEach(btn=>{
-        btn.addEventListener('click', ()=> setLang(btn.dataset.lang));
-      });
+        const saved = localStorage.getItem(LS_KEY);
+        const browser = (navigator.language||'en').slice(0,2).toLowerCase();
+        const initial = saved || (['pt','en','es'].includes(browser) ? browser : DEFAULT_LANG);
+        setLang(initial); // Usa o idioma salvo ou do navegador
     })();
-  })();
+})();
 
-  (function(){
+// Delegação de clique para language switcher
+(function(){
     function closeMobileMenu(){
-      const menu = document.getElementById('mobileMenu');
-      if (menu && !menu.classList.contains('hidden')) {
-        menu.classList.add('hidden');
-        document.documentElement.classList.remove('overflow-hidden');
-      }
+        const menu = document.getElementById('mobileMenu');
+        if (menu && !menu.classList.contains('hidden')) {
+            menu.classList.add('hidden');
+            document.documentElement.classList.remove('overflow-hidden');
+        }
     }
 
-    // Delegação de clique: atende desktop e mobile
     document.addEventListener('click', function(e){
-      const btn = e.target.closest('#langSwitcher [data-lang], #mobileLangSwitcher [data-lang]');
-      if (!btn) return;
+        const btn = e.target.closest('#langSwitcher [data-lang], #mobileLangSwitcher [data-lang]');
+        if (!btn) return;
 
-      e.preventDefault();
-      const lang = btn.dataset.lang;
+        e.preventDefault();
+        const lang = btn.dataset.lang;
 
-      if (typeof window.setLang === 'function') {
-        window.setLang(lang);   // troca o idioma
-      }
+        if (typeof window.setLang === 'function') {
+            window.setLang(lang);
+        }
 
-      if (btn.closest('#mobileMenu')) closeMobileMenu();
+        if (btn.closest('#mobileMenu')) closeMobileMenu();
     });
-  })();
+})();
 
 // Função para detectar idioma atual
 function getCurrentLanguage() {
-  return window.__i18nDict?.__meta?.lang || 'pt';
+    return window.__i18nDict?.__meta?.lang || 'pt';
 }
 
-// ===== CONTROLE DE NAVEGAÇÃO SPA - HQ RENTALCARS =====
+// ========================================
+// SPA - CONTROLE DE NAVEGAÇÃO
+// ========================================
+
 let currentView = 'search';
 
 function showVehicles() {
@@ -234,22 +240,56 @@ function backToSearch() {
     currentView = 'search';
 }
 
-// Verificar ao carregar a página
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('📄 Página carregada, verificando estado...');
+// ========================================
+// INICIALIZAÇÃO PRINCIPAL
+// ========================================
+
+document.addEventListener('DOMContentLoaded', async function() {
+    console.log('📄 Página carregada...');
     
-    // Verifica se deve mostrar veículos (vindo do redirect)
+    // 1. Carrega modais PRIMEIRO
+    await loadComponent('modals-placeholder', 'modals.html');
+    
+    // 2. Carrega header e footer em paralelo
+    await Promise.all([
+        loadComponent('header-placeholder', 'header.html'),
+        loadComponent('footer-placeholder', 'footer.html')
+    ]);
+    
+    // 3. Event listeners dos modals
+    const benefitsModal = document.getElementById('benefitsModal');
+    if (benefitsModal) {
+        benefitsModal.addEventListener('click', (e) => {
+            if (e.target === benefitsModal) closeBenefitsModal();
+        });
+    }
+    
+    const locationsModal = document.getElementById('locationsModal');
+    if (locationsModal) {
+        locationsModal.addEventListener('click', (e) => {
+            if (e.target === locationsModal) closeLocationsModal();
+        });
+    }
+    
+    // 4. ESC para fechar modals
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeBenefitsModal();
+            closeLocationsModal();
+        }
+    });
+    
+    // 5. Verifica se deve mostrar veículos (SPA)
     const shouldShowVehicles = localStorage.getItem('show-vehicles');
     const hash = window.location.hash;
     
     if (shouldShowVehicles === 'true' || hash === '#vehicles') {
         console.log('✅ Mostrando veículos (redirect detectado)');
         showVehicles();
-        // Limpa a flag
         localStorage.removeItem('show-vehicles');
     }
     
-    // Monitorar mudanças de hash
+    // 6. Monitorar mudanças de hash
     window.addEventListener('hashchange', function() {
         if (window.location.hash === '#vehicles') {
             showVehicles();
@@ -257,6 +297,6 @@ document.addEventListener('DOMContentLoaded', function() {
             backToSearch();
         }
     });
+    
+    console.log('✅ Sistema AllyCars inicializado!');
 });
-
-console.log('✅ Sistema SPA AllyCars + HQ inicializado');
