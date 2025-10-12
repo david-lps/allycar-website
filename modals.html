@@ -1,6 +1,7 @@
 <!-- Modal Benefits -->
-<div id="benefitsModal" class="fixed inset-0 hidden z-50 items-center justify-center bg-black/60 backdrop-blur-sm">
+  <div id="benefitsModal" class="fixed inset-0 hidden z-50 items-center justify-center bg-black/60 backdrop-blur-sm">
     <div class="relative w-11/12 max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-5 md:p-8 animate-zoom">
+
       <!-- Botão Fechar -->
       <button onclick="closeBenefitsModal()"
               aria-label="Fechar modal"
@@ -37,9 +38,114 @@
         <span class="px-3 py-1 text-xs rounded-full bg-[#C6A25A]/10 text-[#0e2a47] ring-1 ring-[#C6A25A]/20" data-i18n="benefits.tags.familyFirst">Família em 1º lugar</span>
       </div>
 
-      <!-- Grid de benefícios - TODOS OS 15 ITENS -->
+      <!-- Grid de benefícios -->
       <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-        <!-- Cole aqui todos os 15 articles do modal de benefícios -->
+
+        <!-- 1 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-car-side"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.premiumFleet.title">Veículos novos e Premium</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.premiumFleet.body">Frota atualizada, confortável e revisada para sua segurança.</p>
+        </article>
+
+        <!-- 2 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-list-check"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.exactCar.title">Escolha o carro exato</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.exactCar.body">Aqui você não “aluga a categoria” — escolhe o modelo que vai usar.</p>
+        </article>
+
+        <!-- 3 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-calendar-day"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.noMinPeriod.title">Sem período mínimo</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.noMinPeriod.body">Alugue pelo tempo que precisar — sem exigir 7 dias.</p>
+        </article>
+
+        <!-- 4 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-gas-pump"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.fullTank.title">Tanque cheio</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.fullTank.body">Retire com tanque cheio para sair dirigindo sem paradas.</p>
+        </article>
+
+        <!-- 5 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-shield-alt"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.fullInsurance.title">Seguro completo + terceiros</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.fullInsurance.body">Cobertura ampla para você dirigir sem preocupação.</p>
+        </article>
+
+        <!-- 6 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-user-plus"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.extraDriver.title">Condutor adicional grátis</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.extraDriver.body">Revezem a direção sem pagar a mais por isso.</p>
+        </article>
+
+        <!-- 7 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-road"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.unlimitedTolls.title">Pedágios ilimitados</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.unlimitedTolls.body">Passe livre nos pedágios: praticidade e previsibilidade.</p>
+        </article>
+
+        <!-- 8 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-baby-carriage"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.childSeat.title">Cadeirinha inclusa</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.childSeat.body">Segurança para os pequenos, sem custo extra.</p>
+        </article>
+
+        <!-- 9 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-mobile-alt"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.webCheckin.title">Web Check-in</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.webCheckin.body">Faça tudo online e receba o carro pronto.</p>
+        </article>
+
+        <!-- 10 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-check-circle"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.noLines.title">Sem filas na retirada</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.noLines.body">Chegou, pegou e partiu — simples assim.</p>
+        </article>
+
+        <!-- 11 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-truck"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.freeDelivery.title">Entrega gratuita em Orlando</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.freeDelivery.body">Levamos e buscamos o carro onde você estiver.</p>
+        </article>
+
+        <!-- 12 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-piggy-bank"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.noDeposit.title">Sem depósito caução</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.noDeposit.body">Seu dinheiro livre: sem bloqueios no cartão.</p>
+        </article>
+
+        <!-- 13 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-percent"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.noIOF.title">Sem IOF</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.noIOF.body">Economia real na locação internacional.</p>
+        </article>
+
+        <!-- 14 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-credit-card"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.installments.title">Parcelamento sem juros</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.installments.body">Planeje sua viagem e pague do seu jeito.</p>
+        </article>
+
+        <!-- 15 -->
+        <article class="text-center p-4 md:p-5 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="text-[#C6A25A] text-2xl md:text-3xl mb-3"><i class="fas fa-headset"></i></div>
+          <h3 class="text-base md:text-lg font-semibold text-[#0e2a47] mb-1" data-i18n="benefits.cards.support247.title">Atendimento 24×7 PT / EN / ES</h3>
+          <p class="text-sm md:text-[15px] text-gray-600" data-i18n="benefits.cards.support247.body">Suporte humano, quando e como você precisar.</p>
+        </article>
+
       </section>
 
       <!-- Footer -->
@@ -53,7 +159,7 @@
                   data-i18n="benefits.footer.close">
             Fechar
           </button>
-          <a href="index.html#home"
+          <a href="#home"
              class="px-5 py-2.5 rounded-lg gold-bg navy-text font-semibold hover:opacity-95 transition"
              onclick="closeBenefitsModal()"
              data-i18n="benefits.footer.cta">
@@ -62,7 +168,7 @@
         </div>
       </footer>
     </div>
-</div>
+  </div>
 
 <!-- Modal Locations -->
 <div id="locationsModal" class="fixed inset-0 hidden z-[120] overflow-y-auto">
