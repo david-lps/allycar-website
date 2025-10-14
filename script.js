@@ -264,7 +264,19 @@ document.addEventListener('DOMContentLoaded', async function() {
         loadComponent('footer-placeholder', 'footer.html')
     ]);
     
-    // 3. Event listeners dos modals
+    // 3. APLICA O IDIOMA SALVO DEPOIS DE CARREGAR TUDO
+    const savedLang = localStorage.getItem('mylux_lang');
+    if (savedLang && window.__i18nDict) {
+        // Se já tem idioma carregado, reaplicar
+        window.tApply(window.__i18nDict);
+    } else if (savedLang) {
+        // Se tem idioma salvo mas não carregou ainda, carregar agora
+        if (typeof window.setLang === 'function') {
+            await window.setLang(savedLang);
+        }
+    }
+    
+    // 4. Event listeners dos modals
     const benefitsModal = document.getElementById('benefitsModal');
     if (benefitsModal) {
         benefitsModal.addEventListener('click', (e) => {
@@ -279,7 +291,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
     }
     
-    // 4. ESC para fechar modals
+    // 5. ESC para fechar modals
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeBenefitsModal();
@@ -287,7 +299,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     });
     
-    // 5. Verifica se deve mostrar veículos (SPA)
+    // 6. Verifica se deve mostrar veículos (SPA)
     const shouldShowVehicles = localStorage.getItem('show-vehicles');
     const hash = window.location.hash;
     
@@ -297,7 +309,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         localStorage.removeItem('show-vehicles');
     }
     
-    // 6. Monitorar mudanças de hash
+    // 7. Monitorar mudanças de hash
     window.addEventListener('hashchange', function() {
         if (window.location.hash === '#vehicles') {
             showVehicles();
