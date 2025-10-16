@@ -34,6 +34,208 @@
                     <span data-i18n="booking.back">Home</span>
                 </a>
             </div>
+
+<!-- Painel de Filtros AllyCar -->
+<div id="allycar-filters-panel" class="allycar-filters-container">
+    <div class="allycar-filters-inner">
+        <h3 class="filters-title">
+            <i class="fas fa-filter"></i>
+            <span data-i18n="filters.title">Filtrar Veículos</span>
+        </h3>
+        
+        <div class="filters-grid">
+            <!-- Filtro por Preço -->
+            <div class="filter-group">
+                <label data-i18n="filters.price">Preço Diário</label>
+                <select id="filter-price" class="filter-select">
+                    <option value="all" data-i18n="filters.all">Todos</option>
+                    <option value="0-70">$0 - $70</option>
+                    <option value="71-100">$71 - $100</option>
+                    <option value="101-150">$101 - $150</option>
+                    <option value="151-999">$151+</option>
+                </select>
+            </div>
+
+            <!-- Filtro por Categoria -->
+            <div class="filter-group">
+                <label data-i18n="filters.category">Categoria</label>
+                <select id="filter-category" class="filter-select">
+                    <option value="all" data-i18n="filters.all">Todas</option>
+                    <option value="sedan">Sedan</option>
+                    <option value="suv">SUV</option>
+                    <option value="van">Van/Minivan</option>
+                    <option value="truck">Pickup/Truck</option>
+                    <option value="electric">Elétrico</option>
+                </select>
+            </div>
+
+            <!-- Filtro por Assentos -->
+            <div class="filter-group">
+                <label data-i18n="filters.seats">Assentos</label>
+                <select id="filter-seats" class="filter-select">
+                    <option value="all" data-i18n="filters.all">Todos</option>
+                    <option value="5">5 assentos</option>
+                    <option value="7">7 assentos</option>
+                    <option value="8">8+ assentos</option>
+                </select>
+            </div>
+
+            <!-- Filtro por Bagagem -->
+            <div class="filter-group">
+                <label data-i18n="filters.luggage">Bagagem</label>
+                <select id="filter-luggage" class="filter-select">
+                    <option value="all" data-i18n="filters.all">Todas</option>
+                    <option value="small">Pequena (2-3 malas)</option>
+                    <option value="medium">Média (4-5 malas)</option>
+                    <option value="large">Grande (6+ malas)</option>
+                </select>
+            </div>
+
+            <!-- Botão Limpar -->
+            <div class="filter-group">
+                <button id="clear-filters" class="btn-clear-filters">
+                    <i class="fas fa-times"></i>
+                    <span data-i18n="filters.clear">Limpar Filtros</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="filter-results-count">
+            <span id="results-count">0</span> 
+            <span data-i18n="filters.vehiclesFound">veículos encontrados</span>
+        </div>
+    </div>
+</div>
+
+<style>
+/* ===== FILTROS ALLYCAR ===== */
+.allycar-filters-container {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 70px;
+    z-index: 100;
+}
+
+.allycar-filters-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.filters-title {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.filter-group label {
+    display: block;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.filter-select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-select:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: white;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: white;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+.btn-clear-filters {
+    width: 100%;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 28px;
+}
+
+.btn-clear-filters:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: white;
+}
+
+.filter-results-count {
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.filter-results-count span:first-child {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .allycar-filters-container {
+        padding: 15px;
+        position: relative;
+        top: 0;
+    }
+
+    .filters-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .filters-title {
+        font-size: 1.2rem;
+    }
+
+    .btn-clear-filters {
+        margin-top: 0;
+    }
+}
+
+/* Esconder veículos filtrados */
+.car-rental-step-2-vehicle-class-container.hidden-by-filter {
+    display: none !important;
+}
+</style>
             
             <!-- HQ RentalCars Booking System -->
             <div class="bg-white rounded-2xl shadow-lg p-4 md:p-6">
