@@ -417,18 +417,3 @@ button[onclick*="backToSearch"]:hover {
     background-color: #e5e7eb;
     transform: translateX(-4px);
 }
-
-/* Container HQ */
-#vehicles-section .hq-rental-software-integration {
-    min-height: 70vh;
-}
-
-    .car-rental-public-booking .res-date_time_select .box-fields {
-        padding: 1px 1px 1px 1px !important;
-    }
-    
-    .appform .box-fields {
-     padding: 1px 1px 1px 1px !important;
-    }
-
-
